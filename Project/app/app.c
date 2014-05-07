@@ -17,7 +17,7 @@ WORK_MODE Sys_Work_Mode = SYS_POWER_ON;
 /*
 *********************************************************************************************************
 *	函 数 名: app_Hook
-*	功能说明: 
+*	功能说明: app 相关调试，测试钩子函数
 *	形    参：无
 *	返 回 值: 无
 *********************************************************************************************************
@@ -50,7 +50,7 @@ void app_Hook(void)
 */
 void App_Init(void)
 {
-	Printer_Init();
+	printer_Init();//打印机相关初始化
 }
 
 /*
@@ -63,8 +63,8 @@ void App_Init(void)
 */
 void App_Task(void)
 {
-	app_Hook();
+	app_Hook();//调用钩子函数
 	uart_SERVER_TASK();//串口检查服务函数
-	printer_SERVER_TASK();
+	printer_SERVER_TASK();//打印服务函数
 }
 
