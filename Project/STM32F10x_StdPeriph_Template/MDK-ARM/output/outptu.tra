@@ -45,7 +45,7 @@
 ### ADS-LD Output File: '.\output\outptu.axf'
 ### ADS-LD Command File: '.\output\outptu.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\output\outptu.lnp', Handle=0x000004D8
+### Creating CmdFile '.\output\outptu.lnp', Handle=0x00000770
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\output\outptu.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

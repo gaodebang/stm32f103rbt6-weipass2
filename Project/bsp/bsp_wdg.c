@@ -105,9 +105,8 @@ void bsp_InitWdg(void)
 void Wwdg_ISR(void)
 {
 	WWDG_ClearFlag();
-	/*
-	    处理窗口看门狗超时。
-	*/
+	/* 处理窗口看门狗超时 */
+	printf("\r\nwwdg timeout !\r\n");
 	Wwdg_Feed();
 }
 /*

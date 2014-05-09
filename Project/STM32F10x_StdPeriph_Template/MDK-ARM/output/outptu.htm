@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\outptu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\outptu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Tue May 06 18:23:40 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Fri May 09 16:54:31 2014
 <BR><P>
 <H3>Maximum Stack Usage =        156 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -72,6 +72,7 @@ Function Pointers
  <LI><a href="#[5]">UsageFault_Handler</a> from stm32f10x_it.o(i.UsageFault_Handler) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[a]">WWDG_IRQHandler</a> from stm32f10x_it.o(i.WWDG_IRQHandler) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[37]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_stm32f10x_md.o(.text)
+ <LI><a href="#[38]">fputc</a> from bsp_uart_fifo.o(i.fputc) referenced from printf1.o(i.__0printf$1)
  <LI><a href="#[35]">main</a> from main.o(i.main) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P>
@@ -81,25 +82,25 @@ Global Symbols
 <P><STRONG><a name="[37]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(.text)
 </UL>
-<P><STRONG><a name="[86]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[8b]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
-<P><STRONG><a name="[38]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
-<BR><BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+<P><STRONG><a name="[39]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<BR><BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[3a]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
-<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+<P><STRONG><a name="[3b]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[87]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[8c]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[88]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[8d]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[89]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[8e]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[8a]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[8f]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[8b]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[90]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
@@ -228,28 +229,34 @@ Global Symbols
 <P><STRONG><a name="[1e]"></a>USB_LP_CAN1_RX0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[39]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
-</UL>
-<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
+<P><STRONG><a name="[91]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+
+<P><STRONG><a name="[6b]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[8c]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
-
-<P><STRONG><a name="[3b]"></a>App_Init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, app.o(i.App_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = App_Init &rArr; printer_Init &rArr; GPIO_Init
+<P><STRONG><a name="[3a]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
+</UL>
+
+<P><STRONG><a name="[92]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+
+<P><STRONG><a name="[3c]"></a>App_Init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, app.o(i.App_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = App_Init &rArr; printer_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3d]"></a>App_Task</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, app.o(i.App_Task))
+<P><STRONG><a name="[3e]"></a>App_Task</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, app.o(i.App_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = App_Task &rArr; uart_SERVER_TASK &rArr; checkout_cmd &rArr; printer_CMD_DEAL &rArr; printer_moter_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_SERVER_TASK
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_Hook
+<BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_SERVER_TASK
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_Hook
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -257,67 +264,57 @@ Global Symbols
 <P><STRONG><a name="[4]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.BusFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[79]"></a>ComToUart</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.ComToUart))
-<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comGetChar
+<P><STRONG><a name="[75]"></a>ComToUart</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.ComToUart))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comGetChar
 </UL>
 
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[46]"></a>GPIO_Init</STRONG> (Thumb, 274 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
+<P><STRONG><a name="[47]"></a>GPIO_Init</STRONG> (Thumb, 274 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
 </UL>
 
-<P><STRONG><a name="[7d]"></a>GPIO_PinRemapConfig</STRONG> (Thumb, 138 bytes, Stack size 20 bytes, stm32f10x_gpio.o(i.GPIO_PinRemapConfig))
+<P><STRONG><a name="[7c]"></a>GPIO_PinRemapConfig</STRONG> (Thumb, 138 bytes, Stack size 20 bytes, stm32f10x_gpio.o(i.GPIO_PinRemapConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_PinRemapConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
-<P><STRONG><a name="[7c]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<P><STRONG><a name="[7b]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed_step
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
-<P><STRONG><a name="[7e]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<P><STRONG><a name="[55]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed_step
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.HardFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[6d]"></a>IWDG_Enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_Enable))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
+<P><STRONG><a name="[4d]"></a>IWDG_ReloadCounter</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_ReloadCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Iwdg_Feed
 </UL>
 
-<P><STRONG><a name="[4c]"></a>IWDG_ReloadCounter</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_ReloadCounter))
-<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Iwdg_Feed
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
-</UL>
-
-<P><STRONG><a name="[6b]"></a>IWDG_SetPrescaler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_SetPrescaler))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
-</UL>
-
-<P><STRONG><a name="[6c]"></a>IWDG_SetReload</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_SetReload))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
-</UL>
-
-<P><STRONG><a name="[6a]"></a>IWDG_WriteAccessCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
-</UL>
-
-<P><STRONG><a name="[4b]"></a>Iwdg_Feed</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, bsp_wdg.o(i.Iwdg_Feed))
+<P><STRONG><a name="[4c]"></a>Iwdg_Feed</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, bsp_wdg.o(i.Iwdg_Feed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Iwdg_Feed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_ReloadCounter
+<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_ReloadCounter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Idle
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Idle
 </UL>
 
 <P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.MemManage_Handler))
@@ -326,59 +323,60 @@ Global Symbols
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[43]"></a>NVIC_Init</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
+<P><STRONG><a name="[44]"></a>NVIC_Init</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigUartNVIC
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigUartNVIC
 </UL>
 
-<P><STRONG><a name="[42]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigUartNVIC
+<P><STRONG><a name="[43]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigUartNVIC
 </UL>
 
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.PendSV_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[70]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
+<P><STRONG><a name="[7d]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
-<P><STRONG><a name="[7f]"></a>RCC_APB1PeriphResetCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<P><STRONG><a name="[58]"></a>RCC_APB1PeriphResetCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_DeInit
 </UL>
 
-<P><STRONG><a name="[45]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+<P><STRONG><a name="[46]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
 </UL>
 
-<P><STRONG><a name="[56]"></a>RCC_GetClocksFreq</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, stm32f10x_rcc.o(i.RCC_GetClocksFreq))
+<P><STRONG><a name="[57]"></a>RCC_APB2PeriphResetCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_DeInit
+</UL>
+
+<P><STRONG><a name="[5c]"></a>RCC_GetClocksFreq</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, stm32f10x_rcc.o(i.RCC_GetClocksFreq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = RCC_GetClocksFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
+<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
 </UL>
 
-<P><STRONG><a name="[69]"></a>RCC_GetFlagStatus</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, stm32f10x_rcc.o(i.RCC_GetFlagStatus))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RCC_GetFlagStatus
-</UL>
-<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
+<P><STRONG><a name="[7f]"></a>SPI_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
-<P><STRONG><a name="[68]"></a>RCC_LSICmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_LSICmd))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
+<P><STRONG><a name="[88]"></a>SPI_I2S_GetFlagStatus</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
 </UL>
 
-<P><STRONG><a name="[81]"></a>SPI_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<P><STRONG><a name="[89]"></a>SPI_I2S_SendData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_I2S_SendData))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
 </UL>
 
-<P><STRONG><a name="[80]"></a>SPI_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f10x_spi.o(i.SPI_Init))
+<P><STRONG><a name="[7e]"></a>SPI_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f10x_spi.o(i.SPI_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
 <P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SVC_Handler))
@@ -387,447 +385,506 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f10x_it.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysTick_Handler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_ISR
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_ISR
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[4f]"></a>SysTick_ISR</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, bsp_timer.o(i.SysTick_ISR))
+<P><STRONG><a name="[50]"></a>SysTick_ISR</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, bsp_timer.o(i.SysTick_ISR))
 <BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
 <P><STRONG><a name="[36]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(.text)
 </UL>
 <P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f10x_it.o(i.TIM2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = TIM2_IRQHandler &rArr; TIM2_ISR &rArr; TIM_GetITStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[50]"></a>TIM2_ISR</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR))
+<P><STRONG><a name="[51]"></a>TIM2_ISR</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TIM2_ISR &rArr; TIM_GetITStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[52]"></a>TIM_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ClearITPendingBit))
-<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<P><STRONG><a name="[82]"></a>TIM_ClearFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ClearFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
-<P><STRONG><a name="[84]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<P><STRONG><a name="[53]"></a>TIM_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ClearITPendingBit))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
 </UL>
 
-<P><STRONG><a name="[51]"></a>TIM_GetITStatus</STRONG> (Thumb, 34 bytes, Stack size 12 bytes, stm32f10x_tim.o(i.TIM_GetITStatus))
+<P><STRONG><a name="[54]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+</UL>
+
+<P><STRONG><a name="[56]"></a>TIM_DeInit</STRONG> (Thumb, 424 bytes, Stack size 8 bytes, stm32f10x_tim.o(i.TIM_DeInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = TIM_DeInit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphResetCmd
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphResetCmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+</UL>
+
+<P><STRONG><a name="[52]"></a>TIM_GetITStatus</STRONG> (Thumb, 34 bytes, Stack size 12 bytes, stm32f10x_tim.o(i.TIM_GetITStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = TIM_GetITStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
 </UL>
 
 <P><STRONG><a name="[83]"></a>TIM_ITConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ITConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
-<P><STRONG><a name="[82]"></a>TIM_TimeBaseInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_TimeBaseInit))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+<P><STRONG><a name="[80]"></a>TIM_InternalClockConfig</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_InternalClockConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
+</UL>
+
+<P><STRONG><a name="[81]"></a>TIM_TimeBaseInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_TimeBaseInit))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_Init
 </UL>
 
 <P><STRONG><a name="[2f]"></a>USART1_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.USART1_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = USART1_IRQHandler &rArr; UartIRQ &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[54]"></a>USART1_Tx_Chars</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, app_uart.o(i.USART1_Tx_Chars))
+<P><STRONG><a name="[5a]"></a>USART1_Tx_Chars</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, app_uart.o(i.USART1_Tx_Chars))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendChar
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
-</UL>
-
-<P><STRONG><a name="[4a]"></a>USART_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_ClearFlag))
-<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
 </UL>
 
-<P><STRONG><a name="[49]"></a>USART_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+<P><STRONG><a name="[4b]"></a>USART_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_ClearFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
 </UL>
 
-<P><STRONG><a name="[59]"></a>USART_GetITStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, stm32f10x_usart.o(i.USART_GetITStatus))
+<P><STRONG><a name="[4a]"></a>USART_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+</UL>
+
+<P><STRONG><a name="[77]"></a>USART_GetFlagStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_GetFlagStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
+</UL>
+
+<P><STRONG><a name="[5f]"></a>USART_GetITStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, stm32f10x_usart.o(i.USART_GetITStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = USART_GetITStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
 </UL>
 
-<P><STRONG><a name="[48]"></a>USART_ITConfig</STRONG> (Thumb, 74 bytes, Stack size 20 bytes, stm32f10x_usart.o(i.USART_ITConfig))
+<P><STRONG><a name="[49]"></a>USART_ITConfig</STRONG> (Thumb, 74 bytes, Stack size 20 bytes, stm32f10x_usart.o(i.USART_ITConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = USART_ITConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartSend
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartSend
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
 </UL>
 
-<P><STRONG><a name="[47]"></a>USART_Init</STRONG> (Thumb, 210 bytes, Stack size 56 bytes, stm32f10x_usart.o(i.USART_Init))
+<P><STRONG><a name="[48]"></a>USART_Init</STRONG> (Thumb, 210 bytes, Stack size 56 bytes, stm32f10x_usart.o(i.USART_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
-</UL>
-
-<P><STRONG><a name="[5a]"></a>USART_ReceiveData</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_ReceiveData))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
 </UL>
 
-<P><STRONG><a name="[5b]"></a>USART_SendData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_SendData))
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
+<P><STRONG><a name="[60]"></a>USART_ReceiveData</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_ReceiveData))
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
+</UL>
+
+<P><STRONG><a name="[61]"></a>USART_SendData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_SendData))
+<BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartIRQ
 </UL>
 
 <P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[60]"></a>WWDG_ClearFlag</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_ClearFlag))
-<BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
-</UL>
-
-<P><STRONG><a name="[73]"></a>WWDG_Enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_Enable))
-<BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
-</UL>
-
-<P><STRONG><a name="[74]"></a>WWDG_EnableIT</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_EnableIT))
-<BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
+<P><STRONG><a name="[66]"></a>WWDG_ClearFlag</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_ClearFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
 </UL>
 
 <P><STRONG><a name="[a]"></a>WWDG_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f10x_it.o(i.WWDG_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = WWDG_IRQHandler &rArr; Wwdg_ISR &rArr; Wwdg_Feed
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = WWDG_IRQHandler &rArr; Wwdg_ISR &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[5f]"></a>WWDG_SetCounter</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_SetCounter))
-<BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Feed
+<P><STRONG><a name="[65]"></a>WWDG_SetCounter</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_SetCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Feed
 </UL>
 
-<P><STRONG><a name="[71]"></a>WWDG_SetPrescaler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_wwdg.o(i.WWDG_SetPrescaler))
-<BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
-</UL>
-
-<P><STRONG><a name="[72]"></a>WWDG_SetWindowValue</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f10x_wwdg.o(i.WWDG_SetWindowValue))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = WWDG_SetWindowValue
-</UL>
-<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
-</UL>
-
-<P><STRONG><a name="[5e]"></a>Wwdg_Feed</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, bsp_wdg.o(i.Wwdg_Feed))
+<P><STRONG><a name="[64]"></a>Wwdg_Feed</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, bsp_wdg.o(i.Wwdg_Feed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Wwdg_Feed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_SetCounter
+<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_SetCounter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Reload_Task
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Reload_Task
 </UL>
 
-<P><STRONG><a name="[5d]"></a>Wwdg_ISR</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp_wdg.o(i.Wwdg_ISR))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Wwdg_ISR &rArr; Wwdg_Feed
+<P><STRONG><a name="[63]"></a>Wwdg_ISR</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, bsp_wdg.o(i.Wwdg_ISR))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Wwdg_ISR &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_ClearFlag
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Feed
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_ClearFlag
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Feed
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_IRQHandler
 </UL>
 
-<P><STRONG><a name="[61]"></a>Wwdg_Reload_Task</STRONG> (Thumb, 236 bytes, Stack size 16 bytes, bsp_wdg.o(i.Wwdg_Reload_Task))
+<P><STRONG><a name="[68]"></a>Wwdg_Reload_Task</STRONG> (Thumb, 236 bytes, Stack size 16 bytes, bsp_wdg.o(i.Wwdg_Reload_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Wwdg_Reload_Task &rArr; Wwdg_Feed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Feed
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Feed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Idle
-</UL>
-
-<P><STRONG><a name="[8d]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
-
-<P><STRONG><a name="[8e]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
-
-<P><STRONG><a name="[8f]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
-
-<P><STRONG><a name="[3e]"></a>app_Hook</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, app.o(i.app_Hook))
-<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Idle
 </UL>
 
-<P><STRONG><a name="[62]"></a>bsp_Idle</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp.o(i.bsp_Idle))
+<P><STRONG><a name="[69]"></a>__0printf$1</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[93]"></a>__1printf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
+
+<P><STRONG><a name="[67]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
+</UL>
+
+<P><STRONG><a name="[94]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+
+<P><STRONG><a name="[95]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+<P><STRONG><a name="[96]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+
+<P><STRONG><a name="[3f]"></a>app_Hook</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, app.o(i.app_Hook))
+<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
+</UL>
+
+<P><STRONG><a name="[8a]"></a>bsp_DelayUS</STRONG> (Thumb, 76 bytes, Stack size 20 bytes, bsp_timer.o(i.bsp_DelayUS))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = bsp_DelayUS
+</UL>
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+</UL>
+
+<P><STRONG><a name="[6c]"></a>bsp_Idle</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp.o(i.bsp_Idle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = bsp_Idle &rArr; Wwdg_Reload_Task &rArr; Wwdg_Feed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Reload_Task
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Iwdg_Feed
+<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_Reload_Task
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Iwdg_Feed
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[63]"></a>bsp_Init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, bsp.o(i.bsp_Init))
+<P><STRONG><a name="[6d]"></a>bsp_Init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, bsp.o(i.bsp_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = bsp_Init &rArr; bsp_InitUart &rArr; InitHardUart &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitTimer
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWdg
+<BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitTimer
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[65]"></a>bsp_InitTimer</STRONG> (Thumb, 84 bytes, Stack size 12 bytes, bsp_timer.o(i.bsp_InitTimer))
+<P><STRONG><a name="[6f]"></a>bsp_InitTimer</STRONG> (Thumb, 84 bytes, Stack size 12 bytes, bsp_timer.o(i.bsp_InitTimer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = bsp_InitTimer
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
 </UL>
 
-<P><STRONG><a name="[64]"></a>bsp_InitUart</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.bsp_InitUart))
+<P><STRONG><a name="[6e]"></a>bsp_InitUart</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.bsp_InitUart))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = bsp_InitUart &rArr; InitHardUart &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartVarInit
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigUartNVIC
+<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartVarInit
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardUart
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigUartNVIC
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
-</UL>
-
-<P><STRONG><a name="[66]"></a>bsp_InitWdg</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, bsp_wdg.o(i.bsp_InitWdg))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = bsp_InitWdg &rArr; bsp_InitWwdg &rArr; NVIC_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWwdg
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitIwdg
-</UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
 </UL>
 
-<P><STRONG><a name="[78]"></a>comGetChar</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.comGetChar))
+<P><STRONG><a name="[74]"></a>comGetChar</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.comGetChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = comGetChar &rArr; UartGetChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComToUart
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartGetChar
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComToUart
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartGetChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_SERVER_TASK
+<BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_SERVER_TASK
 </UL>
 
-<P><STRONG><a name="[7a]"></a>comSendBuf</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.comSendBuf))
+<P><STRONG><a name="[76]"></a>comSendBuf</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.comSendBuf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComToUart
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartSend
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComToUart
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartSend
 </UL>
-<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendChar
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendChar
 </UL>
 
-<P><STRONG><a name="[55]"></a>comSendChar</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.comSendChar))
+<P><STRONG><a name="[5b]"></a>comSendChar</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.comSendChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
 
+<P><STRONG><a name="[38]"></a>fputc</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.fputc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = fputc
+</UL>
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> printf1.o(i.__0printf$1)
+</UL>
 <P><STRONG><a name="[35]"></a>main</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = main &rArr; App_Task &rArr; uart_SERVER_TASK &rArr; checkout_cmd &rArr; printer_CMD_DEAL &rArr; printer_moter_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Idle
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
-<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Init
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Init
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_Idle
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[77]"></a>printer_CMD_DEAL</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
+<P><STRONG><a name="[73]"></a>printer_CMD_DEAL</STRONG> (Thumb, 172 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = printer_CMD_DEAL &rArr; printer_moter_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
 </UL>
 
-<P><STRONG><a name="[3c]"></a>printer_Init</STRONG> (Thumb, 562 bytes, Stack size 48 bytes, app_printer.o(i.printer_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = printer_Init &rArr; GPIO_Init
+<P><STRONG><a name="[3d]"></a>printer_Init</STRONG> (Thumb, 662 bytes, Stack size 56 bytes, app_printer.o(i.printer_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = printer_Init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinRemapConfig
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphResetCmd
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinRemapConfig
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_InternalClockConfig
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ITConfig
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_DeInit
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearFlag
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Init
-</UL>
-
-<P><STRONG><a name="[40]"></a>printer_SERVER_TASK</STRONG> (Thumb, 674 bytes, Stack size 16 bytes, app_printer.o(i.printer_SERVER_TASK))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = printer_SERVER_TASK &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
-</UL>
-<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsDetect_Ok
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
-</UL>
-<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
+<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Init
 </UL>
 
-<P><STRONG><a name="[3f]"></a>uart_SERVER_TASK</STRONG> (Thumb, 242 bytes, Stack size 8 bytes, app_uart.o(i.uart_SERVER_TASK))
+<P><STRONG><a name="[41]"></a>printer_SERVER_TASK</STRONG> (Thumb, 422 bytes, Stack size 16 bytes, app_printer.o(i.printer_SERVER_TASK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = printer_SERVER_TASK &rArr; printer_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+</UL>
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_feed_step
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsDetect_Ok
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
+</UL>
+
+<P><STRONG><a name="[40]"></a>uart_SERVER_TASK</STRONG> (Thumb, 242 bytes, Stack size 8 bytes, app_uart.o(i.uart_SERVER_TASK))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = uart_SERVER_TASK &rArr; checkout_cmd &rArr; printer_CMD_DEAL &rArr; printer_moter_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comGetChar
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comGetChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[4d]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
+<P><STRONG><a name="[4e]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
+<BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[4e]"></a>SetSysClockTo72</STRONG> (Thumb, 212 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
+<P><STRONG><a name="[4f]"></a>SetSysClockTo72</STRONG> (Thumb, 212 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 
-<P><STRONG><a name="[67]"></a>bsp_InitIwdg</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, bsp_wdg.o(i.bsp_InitIwdg))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = bsp_InitIwdg &rArr; RCC_GetFlagStatus
-</UL>
-<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_LSICmd
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_WriteAccessCmd
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_SetReload
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_SetPrescaler
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_ReloadCounter
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Enable
-</UL>
-<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWdg
-</UL>
-
-<P><STRONG><a name="[6f]"></a>bsp_InitWwdg</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, bsp_wdg.o(i.bsp_InitWwdg))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = bsp_InitWwdg &rArr; NVIC_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_SetWindowValue
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_SetPrescaler
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_EnableIT
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_Enable
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WWDG_ClearFlag
-</UL>
-<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitWdg
-</UL>
-
-<P><STRONG><a name="[41]"></a>ConfigUartNVIC</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.ConfigUartNVIC))
+<P><STRONG><a name="[42]"></a>ConfigUartNVIC</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.ConfigUartNVIC))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = ConfigUartNVIC &rArr; NVIC_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
 </UL>
 
-<P><STRONG><a name="[44]"></a>InitHardUart</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.InitHardUart))
+<P><STRONG><a name="[45]"></a>InitHardUart</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.InitHardUart))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = InitHardUart &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
 </UL>
 
-<P><STRONG><a name="[57]"></a>UartGetChar</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.UartGetChar))
+<P><STRONG><a name="[5d]"></a>UartGetChar</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, bsp_uart_fifo.o(i.UartGetChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UartGetChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_PRIMASK
+<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_PRIMASK
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comGetChar
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comGetChar
 </UL>
 
-<P><STRONG><a name="[53]"></a>UartIRQ</STRONG> (Thumb, 230 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.UartIRQ))
+<P><STRONG><a name="[59]"></a>UartIRQ</STRONG> (Thumb, 230 bytes, Stack size 8 bytes, bsp_uart_fifo.o(i.UartIRQ))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = UartIRQ &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[5c]"></a>UartSend</STRONG> (Thumb, 114 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.UartSend))
+<P><STRONG><a name="[62]"></a>UartSend</STRONG> (Thumb, 114 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.UartSend))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_PRIMASK
+<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_PRIMASK
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
-</UL>
-
-<P><STRONG><a name="[6e]"></a>UartVarInit</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.UartVarInit))
-<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
 </UL>
 
-<P><STRONG><a name="[58]"></a>__set_PRIMASK</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.__set_PRIMASK))
-<BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartSend
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartGetChar
+<P><STRONG><a name="[70]"></a>UartVarInit</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.UartVarInit))
+<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
 </UL>
 
-<P><STRONG><a name="[75]"></a>checkout_cmd</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, app_uart.o(i.checkout_cmd))
+<P><STRONG><a name="[5e]"></a>__set_PRIMASK</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.__set_PRIMASK))
+<BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartSend
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UartGetChar
+</UL>
+
+<P><STRONG><a name="[71]"></a>checkout_cmd</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, app_uart.o(i.checkout_cmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = checkout_cmd &rArr; printer_CMD_DEAL &rArr; printer_moter_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;judge_cmd_correct
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;judge_cmd_correct
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_SERVER_TASK
+<BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_SERVER_TASK
 </UL>
 
-<P><STRONG><a name="[76]"></a>judge_cmd_correct</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, app_uart.o(i.judge_cmd_correct))
+<P><STRONG><a name="[72]"></a>judge_cmd_correct</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, app_uart.o(i.judge_cmd_correct))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = judge_cmd_correct
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
 </UL>
 
-<P><STRONG><a name="[85]"></a>IsDetect_Ok</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_printer.o(i.IsDetect_Ok))
-<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
+<P><STRONG><a name="[84]"></a>IsDetect_Ok</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_printer.o(i.IsDetect_Ok))
+<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
 </UL>
 
-<P><STRONG><a name="[7b]"></a>printer_moter_feed</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, app_printer.o(i.printer_moter_feed))
+<P><STRONG><a name="[78]"></a>printer_ceshi</STRONG> (Thumb, 138 bytes, Stack size 8 bytes, app_printer.o(i.printer_ceshi))
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = printer_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+</UL>
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+</UL>
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
+</UL>
+
+<P><STRONG><a name="[86]"></a>printer_data_out</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, app_printer.o(i.printer_data_out))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = printer_data_out
+</UL>
+<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_SendData
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_GetFlagStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+</UL>
+
+<P><STRONG><a name="[7a]"></a>printer_moter_cut_feed</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, app_printer.o(i.printer_moter_cut_feed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = printer_moter_cut_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+</UL>
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+</UL>
+
+<P><STRONG><a name="[79]"></a>printer_moter_feed</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, app_printer.o(i.printer_moter_feed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = printer_moter_feed &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+</UL>
+
+<P><STRONG><a name="[85]"></a>printer_moter_feed_step</STRONG> (Thumb, 398 bytes, Stack size 8 bytes, app_printer.o(i.printer_moter_feed_step))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = printer_moter_feed_step
+</UL>
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+</UL>
+<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
+</UL>
+
+<P><STRONG><a name="[87]"></a>printer_start</STRONG> (Thumb, 88 bytes, Stack size 8 bytes, app_printer.o(i.printer_start))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = printer_start &rArr; bsp_DelayUS
+</UL>
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_DelayUS
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_ceshi
+</UL>
+
+<P><STRONG><a name="[6a]"></a>_printf_core</STRONG> (Thumb, 334 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$1
 </UL>
 <P>
 <H3>
