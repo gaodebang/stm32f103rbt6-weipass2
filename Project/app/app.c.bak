@@ -50,7 +50,10 @@ void app_Hook(void)
 */
 void App_Init(void)
 {
-	Printer_Init();//打印机相关初始化
+	printer_Init();//打印机相关初始化
+	maxq1743_Init();//磁头服相关初始化
+	esam8810_Init();//ESAM加密芯片相关初始化
+	psam_card_Init();
 }
 
 /*
@@ -66,5 +69,8 @@ void App_Task(void)
 	app_Hook();//调用钩子函数
 	uart_SERVER_TASK();//串口检查服务函数
 	printer_SERVER_TASK();//打印服务函数
+	maxq1743_SERVER_TASK();//磁头服务函数
+	esam8810_SERVER_TASK();//ESAM加密芯片服务函数
+	psam_card_SERVER_TASK();
 }
 

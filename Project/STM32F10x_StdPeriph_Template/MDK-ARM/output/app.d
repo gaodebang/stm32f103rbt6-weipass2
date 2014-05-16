@@ -37,4 +37,7 @@
 .\output\app.o: ..\..\bsp\bsp_uart_fifo.h
 .\output\app.o: ..\..\app\app_uart.h
 .\output\app.o: ..\..\app\app_printer.h
+.\output\app.o: ..\..\app\app_pa1100.h
+.\output\app.o: ..\..\app\app_esam8810.h
+.\output\app.o: ..\..\app\app_psam_card.h
 .\output\app.o: ..\main.h

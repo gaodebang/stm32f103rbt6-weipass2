@@ -21,8 +21,8 @@
 /* 定义使能的串口, 0 表示不使能（不增加代码大小）， 1表示使能 */
 
 #define	UART1_FIFO_EN	1
-#define	UART2_FIFO_EN	0
-#define	UART3_FIFO_EN	0
+#define	UART2_FIFO_EN	1
+#define	UART3_FIFO_EN	1
 #define	UART4_FIFO_EN	0
 #define	UART5_FIFO_EN	0
 #define	UART6_FIFO_EN	0
@@ -39,8 +39,8 @@
 /* 定义端口号 */
 typedef enum
 {
-	COM1 = 0,	/* USART1  PA9, PA10 或 PB6, PB7 （100pin一下mcu不支持引脚重映射）*/
-	COM2 = 1,	/* USART2, PD5,PD6 或 PA2, PA3 （100pin一下mcu不支持引脚重映射）*/
+	COM1 = 0,	/* USART1  PA9, PA10  */
+	COM2 = 1,	/* USART2, PA2, PA3 */
 	COM3 = 2,	/* USART3, PB10, PB11 */
 	COM4 = 3,	/* UART4, PC10, PC11 */
 	COM5 = 4,	/* UART5, PC12, PD2 */

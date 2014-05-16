@@ -12,7 +12,7 @@
 #ifndef __APP_UART_H
 #define __APP_UART_H
 
-extern uint8_t Usart1_Txd_Tempdata[10];
+extern uint8_t Usart1_Txd_Tempdata[];
 
 void USART1_Tx_Chars(u8 *puchMsg,u16 num);
 uint8_t uart_SERVER_TASK(void);

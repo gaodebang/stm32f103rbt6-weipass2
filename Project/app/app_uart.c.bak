@@ -63,15 +63,17 @@ static uint8_t judge_cmd_correct(uint8_t *databuf, uint16_t length)
 	{
 		switch (*(databuf+2))
 		{
-			case 0x11://打印机相关命令
+			case PRINTER://打印机相关命令
 				return 1;
+			case MAXQ1743:
+				return 2;
 			default :
 				return 0;
 		}
 	}
 	else
 	{
-		return 0xff;
+		return 0xFF;
 	}
 }
 
@@ -89,25 +91,38 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 	switch (judge_cmd_correct(databuf, length))
 	{
 		case 0:
-			//数据包校验出错（长度），或者命令对象不存在
+			//命令对象不存在
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x20;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x00;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4)
+			Usart1_Txd_Tempdata[3] = 0x01;
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
 		case 1:
 			//打印机相关命令
 			printer_CMD_DEAL(databuf+3, length-3);//调用打印机命令执行函数
 			break;
+		case 2:
+			maxq1743_CMD_DEAL(databuf+3, length-3);//调用磁头命令执行函数
+			break;
+		case 3:
+			easm8810_CMD_DEAL(databuf+3, length-3);//调用ESAM加密芯片命令执行函数
+			break;
+		case 0xFF:
+			//数据包校验出错（长度）
+			Usart1_Txd_Tempdata[0] = 0x00;
+			Usart1_Txd_Tempdata[1] = 0x20;
+			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
+			Usart1_Txd_Tempdata[3] = 0x00;
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+			break;
 		default :
-			//数据包校验出错（长度），或者命令对象不存在
+			//命令对象不存在
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x20;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
 			Usart1_Txd_Tempdata[3] = 0x01;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4)
-			break;			
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			
 			break;
 	}
 }

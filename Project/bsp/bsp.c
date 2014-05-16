@@ -14,6 +14,19 @@
 
 /*
 *********************************************************************************************************
+*	函 数 名: bsp_rcc_init
+*	功能说明: 初始化各个总线时钟
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void bsp_rcc_init(void)
+{
+	
+}
+
+/*
+*********************************************************************************************************
 *	函 数 名: bsp_Init
 *	功能说明: 初始化所有的硬件设备。该函数配置CPU寄存器和外设的寄存器并初始化一些全局变量。只需要调用一次
 *	形    参：无
@@ -22,10 +35,27 @@
 */
 void bsp_Init(void)
 {
-    bsp_InitUart();             /* 初始化串口 */
-		printf("\r\nsystem start !\r\n");
-    bsp_InitTimer();            /* 初始化系统滴答定时器 */
-		//bsp_InitWdg();							/* 初始化看门狗 */
+	/**
+  * @brief  Configures the priority grouping: pre-emption priority and subpriority.
+  * @param  NVIC_PriorityGroup: specifies the priority grouping bits length. 
+  *   This parameter can be one of the following values:
+  *     @arg NVIC_PriorityGroup_0: 0 bits for pre-emption priority
+  *                                4 bits for subpriority
+  *     @arg NVIC_PriorityGroup_1: 1 bits for pre-emption priority
+  *                                3 bits for subpriority
+  *     @arg NVIC_PriorityGroup_2: 2 bits for pre-emption priority
+  *                                2 bits for subpriority
+  *     @arg NVIC_PriorityGroup_3: 3 bits for pre-emption priority
+  *                                1 bits for subpriority
+  *     @arg NVIC_PriorityGroup_4: 4 bits for pre-emption priority
+  *                                0 bits for subpriority
+  */
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);//中断优先级分组
+	bsp_rcc_init();
+  bsp_InitUart();             /* 初始化串口 */
+	printf("\r\nsystem start !\r\n");
+  bsp_InitTimer();            /* 初始化系统滴答定时器 */
+	//bsp_InitWdg();							/* 初始化看门狗 */
 }
 /*
 *********************************************************************************************************
@@ -38,6 +68,6 @@ void bsp_Init(void)
 */
 void bsp_Idle(void)
 {
-    Wwdg_Reload_Task();
-    Iwdg_Feed();
+  Wwdg_Reload_Task();
+  Iwdg_Feed();
 }

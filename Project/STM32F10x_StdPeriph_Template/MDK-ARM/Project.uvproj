@@ -872,6 +872,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\app\app_printer.c</FilePath>
             </File>
+            <File>
+              <FileName>app_esam8810.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_esam8810.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_psam_card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_psam_card.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_pa1100.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_pa1100.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -1741,6 +1756,21 @@
               <FileName>app_printer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\app\app_printer.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_esam8810.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_esam8810.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_psam_card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_psam_card.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_pa1100.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_pa1100.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2612,6 +2642,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\app\app_printer.c</FilePath>
             </File>
+            <File>
+              <FileName>app_esam8810.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_esam8810.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_psam_card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_psam_card.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_pa1100.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_pa1100.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -3481,6 +3526,21 @@
               <FileName>app_printer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\app\app_printer.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_esam8810.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_esam8810.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_psam_card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_psam_card.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_pa1100.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_pa1100.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4352,6 +4412,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\app\app_printer.c</FilePath>
             </File>
+            <File>
+              <FileName>app_esam8810.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_esam8810.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_psam_card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_psam_card.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_pa1100.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_pa1100.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -5221,6 +5296,21 @@
               <FileName>app_printer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\app\app_printer.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_esam8810.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_esam8810.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_psam_card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_psam_card.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_pa1100.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\app\app_pa1100.c</FilePath>
             </File>
           </Files>
         </Group>

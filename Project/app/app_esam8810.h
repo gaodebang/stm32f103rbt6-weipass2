@@ -1,29 +1,20 @@
 /*
 *********************************************************************************************************
 *
-*	模块名称 : 串口模块
-*	文件名称 : app_uart.h
+*	模块名称 : ESAM加密芯片模块
+*	文件名称 : app_esam8810.h
 *	版    本 : V1.0
 *	说    明 : 头文件
 *
 *********************************************************************************************************
 */
 
-#ifndef __APP_UART_H
-#define __APP_UART_H
+#ifndef __APP_EASM8810_H
+#define __APP_EASM8810_H
 
-typedef enum
-{
-	frame_idle = 0, 
-	frame_sof, 
-	frame_normal,
-	frame_mark,
-	frame_eof
-}FRAME_STATE;
-
-extern FRAME_STATE uart_FRAME_STATE;
-
-void uart_SERVER_TASK(void);
+void esam8810_Init(void);
+void esam8810_CMD_DEAL(uint8_t *databuf, uint16_t length);
+void esam8810_SERVER_TASK(void);
 
 #endif
 

@@ -38,3 +38,6 @@
 .\output\main.o: ..\..\app\app.h
 .\output\main.o: ..\..\app\app_uart.h
 .\output\main.o: ..\..\app\app_printer.h
+.\output\main.o: ..\..\app\app_pa1100.h
+.\output\main.o: ..\..\app\app_esam8810.h
+.\output\main.o: ..\..\app\app_psam_card.h

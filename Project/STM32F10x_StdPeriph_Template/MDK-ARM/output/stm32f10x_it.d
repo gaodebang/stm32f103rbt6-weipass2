@@ -38,3 +38,6 @@
 .\output\stm32f10x_it.o: ..\..\app\app.h
 .\output\stm32f10x_it.o: ..\..\app\app_uart.h
 .\output\stm32f10x_it.o: ..\..\app\app_printer.h
+.\output\stm32f10x_it.o: ..\..\app\app_pa1100.h
+.\output\stm32f10x_it.o: ..\..\app\app_esam8810.h
+.\output\stm32f10x_it.o: ..\..\app\app_psam_card.h

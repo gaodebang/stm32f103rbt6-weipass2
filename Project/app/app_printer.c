@@ -13,7 +13,7 @@
 
 const uint8_t ZIMO_000[]=
 {
-	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -65,6 +65,13 @@ const uint8_t ZIMO_000[]=
 
 typedef enum
 {
+	CESHI = 0x10,
+	FEED = 0x11,
+	PRINT = 0x12
+}PRINTER_CMD_NAME;
+
+typedef enum
+{
 	TPSTATE_IDLE = 0,
 	TPSTATE_CUT_FEED,
 	TPSTATE_START,
@@ -80,11 +87,11 @@ typedef enum
 
 #define LINEDOT		(384)	// 两寸机芯为384点 
 
-uint8_t Motor_Feed_Step = 0;
+static uint8_t Motor_Feed_Step = 0;
 static TPSTATE_T Printer_State;
-static uint8_t Printer_Dot[16][LINEDOT/8+1];
-/* 各个引脚宏定义 */
+//static uint8_t Printer_Dot[16][LINEDOT/8+1];
 
+/* 各个引脚宏定义 */
 //打印机电源
 #define RCC_PRINTER_PWR 						(RCC_APB2Periph_GPIOA)
 #define GPIO_PRINTER_PWR_PORT 			(GPIOA)
@@ -224,14 +231,13 @@ static uint8_t Printer_Dot[16][LINEDOT/8+1];
 
 /*
 *********************************************************************************************************
-*	函 数 名: IsDetect_Ok
+*	函 数 名: is_detect_ok
 *	功能说明: 判断打印纸是否正常
 *	形    参: 无
 *	返 回 值: 返回值1表示打印纸正常 ，0表示无打印纸
 *********************************************************************************************************
 */
-
-static uint8_t IsDetect_Ok(void) 
+static uint8_t is_detect_ok(void) 
 {
 	if ((GPIO_PRINTER_DETECT_PORT->IDR & GPIO_PRINTER_DETECT_PIN) == 0) 
 	{
@@ -323,7 +329,7 @@ static void printer_moter_cut_feed(uint8_t * step_num)
 			//对象命令参数错误
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x02;
-			Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 			Usart1_Txd_Tempdata[3] = 0x21;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);		
 		}
@@ -334,7 +340,7 @@ static void printer_moter_cut_feed(uint8_t * step_num)
 			//对象命令执行成功
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x01;
-			Usart1_Txd_Tempdata[2] = 0x11;
+			Usart1_Txd_Tempdata[2] = PRINTER;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
 		}
 	}
@@ -343,7 +349,7 @@ static void printer_moter_cut_feed(uint8_t * step_num)
 		//对象忙碌
 		Usart1_Txd_Tempdata[0] = 0x00;
 		Usart1_Txd_Tempdata[1] = 0x02;
-		Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+		Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 		Usart1_Txd_Tempdata[3] = 0x20;
 		USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);		
 	}
@@ -366,7 +372,7 @@ static void printer_moter_feed(void)
 		//对象命令执行成功
 		Usart1_Txd_Tempdata[0] = 0x00;
 		Usart1_Txd_Tempdata[1] = 0x01;
-		Usart1_Txd_Tempdata[2] = 0x11;
+		Usart1_Txd_Tempdata[2] = PRINTER;
 		USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
 	}
 	else
@@ -374,7 +380,7 @@ static void printer_moter_feed(void)
 		//对象忙碌
 		Usart1_Txd_Tempdata[0] = 0x00;
 		Usart1_Txd_Tempdata[1] = 0x02;
-		Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+		Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 		Usart1_Txd_Tempdata[3] = 0x20;
 		USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);		
 	}
@@ -435,7 +441,7 @@ static void printer_start(void)
 	//标记
 	//Usart1_Txd_Tempdata[0] = 0x00;
 	//Usart1_Txd_Tempdata[1] = 0x02;
-	//Usart1_Txd_Tempdata[2] = 0x11;
+	//Usart1_Txd_Tempdata[2] = PRINTER;
 	//Usart1_Txd_Tempdata[3] = 0x00;
 	//USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 }
@@ -473,9 +479,9 @@ static void printer_ceshi(void)
 			//对象忙碌
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x02;
-			Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 			Usart1_Txd_Tempdata[3] = 0x20;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 	}
 }
 
@@ -503,7 +509,7 @@ void TIM2_ISR(void)
 /*
 *********************************************************************************************************
 *	函 数 名: printer_Init
-*	功能说明: 热敏打印模块的驱动接口初始化。包含1.各驱动信号IO初始化  2.SPI模块初始化 3.定时器初始化
+*	功能说明: 热敏打印模块的驱动接口初始化。包含1.各驱动信号IO初始化  2.SPI初始化 3.定时器初始化
 *	形    参：无
 *	返 回 值: 无
 *********************************************************************************************************
@@ -514,15 +520,13 @@ void printer_Init(void)
 	SPI_InitTypeDef  SPI_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-	
-	uint8_t i,j;
 
 	/* 打印机电源控制引脚 */
 	RCC_APB2PeriphClockCmd(RCC_PRINTER_PWR, ENABLE);
 	PRINTER_PWR_OFF();//关闭打印机总电源
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_PWR_PIN;
 	GPIO_Init(GPIO_PRINTER_PWR_PORT, &GPIO_InitStructure);
@@ -532,7 +536,7 @@ void printer_Init(void)
 	PRINTER_MOTOR_PWR_OFF();//关闭步进电机电源
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_MOTOR_PWR_PIN;
 	GPIO_Init(GPIO_PRINTER_MOTOR_PWR_PORT, &GPIO_InitStructure);
@@ -548,7 +552,7 @@ void printer_Init(void)
 	
 	MOTOR_PHASE_DISABLE();//开始设置步进电机4线都为低
 	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_MOTOR_1A_PIN | GPIO_PRINTER_MOTOR_1B_PIN | GPIO_PRINTER_MOTOR_2A_PIN | GPIO_PRINTER_MOTOR_2B_PIN;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_Init(GPIO_PRINTER_MOTOR_PORT, &GPIO_InitStructure);
 	
@@ -559,7 +563,7 @@ void printer_Init(void)
 	RCC_APB2PeriphClockCmd(RCC_PRINTER_DETECT, ENABLE);
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_DETECT_PIN;
 	GPIO_Init(GPIO_PRINTER_DETECT_PORT, &GPIO_InitStructure);
@@ -570,7 +574,7 @@ void printer_Init(void)
 	STROBE_12_OFF();//低电平使能，上电设置为高
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_HEAT_ENABLE_PIN_0 | GPIO_PRINTER_HEAT_ENABLE_PIN_1;
 	GPIO_Init(GPIO_PRINTER_HEAT_ENABLE_PORT, &GPIO_InitStructure);
@@ -589,7 +593,7 @@ void printer_Init(void)
 
 	RCC_APB2PeriphClockCmd(RCC_PRINTER_INTERFACE_GPIO, ENABLE);	
 	RCC_APB1PeriphClockCmd(RCC_PRINTER_INTERFACE_SPI, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_INTERFACE_SPI_MOSI | GPIO_PRINTER_INTERFACE_SPI_SCK;
+	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_INTERFACE_SPI_MOSI | GPIO_PRINTER_INTERFACE_SPI_MISO | GPIO_PRINTER_INTERFACE_SPI_SCK;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;	//设置为复用推挽功能
 	GPIO_Init(GPIO_PRINTER_INTERFACE_PORT, &GPIO_InitStructure);
@@ -603,11 +607,11 @@ void printer_Init(void)
 	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;														//NSS信号由硬件（NSS管脚）还是软件（使用SSI位）管理:内部NSS信号有SSI位控制
 	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;  //定义波特率预分频的值:波特率预分频值为8
 	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;									//指定数据传输从MSB位还是LSB位开始:数据传输从MSB位开始
-	SPI_InitStructure.SPI_CRCPolynomial = 7;														//CRC值计算的多项式
 
   SPI_Init(SPI2, &SPI_InitStructure);  																//根据SPI_InitStruct中指定的参数初始化外设SPIx寄存器
   SPI_Cmd(SPI2, ENABLE);
 
+	SPI_SSOutputCmd(SPI2, ENABLE);
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //时钟使能
 	TIM_DeInit(TIM2);
@@ -617,27 +621,17 @@ void printer_Init(void)
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位
-	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+
+
 	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;  //TIM2中断
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;  //先占优先级1级
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;  //抢占优先级1级
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;  //从优先级0级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 	NVIC_Init(&NVIC_InitStructure);  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
 	
 	TIM_ClearFlag(TIM2,TIM_FLAG_Update);
 	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE); // 使能TIM2更新中断
-	
-	for (i = 0; i < 16; i ++)
-	{
-		for (j = 0; j < (LINEDOT/8+1); j ++)
-		{
-			if (j%8 == 0)
-			{Printer_Dot[i][j] = 0xFF;}
-			else
-			{Printer_Dot[i][j] = 0x00;}
-		}
-	}
+
 	Printer_State = TPSTATE_IDLE;
 }
 
@@ -656,7 +650,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 {
 	switch (*databuf)
 	{
-		case 0x10:
+		case CESHI:
 			//测试命令
 			if (length == 2)
 			{
@@ -673,7 +667,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 					//对象命令参数错误
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x02;
-					Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 					Usart1_Txd_Tempdata[3] = 0x21;
 					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 				}
@@ -683,12 +677,12 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				//对象命令参数长度错误
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
-				Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 				Usart1_Txd_Tempdata[3] = 0x11;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			}
 			break;
-		case 0x11:
+		case FEED:
 			//步进电机给纸
 			if (length == 2)
 			{
@@ -699,16 +693,19 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				//对象命令参数长度错误
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
-				Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 				Usart1_Txd_Tempdata[3] = 0x11;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			
 			}
+			break;
+		case PRINT:
+			
 			break;
 		default :
 				//对象不支持该命令
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
-				Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
+				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 				Usart1_Txd_Tempdata[3] = 0x10;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
@@ -729,7 +726,7 @@ void printer_SERVER_TASK(void)
   const uint32_t work_time_max = 2;
 	uint32_t offset_time_ticks = 0;
 	uint8_t timeout_flag = 0;
-	static uint16_t Cycletime = 0;
+	static uint16_t Cycletime = 5000;
 	DISABLE_INT();
 	sys_time = Sys_Time;
 	ENABLE_INT();
@@ -777,10 +774,8 @@ void printer_SERVER_TASK(void)
 		if (timeout_flag == 1)
 		{
 			timeout_flag = 0;
-			
-			
-			
-			if (IsDetect_Ok())
+
+			if (is_detect_ok())
 			{
 				if (1)//此处检测温度是否超过正常值
 				{
@@ -827,8 +822,8 @@ void printer_SERVER_TASK(void)
 						//打印机温度过高
 						Usart1_Txd_Tempdata[0] = 0x00;
 						Usart1_Txd_Tempdata[1] = 0x02;
-						Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
-						Usart1_Txd_Tempdata[3] = 0x31;
+						Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+						Usart1_Txd_Tempdata[3] = 0x32;
 						USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
 					}					
 				}
@@ -844,9 +839,9 @@ void printer_SERVER_TASK(void)
 					//打印纸位置检测错误
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x02;
-					Usart1_Txd_Tempdata[2] = 0x11 | 0x80;
-					Usart1_Txd_Tempdata[3] = 0x30;
-					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
+					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+					Usart1_Txd_Tempdata[3] = 0x31;
+					//USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
 				}
 			}
 		}

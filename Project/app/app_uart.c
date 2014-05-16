@@ -27,7 +27,7 @@ typedef enum
 	frame_eof
 }FRAME_STATE;//定义接收数据包时的状态机
 
-uint8_t Usart1_Txd_Tempdata[10];
+uint8_t Usart1_Txd_Tempdata[500];
 
 void USART1_Tx_Chars(u8 *puchMsg,u16 num)
 {
@@ -63,8 +63,14 @@ static uint8_t judge_cmd_correct(uint8_t *databuf, uint16_t length)
 	{
 		switch (*(databuf+2))
 		{
-			case 0x11://打印机相关命令
+			case PRINTER://打印机相关命令
 				return 1;
+			case PA1100:
+				return 2;
+			case ESAM8810:
+				return 3;
+			case PSAM_CARD:
+				return 4;
 			default :
 				return 0;
 		}
@@ -100,6 +106,15 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			//打印机相关命令
 			printer_CMD_DEAL(databuf+3, length-3);//调用打印机命令执行函数
 			break;
+		case 2:
+			pa1100_CMD_DEAL(databuf+3, length-3);//调用磁头命令执行函数
+			break;
+		case 3:
+			esam8810_CMD_DEAL(databuf+3, length-3);//调用ESAM加密芯片命令执行函数
+			break;
+		case 4:
+			psam_card_CMD_DEAL(databuf+3, length-3);
+			break;
 		case 0xFF:
 			//数据包校验出错（长度）
 			Usart1_Txd_Tempdata[0] = 0x00;
@@ -108,7 +123,13 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			Usart1_Txd_Tempdata[3] = 0x00;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
-		default :			
+		default :
+			//命令对象不存在
+			Usart1_Txd_Tempdata[0] = 0x00;
+			Usart1_Txd_Tempdata[1] = 0x20;
+			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
+			Usart1_Txd_Tempdata[3] = 0x01;
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			
 			break;
 	}
 }
