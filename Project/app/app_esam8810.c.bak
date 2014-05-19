@@ -45,6 +45,14 @@ typedef enum
 	GPIO_ResetBits(GPIO_ESAM8810_RST_PORT, GPIO_ESAM8810_INTERFACE_USART_TX_PIN); \
 }while(0)
 
+void esam8810_rst(void)
+{
+  ESAM8810_RST_ON();
+  ESAM8810_TX_HIGH();
+	bsp_DelayUS(400);
+	ESAM8810_RST_OFF();
+}
+
 /*
 *********************************************************************************************************
 *	函 数 名: esam8810_Init
@@ -94,7 +102,7 @@ void esam8810_Init(void)
   USART_ClockInitStructure.USART_LastBit = USART_LastBit_Enable;
   USART_ClockInit(USART2, &USART_ClockInitStructure);
   
-  USART_InitStructure.USART_BaudRate = 9600;
+  USART_InitStructure.USART_BaudRate = 12097;
   USART_InitStructure.USART_WordLength = USART_WordLength_9b;
   USART_InitStructure.USART_StopBits = USART_StopBits_1_5;
   USART_InitStructure.USART_Parity = USART_Parity_Even;
@@ -116,10 +124,37 @@ void esam8810_Init(void)
 		如下语句解决第1个字节无法正确发送出去的问题 */
 	USART_ClearFlag(USART2, USART_FLAG_TC);     /* 清发送完成标志，Transmission Complete flag */  
 
-  ESAM8810_RST_ON();
-  ESAM8810_TX_HIGH();
-	bsp_DelayUS(400);
-	ESAM8810_RST_OFF();
+	esam8810_rst();
+}
+
+void esam8810_rcv(void)
+{
+	uint8_t temp_data;
+	uint8_t databuf[100];
+		
+	static uint8_t rxd_timeout;
+	static uint16_t rxd_num;
+	
+	if (comGetChar(COM2, &temp_data) == 0)
+	{
+		if (rxd_timeout)
+		{
+			rxd_timeout--;
+		}
+		else
+		{
+			if(rxd_num)
+			{
+				comSendBuf(COM1, (uint8_t *)databuf, rxd_num);
+				rxd_num = 0;
+			}
+		}
+	}
+	else
+	{
+		rxd_timeout = 50;
+		databuf[rxd_num ++] = temp_data;
+	}
 }
 
 /*
@@ -132,11 +167,12 @@ void esam8810_Init(void)
 */
 static void ceshi(uint8_t * databuf, uint8_t length)
 {
+	comSendBuf(COM2, (uint8_t *)databuf, 5);
+
 	Usart1_Txd_Tempdata[0] = 0x00;
-	Usart1_Txd_Tempdata[1] = 0x02;
+	Usart1_Txd_Tempdata[1] = 0x01;
 	Usart1_Txd_Tempdata[2] = ESAM8810;
-	Usart1_Txd_Tempdata[3] = 0;
-	USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+	USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
 }
 
 /*
@@ -154,7 +190,18 @@ void esam8810_CMD_DEAL(uint8_t *databuf, uint16_t length)
 	{
 		case CESHI:
 			//测试命令
-			ceshi(databuf + 3, *(databuf + 2));
+			if(*(databuf + 1) == 0x00)
+			{
+				ceshi(databuf + 3, *(databuf + 2));
+			}
+			else if(*(databuf + 1) == 0x01)
+			{
+				esam8810_rst();
+				Usart1_Txd_Tempdata[0] = 0x00;
+				Usart1_Txd_Tempdata[1] = 0x01;
+				Usart1_Txd_Tempdata[2] = ESAM8810;
+				USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			}
 			break;
 		default :
 			//对象不支持该命令
@@ -177,12 +224,7 @@ void esam8810_CMD_DEAL(uint8_t *databuf, uint16_t length)
 */
 void esam8810_SERVER_TASK(void)
 {
-  static uint32_t sys_time, time_ms = 0, time_add_up = 0;
-  const uint32_t work_time_max = 2;
-	uint32_t offset_time_ticks = 0;
-	uint8_t timeout_flag = 0;
-	
-	static uint16_t Cycletime = 0;
+  static uint32_t sys_time, time_ms = 0;
 	
 	DISABLE_INT();
 	sys_time = Sys_Time;
@@ -190,48 +232,7 @@ void esam8810_SERVER_TASK(void)
 	
 	if (time_ms != sys_time)
 	{
-		if (time_ms < sys_time)
-		{
-			offset_time_ticks = sys_time - time_ms;
-			time_ms = sys_time;
-			if (((uint64_t)offset_time_ticks  + (uint64_t)time_add_up) > UINT_LEAST32_MAX)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else if ((offset_time_ticks  + time_add_up) > work_time_max)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else
-			{
-				time_add_up += offset_time_ticks;
-			}
-		}
-		else
-		{
-			offset_time_ticks = UINT_LEAST32_MAX + sys_time - time_ms;
-			time_ms = sys_time;
-			if (((uint64_t)offset_time_ticks  + (uint64_t)time_add_up) > UINT_LEAST32_MAX)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else if ((offset_time_ticks  + time_add_up) > work_time_max)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else
-			{
-				time_add_up += offset_time_ticks;
-			}
-		}
-		if (timeout_flag == 1)
-		{
-			timeout_flag = 0;
-
-		}
+		time_ms = sys_time;
+		//esam8810_rcv();
 	}
 }

@@ -142,71 +142,79 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-uint8_t uart_SERVER_TASK(void)
+void uart_SERVER_TASK(void)
 {
 	uint8_t temp_data;
-
+	
+	static uint32_t sys_time, time_ms = 0;
 	static uint16_t Rxdtime = 0;
 	static uint16_t USART1_RXD_CON = 0;
 	static uint8_t Usart1_Rxd_Tempdata[USART1_DATA_MAX_LEN];
 
 	static FRAME_STATE uart_FRAME_STATE = frame_sof;	
+
+	DISABLE_INT();  	/* 关中断 */
+	sys_time = Sys_Time;	/* 这个变量在Systick中断中被改写，因此需要关中断进行保护 */
+	ENABLE_INT();  		/* 开中断 */
 	
-	if (comGetChar(COM1, &temp_data) == 0)
+	if(time_ms != sys_time)
 	{
-		if (Rxdtime > 0)
+		time_ms = sys_time;
+		if (comGetChar(COM1, &temp_data) == 0)
 		{
-			Rxdtime--;
+			if (Rxdtime > 0)
+			{
+				Rxdtime--;
+			}
+			else
+			{
+				uart_FRAME_STATE = frame_sof;
+			}
 		}
 		else
 		{
-			uart_FRAME_STATE = frame_sof;
-		}
-	}
-	else
-	{
-		if ((Rxdtime == 0)&&(uart_FRAME_STATE == frame_sof)&&(temp_data == frame_SOF))
-		{
-			USART1_RXD_CON = 0;
-			uart_FRAME_STATE = frame_normal;
-		}
-		else if (uart_FRAME_STATE == frame_normal)
-		{
-			if (temp_data == frame_MARK)
+			if ((Rxdtime == 0)&&(uart_FRAME_STATE == frame_sof)&&(temp_data == frame_SOF))
 			{
-				uart_FRAME_STATE = frame_mark;
-			}
-			else if (temp_data == frame_SOF)
-			{
-				//错误数据包
-				uart_FRAME_STATE = frame_sof;//初始化状态机
-			}
-			else if (temp_data == frame_EOF)
-			{
-				uart_FRAME_STATE = frame_eof;
-				checkout_cmd(Usart1_Rxd_Tempdata, USART1_RXD_CON);	//收到符合协议的数据包，解析命令
-			}
-			else
-			{
-				Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
-				USART1_RXD_CON++;
-			}
-		}
-		else if (uart_FRAME_STATE == frame_mark)
-		{
-			if ((temp_data == frame_MARK) || (temp_data == frame_SOF) || (temp_data == frame_EOF))
-			{
-				Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
-				USART1_RXD_CON++;
+				USART1_RXD_CON = 0;
 				uart_FRAME_STATE = frame_normal;
 			}
-			else
+			else if (uart_FRAME_STATE == frame_normal)
 			{
-				//错误的数据包
-				uart_FRAME_STATE = frame_sof;//初始化状态机
+				if (temp_data == frame_MARK)
+				{
+					uart_FRAME_STATE = frame_mark;
+				}
+				else if (temp_data == frame_SOF)
+				{
+					//错误数据包
+					uart_FRAME_STATE = frame_sof;//初始化状态机
+				}
+				else if (temp_data == frame_EOF)
+				{
+					uart_FRAME_STATE = frame_eof;
+					checkout_cmd(Usart1_Rxd_Tempdata, USART1_RXD_CON);	//收到符合协议的数据包，解析命令
+				}
+				else
+				{
+					Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
+					USART1_RXD_CON++;
+				}
 			}
+			else if (uart_FRAME_STATE == frame_mark)
+			{
+				if ((temp_data == frame_MARK) || (temp_data == frame_SOF) || (temp_data == frame_EOF))
+				{
+					Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
+					USART1_RXD_CON++;
+					uart_FRAME_STATE = frame_normal;
+				}
+				else
+				{
+					//错误的数据包
+					uart_FRAME_STATE = frame_sof;//初始化状态机
+				}
+			}
+			Rxdtime = frame_TIME_OUT;
 		}
-		Rxdtime = frame_TIME_OUT;
 	}
-	return 0;
 }

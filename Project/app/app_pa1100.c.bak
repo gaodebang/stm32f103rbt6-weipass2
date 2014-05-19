@@ -182,14 +182,12 @@ static void ceshi(void)
 		
 		memset(databuf, 0, 300);
 		pa1100_read_data(databuf);
-		
-		comSendBuf(COM1, databuf+2, 88*3);
-		
+		//comSendBuf(COM1, databuf+2, 88*3);
 		Usart1_Txd_Tempdata[0] = 1;
 		Usart1_Txd_Tempdata[1] = 43;
 		Usart1_Txd_Tempdata[2] = PA1100;
 		memcpy((char *)(Usart1_Txd_Tempdata + 3), (const char *)databuf, 300);
-		//USART1_Tx_Chars(Usart1_Txd_Tempdata, 303);
+		USART1_Tx_Chars(Usart1_Txd_Tempdata, 303);
 	}
 	else
 	{

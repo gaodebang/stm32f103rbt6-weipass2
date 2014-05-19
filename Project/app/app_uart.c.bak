@@ -27,7 +27,7 @@ typedef enum
 	frame_eof
 }FRAME_STATE;//定义接收数据包时的状态机
 
-uint8_t Usart1_Txd_Tempdata[10];
+uint8_t Usart1_Txd_Tempdata[500];
 
 void USART1_Tx_Chars(u8 *puchMsg,u16 num)
 {
@@ -65,8 +65,12 @@ static uint8_t judge_cmd_correct(uint8_t *databuf, uint16_t length)
 		{
 			case PRINTER://打印机相关命令
 				return 1;
-			case MAXQ1743:
+			case PA1100:
 				return 2;
+			case ESAM8810:
+				return 3;
+			case PSAM_CARD:
+				return 4;
 			default :
 				return 0;
 		}
@@ -103,10 +107,13 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			printer_CMD_DEAL(databuf+3, length-3);//调用打印机命令执行函数
 			break;
 		case 2:
-			maxq1743_CMD_DEAL(databuf+3, length-3);//调用磁头命令执行函数
+			pa1100_CMD_DEAL(databuf+3, length-3);//调用磁头命令执行函数
 			break;
 		case 3:
-			easm8810_CMD_DEAL(databuf+3, length-3);//调用ESAM加密芯片命令执行函数
+			esam8810_CMD_DEAL(databuf+3, length-3);//调用ESAM加密芯片命令执行函数
+			break;
+		case 4:
+			psam_card_CMD_DEAL(databuf+3, length-3);
 			break;
 		case 0xFF:
 			//数据包校验出错（长度）
@@ -135,10 +142,11 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-uint8_t uart_SERVER_TASK(void)
+void uart_SERVER_TASK(void)
 {
 	uint8_t temp_data;
-
+	
+	static uint32_t sys_time, time_ms = 0;
 	static uint16_t Rxdtime = 0;
 	static uint16_t USART1_RXD_CON = 0;
 	static uint8_t Usart1_Rxd_Tempdata[USART1_DATA_MAX_LEN];
@@ -201,5 +209,4 @@ uint8_t uart_SERVER_TASK(void)
 		}
 		Rxdtime = frame_TIME_OUT;
 	}
-	return 0;
 }
