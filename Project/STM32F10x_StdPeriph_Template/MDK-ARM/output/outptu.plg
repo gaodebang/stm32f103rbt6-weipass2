@@ -9,47 +9,12 @@ Project File Date:  05/15/2014
 <h2>Output:</h2>
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
-compiling app_psam_card.c...
 linking...
-Program Size: Code=10396 RO-data=1420 RW-data=192 ZI-data=9816  
+Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-linking...
-Program Size: Code=10408 RO-data=1420 RW-data=192 ZI-data=9816  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-linking...
-Program Size: Code=10396 RO-data=1420 RW-data=192 ZI-data=9816  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-linking...
-Program Size: Code=10396 RO-data=39820 RW-data=192 ZI-data=9816  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-linking...
-Program Size: Code=10396 RO-data=39820 RW-data=192 ZI-data=9816  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
 Erase Done.
@@ -57,8 +22,36 @@ Programming Done.
 Verify OK.
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
+..\..\app\app_printer.c(2145): warning:  #111-D: statement is unreachable
+..\..\app\app_printer.c(2085): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2086): warning:  #550-D: variable "temp_num_2" was set but never used
 linking...
-Program Size: Code=10396 RO-data=39820 RW-data=192 ZI-data=9816  
+Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 3 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2085): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2086): warning:  #550-D: variable "temp_num_2" was set but never used
+linking...
+Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 2 Warning(s).
+Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2145): warning:  #940-D: missing return statement at end of non-void function "get_print_mode"
+linking...
+Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 1 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+linking...
+Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
@@ -68,85 +61,20 @@ Programming Done.
 Verify OK.
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
+..\..\app\app_printer.c(2085): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2086): warning:  #550-D: variable "temp_num_2" was set but never used
 linking...
-Program Size: Code=10396 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
 FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
+".\output\outptu.axf" - 0 Error(s), 2 Warning(s).
+Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
 Erase Done.
 Programming Done.
 Verify OK.
 Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(1998): error:  #247: function "printer_moter_feed" has already been defined
-..\..\app\app_printer.c(2279): error:  #165: too few arguments in function call
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(1998): error:  #247: function "printer_moter_feed" has already been defined
-..\..\app\app_printer.c(2279): error:  #165: too few arguments in function call
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
 linking...
-Program Size: Code=10628 RO-data=39820 RW-data=196 ZI-data=9812  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2092): error:  #31: expression must have integral type
-..\..\app\app_printer.c(2137): warning:  #940-D: missing return statement at end of non-void function "get_print_mode"
-..\..\app\app_printer.c(2462): warning:  #767-D: conversion from pointer to smaller integer
-..\..\app\app_printer.c(2462): error:  #167: argument of type "uint8_t *" is incompatible with parameter of type "uint16_t *"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2137): warning:  #940-D: missing return statement at end of non-void function "get_print_mode"
-..\..\app\app_printer.c(2462): warning:  #767-D: conversion from pointer to smaller integer
-..\..\app\app_printer.c(2462): error:  #167: argument of type "uint8_t *" is incompatible with parameter of type "uint16_t *"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2137): warning:  #117-D: non-void function "get_print_mode" should return a value
-..\..\app\app_printer.c(2463): warning:  #767-D: conversion from pointer to smaller integer
-..\..\app\app_printer.c(2463): error:  #167: argument of type "uint8_t *" is incompatible with parameter of type "uint16_t *"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2463): warning:  #767-D: conversion from pointer to smaller integer
-..\..\app\app_printer.c(2463): error:  #167: argument of type "uint8_t *" is incompatible with parameter of type "uint16_t *"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2463): error:  #32: expression must have arithmetic type
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2463): warning:  #767-D: conversion from pointer to smaller integer
-..\..\app\app_printer.c(2463): error:  #167: argument of type "int" is incompatible with parameter of type "uint16_t *"
-..\..\app\app_printer.c(2463): error:  #65: expected a ";"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2463): warning:  #767-D: conversion from pointer to smaller integer
-..\..\app\app_printer.c(2463): error:  #167: argument of type "int" is incompatible with parameter of type "uint16_t *"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2463): error:  #75: operand of "*" must be a pointer
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2463): error:  #167: argument of type "int" is incompatible with parameter of type "uint16_t *"
-Target not created
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-linking...
-Program Size: Code=11412 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
 Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
@@ -163,3 +91,9 @@ Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_T
 Erase Done.
 Programming Done.
 Verify OK.
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+linking...
+Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
