@@ -1666,6 +1666,20 @@ const uint8_t ZIMO_001[]=
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
+
+const uint16_t reload_time[]=
+{
+2890,2890,2890,
+1786,
+1381,
+1157,
+1014
+};
+
+uint8_t Print_Buf_Mark = 0;
+uint8_t printer_buf0[1154];
+uint8_t printer_buf1[1154];
+
 typedef enum
 {
 	CESHI = 0x10,
@@ -1685,6 +1699,7 @@ typedef enum
 	TPSTATE_HEAT12,
 	TPSTATE_HEAT12Stop,
 	TPSTATE_FEED,
+	TPSTATE_CESHI_END,
 	TPSTATE_END
 }TPSTATE_T;
 
@@ -1692,8 +1707,9 @@ typedef enum
 
 static uint16_t Motor_Feed_Step = 0;
 static uint8_t Motor_State = 0;
+static uint8_t Motor_Feed_T = 0;
+
 static TPSTATE_T Printer_State;
-//static uint8_t Printer_Dot[16][LINEDOT/8+1];
 
 /* 各个引脚宏定义 */
 //打印机电源
@@ -1835,461 +1851,6 @@ static TPSTATE_T Printer_State;
 
 /*
 *********************************************************************************************************
-*	函 数 名: is_detect_ok
-*	功能说明: 判断打印纸是否正常
-*	形    参: 无
-*	返 回 值: 返回值1表示打印纸正常 ，0表示无打印纸
-*********************************************************************************************************
-*/
-static uint8_t is_detect_ok(void) 
-{
-	if ((GPIO_PRINTER_DETECT_PORT->IDR & GPIO_PRINTER_DETECT_PIN) == 0) 
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-static void printer_moter_feed_step(uint8_t step)
-{
-	uint8_t i;
-	for(i = 0; i < step; i++)
-	{
-		if(i)
-		{
-			bsp_DelayUS(1786);
-		}
-		switch (Motor_State)
-		{
-			case 0:
-				MOTOR_STEP_ONE();
-				break;
-			case 1:
-				MOTOR_STEP_TWO();
-				break;
-			case 2:
-				MOTOR_STEP_THREE();
-				break;
-			case 3:
-				MOTOR_STEP_FOUR();
-				break;
-			default:
-				break;
-		}			
-		if (++Motor_State >=4)
-		{
-			Motor_State = 0;
-		}
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: printer_moter_feed
-*	功能说明: 打印机进纸函数
-*	形    参：mode: 0-表示是打印进纸，1-表示只进纸
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void printer_moter_feed(uint8_t mode)
-{
-	static uint16_t Rxdtime = 0;
-	static uint8_t Motor_State = 0;
-	if (Motor_Feed_Step)
-	{
-		Rxdtime = 32;//每4ms timeout_flag置位,小计(32 + 1) * 3 = 99ms Rxdtime超时
-		Motor_Feed_Step--;
-		switch (Motor_State)
-		{
-			case 0:
-				MOTOR_STEP_ONE();
-				break;
-			case 1:
-				MOTOR_STEP_TWO();
-				break;
-			case 2:
-				MOTOR_STEP_THREE();
-				break;
-			case 3:
-				MOTOR_STEP_FOUR();
-				break;
-			default:
-				break;
-		}			
-		if (++Motor_State >=4)
-		{
-			Motor_State = 0;
-		}
-	}
-	else
-	{
-		if (mode == TPSTATE_CUT_FEED)//只进纸，进纸后，停止电机各相 供电
-		{
-			if(Rxdtime)
-			{
-				Rxdtime --;
-			}
-			else
-			{
-				Printer_State = TPSTATE_IDLE;
-				MOTOR_PHASE_DISABLE();
-			}
-		}
-		else if (mode == TPSTATE_FEED)
-		{
-			Printer_State = TPSTATE_END;
-		}
-		else
-		{
-			MOTOR_PHASE_DISABLE();
-		}
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: printer_moter_cut_feed
-*	功能说明: 打印机进纸函数
-*	形    参：step_num:步进的步数
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void printer_moter_cut_feed(uint16_t step_num)
-{
-	if(Printer_State == TPSTATE_IDLE)
-	{
-		if(step_num == 0xFFFF)
-		{
-			//对象命令参数错误
-			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x02;
-			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x21;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);		
-		}
-		else
-		{
-			Motor_Feed_Step += step_num;
-			Printer_State = TPSTATE_CUT_FEED;
-			//对象命令执行成功
-			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x01;
-			Usart1_Txd_Tempdata[2] = PRINTER;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
-		}
-	}
-	else
-	{
-		//对象忙碌
-		Usart1_Txd_Tempdata[0] = 0x00;
-		Usart1_Txd_Tempdata[1] = 0x02;
-		Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-		Usart1_Txd_Tempdata[3] = 0x20;
-		USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);		
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: printer_stop_ceshi()
-*	功能说明: 停止打印测试纸，并进纸24（两个步进值是1行）行
-*	形    参：void
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void printer_stop_ceshi(void)
-{
-	Motor_Feed_Step += 48;
-	Printer_State = TPSTATE_CUT_FEED;
-	//对象命令执行成功
-	Usart1_Txd_Tempdata[0] = 0x00;
-	Usart1_Txd_Tempdata[1] = 0x01;
-	Usart1_Txd_Tempdata[2] = PRINTER;
-	USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: printer_data_out
-*	功能说明: 打印测试纸
-*	形    参：无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void printer_data_out(uint8_t *databuf, uint8_t length, uint8_t mark)
-{
- 	while(length--)
-	{
-		while(SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET);  /// wait until Tx buffer empty
-		/* Send byte through the SPI2 peripheral */
-		if(mark == 0)
-		{
-			SPI_I2S_SendData(SPI2, 0xAA&(*databuf++));
-		}
-		else if(mark == 1)
-		{
-			SPI_I2S_SendData(SPI2, 0x55&(*databuf++));
-		}
-		else if(mark == 2)
-		{
-			SPI_I2S_SendData(SPI2, (*databuf++));
-		}
-		while(SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_BSY) == SET);    /// wait until send complete
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: printer_start12
-*	功能说明: 打印机开始打印
-*	形    参：无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void printer_start1(void)
-{
-	Printer_State = TPSTATE_HEAT1;
-	STROBE_1_ON();
-	bsp_DelayUS(5000);
-	STROBE_1_OFF();	
-	Printer_State = TPSTATE_HEAT1Stop;
-}
-static void printer_start2(void)
-{
-	Printer_State = TPSTATE_HEAT2;
-	STROBE_2_ON();
-	bsp_DelayUS(5000);
-	STROBE_2_OFF();	
-	Printer_State = TPSTATE_HEAT2Stop;
-}
-static void printer_start12(void)
-{
-	Printer_State = TPSTATE_HEAT12;
-	STROBE_12_ON();
-	bsp_DelayUS(5000);
-	STROBE_12_OFF();
-	Printer_State = TPSTATE_HEAT12Stop;
-}
-
-
-uint8_t get_print_mode(uint8_t * datain)
-{
-	uint8_t i;
-	uint8_t j;
-	uint8_t k;
-	
-	uint16_t temp_num_all;
-	uint8_t temp_num_1;
-	uint8_t temp_num_2;
-	
-	uint8_t temp_num_blank[4];
-
-	for(i = 0; i < 4; i ++)
-	{
-		temp_num_blank[i] = 0;
-		for(j = 0; j < 12; j ++)
-		{
-			for(k = 0; k < 8; k ++)
-			{
-				if(*(datain + 12*i + j)&(1<<k))
-				{
-					temp_num_blank[i] ++;
-				}
-			}
-		}
-	}
-	temp_num_all = temp_num_blank[0] + temp_num_blank[1] + temp_num_blank[2] + temp_num_blank[3];
-	temp_num_1 = temp_num_blank[0] + temp_num_blank[2];
-	temp_num_2 = temp_num_blank[1] + temp_num_blank[3];
-	if(temp_num_all == 0)
-	{
-		return 0xFF;
-	}
-	else if(temp_num_all <= 192 )
-	{
-		return 0x00;
-	}
-	else
-	{
-		/**/
-		if((temp_num_1 == 00)&&(temp_num_2 > 96))
-		{
-			return 0x02;
-		}
-		else if((temp_num_1 > 96)&&(temp_num_2 == 0))
-		{
-			return 0x20;
-		}
-		else if((temp_num_1 <= 96)&&(temp_num_2 <= 96))
-		{
-			return 0x11;
-		}
-		else if((temp_num_1 > 96)&&(temp_num_2 <= 96))
-		{
-			return 0x21;
-		}
-		else if((temp_num_1 <= 96)&&(temp_num_2 > 96))
-		{
-			return 0x12;
-		}
-		else if((temp_num_1 > 96)&&(temp_num_2 > 96))
-		{
-			return 0x22;
-		}
-	}
-	return 0x22;
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: printer_start_ceshi
-*	功能说明: 打印测试纸
-*	形    参：无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void printer_start_ceshi(void)
-{
-	uint8_t i;
-	uint8_t print_mode;
-	
-	uint8_t * data_pointer;
-	
-	static uint32_t j = 0;
-	if(Printer_State == TPSTATE_IDLE)
-	{
-		data_pointer = (uint8_t *)&ZIMO_001[j * ((uint32_t) LINEDOT / 8L)];
-		print_mode = get_print_mode(data_pointer);
-		if(print_mode == 0xFF)
-		{
-			printer_moter_feed_step(2);
-		}
-		else if(print_mode == 0)
-		{
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_start12();
-			printer_moter_feed_step(2);
-		}
-		else if(print_mode == 0x11)
-		{
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_start1();
-			printer_start2();
-			printer_moter_feed_step(2);
-		}
-		else if(print_mode == 0x02)
-		{	
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_start2();
-				printer_moter_feed_step(1);
-			}
-		}
-		else if(print_mode == 0x20)
-		{	
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_start1();
-				printer_moter_feed_step(1);
-			}
-		}
-		else if(print_mode == 0x12)
-		{	
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_start1();
-			printer_moter_feed_step(2);
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_start2();
-				printer_moter_feed_step(1);
-			}
-		}
-		else if(print_mode == 0x21)
-		{	
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_start2();
-			printer_moter_feed_step(2);
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_start1();
-				printer_moter_feed_step(1);
-			}
-		}
-		else
-		{
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_start1();
-				printer_start2();
-				printer_moter_feed_step(1);
-			}			
-		}
-		if(++j >= 800)
-		{
-			j=0;
-		}
-		Printer_State = TPSTATE_FEED; 
-	}
-	else
-	{
-			//对象忙碌
-			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x02;
-			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x20;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: TIM2_ISR
-*	功能说明: 定时器2：中断服务程序。
-*	形    参：无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-void TIM2_ISR(void)
-{
-	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
-	{
-		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-		TIM_Cmd(TIM2, DISABLE);
-		Printer_State = TPSTATE_HEAT12Stop;
-		STROBE_12_OFF();
-		Printer_State = TPSTATE_FEED;
-		Motor_Feed_Step += 2;	
- 	}
-}
-
-/*
-*********************************************************************************************************
 *	函 数 名: printer_Init
 *	功能说明: 热敏打印模块的驱动接口初始化。包含1.各驱动信号IO初始化  2.SPI初始化 3.定时器初始化
 *	形    参：无
@@ -2398,23 +1959,441 @@ void printer_Init(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //时钟使能
 	TIM_DeInit(TIM2);
 	TIM_InternalClockConfig(TIM2);
-	TIM_TimeBaseStructure.TIM_Period = 30-1; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值	 计数到30为3ms
-	TIM_TimeBaseStructure.TIM_Prescaler =36000000L/10000L-1;	 //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率  
+	TIM_TimeBaseStructure.TIM_Period = 2889-1; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值	 计数到300为3ms
+	TIM_TimeBaseStructure.TIM_Prescaler =36000000L/1000000L-1;	 //设置用来作为TIMx时钟频率除数的预分频值  100Khz的计数频率  
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位
 
 
 	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;  //TIM2中断
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;  //抢占优先级1级
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;  //从优先级0级
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  //抢占优先级0级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 5;  //从优先级5级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 	NVIC_Init(&NVIC_InitStructure);  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
 	
+	TIM_SetCounter(TIM2, 0);
 	TIM_ClearFlag(TIM2,TIM_FLAG_Update);
 	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE); // 使能TIM2更新中断
 
 	Printer_State = TPSTATE_IDLE;
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: is_detect_ok
+*	功能说明: 判断打印纸是否正常
+*	形    参: 无
+*	返 回 值: 返回值1表示打印纸正常 ，0表示无打印纸
+*********************************************************************************************************
+*/
+static uint8_t is_detect_ok(void) 
+{
+	if ((GPIO_PRINTER_DETECT_PORT->IDR & GPIO_PRINTER_DETECT_PIN) == 0) 
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: printer_data_out
+*	功能说明: 传输打印数据到打印机
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_data_out(uint8_t *databuf, uint8_t length, uint8_t mark)
+{
+ 	while(length--)
+	{
+		while(SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET);  /// wait until Tx buffer empty
+		/* Send byte through the SPI2 peripheral */
+		if(mark == 0)
+		{
+			SPI_I2S_SendData(SPI2, 0xAA&(*databuf++));
+		}
+		else if(mark == 1)
+		{
+			SPI_I2S_SendData(SPI2, 0x55&(*databuf++));
+		}
+		else if(mark == 2)
+		{
+			SPI_I2S_SendData(SPI2, (*databuf++));
+		}
+		while(SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_BSY) == SET);    /// wait until send complete
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: printer_heat
+*	功能说明: 打印机加热
+*	形    参：mode - 加热模式：
+														1：只加热1、3区
+														2：只加热2、4区
+														3：四个区同时加热
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_heat(uint8_t mode)
+{
+	if(mode == 1)
+	{
+		STROBE_1_ON();
+		bsp_DelayUS(2000);
+		STROBE_1_OFF();			
+	}
+	else if(mode == 2)
+	{
+		STROBE_2_ON();
+		bsp_DelayUS(2000);
+		STROBE_2_OFF();			
+	}
+	else if(mode == 3)
+	{
+		STROBE_12_ON();
+		bsp_DelayUS(2000);
+		STROBE_12_OFF();		
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: get_print_mode
+*	功能说明: 根据打印数据判断打印模式
+*	形    参：datain - 将要打印的数据的指针，48个字节数组指针
+*	返 回 值: 
+						一次最大打印点数为192个点时；
+							0xFF：此行没有数据，跳过打印
+							0：此行数据小于一次最大打印点数，可以一次打印完成
+							0x11:两个分区中，各分区打印点数都小于一次最大打印点数，每区都一次打印完成
+						一次最大打印点数为96个点时；
+							0xFF：此行没有数据，跳过打印
+							0：此行数据小于一次最大打印点数，可以一次打印完成
+							0x11:两个分区中，各分区打印点数都小于一次最大打印点数，每区都一次打印完成
+							0x22:两个分区中，各分区打印点数都大于一次最大打印点数，每区都分两次打印完成
+							0x12:两个分区中，一分区小于一次最大打印点数，一次打印完成；二分区大于一次最大打印点数，分两次打印完成
+							0x21:两个分区中，一分区大于一次最大打印点数，一两次打印完成；二分区小于一次最大打印点数，一次打印完成
+*********************************************************************************************************
+*/
+uint8_t get_print_mode(uint8_t * datain)
+{
+	uint8_t i;
+	uint8_t j;
+	uint8_t k;
+	
+	uint16_t temp_num_all;
+	uint8_t temp_num_1;
+	uint8_t temp_num_2;
+	
+	uint8_t temp_num_blank[4];
+
+	for(i = 0; i < 4; i ++)
+	{
+		temp_num_blank[i] = 0;
+		for(j = 0; j < 12; j ++)
+		{
+			for(k = 0; k < 8; k ++)
+			{
+				if(*(datain + 12*i + j)&(1<<k))
+				{
+					temp_num_blank[i] ++;
+				}
+			}
+		}
+	}
+	temp_num_all = temp_num_blank[0] + temp_num_blank[1] + temp_num_blank[2] + temp_num_blank[3];
+	temp_num_1 = temp_num_blank[0] + temp_num_blank[2];
+	temp_num_2 = temp_num_blank[1] + temp_num_blank[3];
+	if(temp_num_all == 0)
+	{
+		return 0xFF;
+	}
+	else if(temp_num_all <= 96 )
+	{
+		return 0x00;
+	}
+	else
+	{
+		
+		if((temp_num_1 == 00)&&(temp_num_2 > 96))
+		{
+			return 0x02;
+		}
+		else if((temp_num_1 > 96)&&(temp_num_2 == 0))
+		{
+			return 0x20;
+		}
+		else if((temp_num_1 <= 96)&&(temp_num_2 <= 96))
+		{
+			return 0x11;
+		}
+		else if((temp_num_1 > 96)&&(temp_num_2 <= 96))
+		{
+			return 0x21;
+		}
+		else if((temp_num_1 <= 96)&&(temp_num_2 > 96))
+		{
+			return 0x12;
+		}
+		else if((temp_num_1 > 96)&&(temp_num_2 > 96))
+		{
+			return 0x22;
+		}/**/
+		//return 0x11;
+	}
+	return 0x22;
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: printer_moter_step
+*	功能说明: 打印机电机步进一个步进值
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_moter_step(void)
+{
+	switch (Motor_State)
+	{
+		case 0:
+			MOTOR_STEP_ONE();
+			break;
+		case 1:
+			MOTOR_STEP_TWO();
+			break;
+		case 2:
+			MOTOR_STEP_THREE();
+			break;
+		case 3:
+			MOTOR_STEP_FOUR();
+			break;
+		default:
+			break;
+	}			
+	if (++Motor_State >=4)
+	{
+		Motor_State = 0;
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: printer_moter_cut_feed
+*	功能说明: 打印机进纸函数
+*	形    参：step_num:步进的步数
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_moter_cut_feed(uint16_t step_num)
+{
+	if(Printer_State == TPSTATE_IDLE)
+	{
+		if(step_num == 0xFFFF)
+		{
+			//对象命令参数错误
+			Usart1_Txd_Tempdata[0] = 0x00;
+			Usart1_Txd_Tempdata[1] = 0x02;
+			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+			Usart1_Txd_Tempdata[3] = 0x21;
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);		
+		}
+		else
+		{
+			Motor_Feed_Step += step_num;
+			Printer_State = TPSTATE_CUT_FEED;
+			//对象命令执行成功
+			Usart1_Txd_Tempdata[0] = 0x00;
+			Usart1_Txd_Tempdata[1] = 0x01;
+			Usart1_Txd_Tempdata[2] = PRINTER;
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			printer_moter_step();
+			Motor_Feed_Step--;
+			Motor_Feed_T = 0;
+			TIM_Cmd(TIM2, ENABLE);
+		}
+	}
+	else
+	{
+		//对象忙碌
+		Usart1_Txd_Tempdata[0] = 0x00;
+		Usart1_Txd_Tempdata[1] = 0x02;
+		Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+		Usart1_Txd_Tempdata[3] = 0x20;
+		USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: printer_start_ceshi
+*	功能说明: 打印测试纸
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_start_ceshi(void)
+{
+	uint8_t i;
+	uint8_t print_mode;
+	
+	uint8_t * data_pointer;
+	
+	static uint32_t j = 0;
+	if(Printer_State == TPSTATE_IDLE)
+	{
+		printer_moter_step();
+		data_pointer = (uint8_t *)&ZIMO_001[j * ((uint32_t) LINEDOT / 8L)];
+		print_mode = get_print_mode(data_pointer);
+		if(print_mode == 0xFF)
+		{
+			Motor_Feed_Step += 2;
+			Printer_State = TPSTATE_FEED;
+			TIM_Cmd(TIM2, ENABLE);
+		}
+		else if(print_mode == 0)
+		{
+			printer_data_out(data_pointer, LINEDOT/8, 2);
+			LATCH_LOW();
+			LATCH_HIGH();
+			printer_heat(3);
+			bsp_DelayUS(1000);
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_FEED;
+			TIM_Cmd(TIM2, ENABLE);
+		}
+		else if(print_mode == 0x11)
+		{
+			printer_data_out(data_pointer, LINEDOT/8, 2);
+			LATCH_LOW();
+			LATCH_HIGH();
+			printer_heat(1);
+			printer_heat(2);
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_START;
+		}
+		else if(print_mode == 0x02)
+		{	
+			for(i = 0; i < 2; i ++)
+			{
+				printer_data_out(data_pointer, LINEDOT/8, i);
+				LATCH_LOW();
+				LATCH_HIGH();	
+				printer_heat(2);
+			}
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_START;
+		}
+		else if(print_mode == 0x20)
+		{	
+			for(i = 0; i < 2; i ++)
+			{
+				printer_data_out(data_pointer, LINEDOT/8, i);
+				LATCH_LOW();
+				LATCH_HIGH();	
+				printer_heat(1);
+			}
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_START;
+		}
+		else if(print_mode == 0x12)
+		{	
+			printer_data_out(data_pointer, LINEDOT/8, 2);
+			LATCH_LOW();
+			LATCH_HIGH();
+			printer_heat(1);
+			for(i = 0; i < 2; i ++)
+			{
+				printer_data_out(data_pointer, LINEDOT/8, i);
+				LATCH_LOW();
+				LATCH_HIGH();	
+				printer_heat(2);
+			}
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_START;
+		}
+		else if(print_mode == 0x21)
+		{	
+			printer_data_out(data_pointer, LINEDOT/8, 2);
+			LATCH_LOW();
+			LATCH_HIGH();
+			printer_heat(2);
+			for(i = 0; i < 2; i ++)
+			{
+				printer_data_out(data_pointer, LINEDOT/8, i);
+				LATCH_LOW();
+				LATCH_HIGH();	
+				printer_heat(1);
+			}
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_START;
+		}
+		else
+		{
+			for(i = 0; i < 2; i ++)
+			{
+				printer_data_out(data_pointer, LINEDOT/8, i);
+				LATCH_LOW();
+				LATCH_HIGH();	
+				printer_heat(1);
+				printer_heat(2);
+			}
+			printer_moter_step();
+			Motor_Feed_Step += 1;
+			Motor_Feed_T = 0;
+			Printer_State = TPSTATE_START;
+		}
+		if(++j >= 800)
+		{
+			j=0;
+		}
+	}
+	else
+	{
+			//对象忙碌
+			Usart1_Txd_Tempdata[0] = 0x00;
+			Usart1_Txd_Tempdata[1] = 0x02;
+			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+			Usart1_Txd_Tempdata[3] = 0x20;
+			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: printer_stop_ceshi()
+*	功能说明: 停止打印测试纸，并进纸
+*	形    参：void
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_stop_ceshi(void)
+{
+	Motor_Feed_Step += 48;
+	Printer_State = TPSTATE_CUT_FEED;
+	//对象命令执行成功
+	Usart1_Txd_Tempdata[0] = 0x00;
+	Usart1_Txd_Tempdata[1] = 0x01;
+	Usart1_Txd_Tempdata[2] = PRINTER;
+	USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
 }
 
 /*
@@ -2441,6 +2420,10 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				else if(*(databuf + 1) == 0x01)
 				{
 					printer_stop_ceshi();
+				}
+				else if(*(databuf + 1) == 0x02)
+				{
+					USART1_Tx_Chars((uint8_t *)ZIMO_000, sizeof(ZIMO_000));
 				}
 				else
 				{
@@ -2475,11 +2458,78 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				Usart1_Txd_Tempdata[1] = 0x02;
 				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 				Usart1_Txd_Tempdata[3] = 0x11;
-				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			
+				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			}
 			break;
 		case PRINT:
-			
+			if(length <= 1155)
+			{
+				if((Print_Buf_Mark & 0x01) == 0)
+				{
+					memcpy(printer_buf0, databuf, length);
+					Print_Buf_Mark |= 0x01;
+					
+
+					if((Print_Buf_Mark & 0x80) == 0)
+					{
+						Print_Buf_Mark |= 0x80;
+						if(Printer_State == TPSTATE_IDLE)
+						{
+							Printer_State = TPSTATE_END;						
+							//命令执行成功
+							Usart1_Txd_Tempdata[0] = 0x00;
+							Usart1_Txd_Tempdata[1] = 0x02;
+							Usart1_Txd_Tempdata[2] = PRINTER;
+							USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+						}
+						else
+						{
+							//命令对象忙碌
+							Usart1_Txd_Tempdata[0] = 0x00;
+							Usart1_Txd_Tempdata[1] = 0x02;
+							Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+							Usart1_Txd_Tempdata[3] = 0x20;
+							USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+						}
+					}
+					else
+					{
+						//命令执行成功
+						Usart1_Txd_Tempdata[0] = 0x00;
+						Usart1_Txd_Tempdata[1] = 0x02;
+						Usart1_Txd_Tempdata[2] = PRINTER;
+						USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);						
+					}
+				}
+				else if((Print_Buf_Mark & 0x02) == 0)
+				{
+					memcpy(printer_buf1, databuf, length);
+					Print_Buf_Mark |= 0x02;
+					//命令执行成功
+					Usart1_Txd_Tempdata[0] = 0x00;
+					Usart1_Txd_Tempdata[1] = 0x02;
+					Usart1_Txd_Tempdata[2] = PRINTER;
+					USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+				}
+				else
+				{
+					//缓冲区都不空
+					Usart1_Txd_Tempdata[0] = 0x00;
+					Usart1_Txd_Tempdata[1] = 0x03;
+					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+					Usart1_Txd_Tempdata[3] = 0x22;
+					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+				}
+			}
+			else
+			{
+				//对象命令参数长度错误
+				Usart1_Txd_Tempdata[0] = 0x00;
+				Usart1_Txd_Tempdata[1] = 0x02;
+				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+				Usart1_Txd_Tempdata[3] = 0x11;
+				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);					
+			}
 			break;
 		default :
 				//对象不支持该命令
@@ -2494,6 +2544,75 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 
 /*
 *********************************************************************************************************
+*	函 数 名: set_tim_reload
+*	功能说明: 设置定时器重装载值
+*	形    参：reload_count：重装载值数组索引
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void set_tim_reload(uint8_t * reload_count)
+{
+	TIM_SetAutoreload(TIM2, reload_time[*reload_count] - 1);
+	if(++(*reload_count) > 6)
+	{
+		*reload_count = 6;
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: TIM2_ISR
+*	功能说明: 定时器2：中断服务程序。
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void TIM2_ISR(void)
+{
+	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
+	{
+		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+		if(Printer_State == TPSTATE_CUT_FEED)
+		{
+			if(Motor_Feed_Step)
+			{
+				Motor_Feed_Step--;
+				set_tim_reload(&Motor_Feed_T);
+				printer_moter_step();
+			}
+			else
+			{
+				Printer_State = TPSTATE_IDLE;
+				Motor_Feed_T = 0;
+				MOTOR_PHASE_DISABLE();
+				TIM_SetAutoreload(TIM2, reload_time[0] - 1);
+				TIM_Cmd(TIM2, DISABLE);
+			}
+		}
+		else if(Printer_State == TPSTATE_FEED)
+		{
+			if(Motor_Feed_Step)
+			{
+				Motor_Feed_Step--;
+				set_tim_reload(&Motor_Feed_T);
+				printer_moter_step();
+			}
+			else
+			{
+				Printer_State = TPSTATE_START;
+				TIM_Cmd(TIM2, DISABLE);
+			}			
+		}
+		else
+		{
+			TIM_SetAutoreload(TIM2, reload_time[0] - 1);
+			TIM_Cmd(TIM2, DISABLE);
+		}
+ 	}
+}
+
+/*
+*********************************************************************************************************
 *	函 数 名: printer_SERVER_TASK
 *	功能说明: 打印机相关服务函数
 *	形    参：无
@@ -2502,127 +2621,86 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 */
 void printer_SERVER_TASK(void)
 {
-  static uint32_t sys_time, time_ms = 0, time_add_up = 0;
-  const uint32_t work_time_max = 1;
-	uint32_t offset_time_ticks = 0;
-	uint8_t timeout_flag = 0;
-	static uint16_t Cycletime = 5000;
+  static uint32_t sys_time, time_ms = 0;
+	static uint16_t Cycletime = 10000;
+	
 	DISABLE_INT();
 	sys_time = Sys_Time;
 	ENABLE_INT();
 	
 	if (time_ms != sys_time)
 	{
-		if (time_ms < sys_time)
+		time_ms = sys_time;
+		if (is_detect_ok())
 		{
-			offset_time_ticks = sys_time - time_ms;
-			time_ms = sys_time;
-			if (((uint64_t)offset_time_ticks  + (uint64_t)time_add_up) > UINT_LEAST32_MAX)
+			if (1)//此处检测温度是否超过正常值
 			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else if ((offset_time_ticks  + time_add_up) > work_time_max)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else
-			{
-				time_add_up += offset_time_ticks;
-			}
-		}
-		else
-		{
-			offset_time_ticks = UINT_LEAST32_MAX + sys_time - time_ms;
-			time_ms = sys_time;
-			if (((uint64_t)offset_time_ticks  + (uint64_t)time_add_up) > UINT_LEAST32_MAX)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else if ((offset_time_ticks  + time_add_up) > work_time_max)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else
-			{
-				time_add_up += offset_time_ticks;
-			}
-		}
-		if (timeout_flag == 1)
-		{
-			timeout_flag = 0;
+				switch (Printer_State)
+				{
+					case TPSTATE_IDLE:
+						break;
+					case TPSTATE_CUT_FEED:
+						break;
+					case TPSTATE_START:
+						Printer_State = TPSTATE_IDLE;
+						printer_start_ceshi();
+						break;
+					case TPSTATE_HEAT1:
+						break;
+					case TPSTATE_HEAT1Stop:
+						break;
+					case TPSTATE_HEAT2:
+						break;
+					case TPSTATE_HEAT2Stop:
+						break;
+					case TPSTATE_HEAT12:
+						break;
+					case TPSTATE_HEAT12Stop:
+						break;
+					case TPSTATE_FEED:
+						break;
+					case TPSTATE_CESHI_END:
+						break;
+					case TPSTATE_END:
 
-			if (is_detect_ok())
-			{
-				if (1)//此处检测温度是否超过正常值
-				{
-					switch (Printer_State)
-					{
-						case TPSTATE_IDLE:
-							break;
-						case TPSTATE_CUT_FEED:
-							printer_moter_feed(TPSTATE_CUT_FEED);
-							break;
-						case TPSTATE_HEAT1:
-							break;
-						case TPSTATE_HEAT1Stop:
-							break;
-						case TPSTATE_HEAT2:
-							break;
-						case TPSTATE_HEAT2Stop:
-							break;
-						case TPSTATE_HEAT12:
-							break;
-						case TPSTATE_HEAT12Stop:
-							break;
-						case TPSTATE_FEED:
-							printer_moter_feed(TPSTATE_FEED);
-							break;
-						case TPSTATE_END:
-							Printer_State = TPSTATE_IDLE;
-							printer_start_ceshi();
-							break;
-						default:
-							break;
-					}
-					Cycletime = 5000;
+						break;
+					default:
+						break;
 				}
-				else
-				{
-					if(++ Cycletime >= 5000)
-					{
-						Cycletime = 0;
-						Motor_Feed_Step = 0;
-						STROBE_12_OFF();
-						MOTOR_PHASE_DISABLE();
-						//打印机温度过高
-						Usart1_Txd_Tempdata[0] = 0x00;
-						Usart1_Txd_Tempdata[1] = 0x02;
-						Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-						Usart1_Txd_Tempdata[3] = 0x32;
-						USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
-					}					
-				}
+				Cycletime = 10000;
 			}
 			else
 			{
-				if(++ Cycletime >= 5000)
+				if(++ Cycletime >= 10000)
 				{
 					Cycletime = 0;
 					Motor_Feed_Step = 0;
 					STROBE_12_OFF();
 					MOTOR_PHASE_DISABLE();
-					Printer_State = TPSTATE_IDLE;
-					//打印纸位置检测错误
+					//打印机温度过高
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x02;
 					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-					Usart1_Txd_Tempdata[3] = 0x31;
-					//USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
-				}
+					Usart1_Txd_Tempdata[3] = 0x32;
+					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
+				}					
+			}
+		}
+		else
+		{
+			if(++ Cycletime >= 5000)
+			{
+				Cycletime = 0;
+				Motor_Feed_Step = 0;
+				STROBE_12_OFF();
+				MOTOR_PHASE_DISABLE();
+				Printer_State = TPSTATE_IDLE;
+				//打印纸位置检测错误
+				Usart1_Txd_Tempdata[0] = 0x00;
+				Usart1_Txd_Tempdata[1] = 0x02;
+				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
+				Usart1_Txd_Tempdata[3] = 0x31;
+				//USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
 			}
 		}
 	}

@@ -16,7 +16,7 @@
 #define frame_SOF				0x55	//定义帧起始字节
 #define frame_EOF				0xAA	//定义帧结束字节
 #define frame_MARK			0xFF	//定义转义标志
-#define USART1_DATA_MAX_LEN			1000
+#define USART1_DATA_MAX_LEN			2000
 
 
 typedef enum
@@ -97,7 +97,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 		case 0:
 			//命令对象不存在
 			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x20;
+			Usart1_Txd_Tempdata[1] = 0x02;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
 			Usart1_Txd_Tempdata[3] = 0x01;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
@@ -118,7 +118,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 		case 0xFF:
 			//数据包校验出错（长度）
 			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x20;
+			Usart1_Txd_Tempdata[1] = 0x02;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
 			Usart1_Txd_Tempdata[3] = 0x00;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
@@ -126,7 +126,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 		default :
 			//命令对象不存在
 			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x20;
+			Usart1_Txd_Tempdata[1] = 0x02;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
 			Usart1_Txd_Tempdata[3] = 0x01;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			

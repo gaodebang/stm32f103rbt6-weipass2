@@ -238,6 +238,6 @@ void psam_card_SERVER_TASK(void)
 	if (time_ms != sys_time)
 	{
 		time_ms = sys_time;
-		psam_card_rcv();
+		//psam_card_rcv();
 	}
 }

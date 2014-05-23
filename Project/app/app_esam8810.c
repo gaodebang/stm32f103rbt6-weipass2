@@ -233,6 +233,6 @@ void esam8810_SERVER_TASK(void)
 	if (time_ms != sys_time)
 	{
 		time_ms = sys_time;
-		//esam8810_rcv();
+		esam8810_rcv();
 	}
 }

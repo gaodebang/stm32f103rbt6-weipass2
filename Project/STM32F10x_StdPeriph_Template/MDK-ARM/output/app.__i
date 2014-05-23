@@ -2,4 +2,4 @@
 -I "D:\Program Files\keil\ARM\RV31\INC" 
 -I "D:\Program Files\keil\ARM\CMSIS\Include" 
 -I "D:\Program Files\keil\ARM\Inc\ST\STM32F10x" 
--DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -o ".\output\app_psam_card.o" --omf_browse ".\output\app_psam_card.crf" --depend ".\output\app_psam_card.d" "..\..\app\app_psam_card.c"
+-DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -o ".\output\app.o" --omf_browse ".\output\app.crf" --depend ".\output\app.d" "..\..\app\app.c"

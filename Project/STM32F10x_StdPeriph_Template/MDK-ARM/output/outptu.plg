@@ -9,91 +9,241 @@ Project File Date:  05/15/2014
 <h2>Output:</h2>
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
+..\..\app\app_printer.c(2080): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2081): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2315): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2316): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2318): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2320): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(1998): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2032): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2147): warning:  #177-D: function "printer_moter_feed_step" was declared but never referenced
 linking...
-Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=10108 RO-data=39820 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2083): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2084): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2318): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2319): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2321): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2323): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2001): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2035): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2188): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+linking...
+Program Size: Code=10048 RO-data=39820 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(1670): error:  #20: identifier "count" is undefined
+..\..\app\app_printer.c(1670): error:  #101: "uint16_t" has already been declared in the current scope
+..\..\app\app_printer.c(1670): error:  #65: expected a ";"
+..\..\app\app_printer.c(1684): warning:  #12-D: parsing restarts here after previous syntax error
+..\..\app\app_printer.c(1715): error:  #757: variable "uint16_t" is not a type name
+..\..\app\app_printer.c(1876): error:  #18: expected a ")"
+..\..\app\app_printer.c(1881): error:  #18: expected a ")"
+..\..\app\app_printer.c(1886): error:  #18: expected a ")"
+..\..\app\app_printer.c(1891): error:  #18: expected a ")"
+..\..\app\app_printer.c(1903): error:  #18: expected a ")"
+..\..\app\app_printer.c(1903): error:  #18: expected a ")"
+..\..\app\app_printer.c(1903): error:  #18: expected a ")"
+..\..\app\app_printer.c(1903): error:  #18: expected a ")"
+..\..\app\app_printer.c(1904): error:  #18: expected a ")"
+..\..\app\app_printer.c(1904): error:  #18: expected a ")"
+..\..\app\app_printer.c(1904): error:  #18: expected a ")"
+..\..\app\app_printer.c(1904): error:  #18: expected a ")"
+..\..\app\app_printer.c(1909): error:  #18: expected a ")"
+..\..\app\app_printer.c(1910): error:  #18: expected a ")"
+..\..\app\app_printer.c(1918): error:  #18: expected a ")"
+..\..\app\app_printer.c(1924): error:  #18: expected a ")"
+..\..\app\app_printer.c(1924): error:  #18: expected a ")"
+..\..\app\app_printer.c(1929): error:  #18: expected a ")"
+..\..\app\app_printer.c(1929): error:  #18: expected a ")"
+..\..\app\app_printer.c(1934): error:  #18: expected a ")"
+..\..\app\app_printer.c(1939): error:  #18: expected a ")"
+..\..\app\app_printer.c(1946): error:  #18: expected a ")"
+..\..\app\app_printer.c(1946): error:  #18: expected a ")"
+..\..\app\app_printer.c(1946): error:  #18: expected a ")"
+..\..\app\app_printer.c(1952): error:  #18: expected a ")"
+..\..\app\app_printer.c(1953): error:  #18: expected a ")"
+Target not created
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2334): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2337): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2339): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2618): error:  #167: argument of type "uint8_t *" is incompatible with parameter of type "uint16_t *"
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2204): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+Target not created
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2334): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2337): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2339): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2204): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+linking...
+Program Size: Code=10088 RO-data=39844 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2334): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2337): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2339): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2204): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+linking...
+Program Size: Code=10092 RO-data=39844 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2334): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2337): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2339): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2204): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+linking...
+Program Size: Code=10092 RO-data=39844 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2336): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2338): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2340): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2205): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+linking...
+Program Size: Code=10096 RO-data=39844 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2336): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2338): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2340): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2205): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
+linking...
+Program Size: Code=10096 RO-data=39844 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+linking...
+Program Size: Code=10096 RO-data=39844 RW-data=196 ZI-data=15172  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
-..\..\app\app_printer.c(2145): warning:  #111-D: statement is unreachable
-..\..\app\app_printer.c(2085): warning:  #550-D: variable "temp_num_1" was set but never used
-..\..\app\app_printer.c(2086): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2336): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2338): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2340): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2205): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
 linking...
-Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=10096 RO-data=39844 RW-data=196 ZI-data=15172  
 FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 3 Warning(s).
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
-..\..\app\app_printer.c(2085): warning:  #550-D: variable "temp_num_1" was set but never used
-..\..\app\app_printer.c(2086): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2099): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2100): warning:  #550-D: variable "temp_num_2" was set but never used
+..\..\app\app_printer.c(2335): warning:  #177-D: variable "i" was declared but never referenced
+..\..\app\app_printer.c(2336): warning:  #177-D: variable "print_mode" was declared but never referenced
+..\..\app\app_printer.c(2338): warning:  #177-D: variable "data_pointer" was declared but never referenced
+..\..\app\app_printer.c(2340): warning:  #177-D: variable "j" was declared but never referenced
+..\..\app\app_printer.c(2017): warning:  #177-D: function "printer_data_out" was declared but never referenced
+..\..\app\app_printer.c(2051): warning:  #177-D: function "printer_heat" was declared but never referenced
+..\..\app\app_printer.c(2205): warning:  #177-D: function "printer_moter_feed" was declared but never referenced
 linking...
-Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=10096 RO-data=39916 RW-data=196 ZI-data=15172  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 9 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app.c...
+compiling app_printer.c...
+..\..\app\app_printer.c(2092): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2093): warning:  #550-D: variable "temp_num_2" was set but never used
+linking...
+Program Size: Code=11304 RO-data=39852 RW-data=192 ZI-data=15168  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 2 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
-..\..\app\app_printer.c(2145): warning:  #940-D: missing return statement at end of non-void function "get_print_mode"
+..\..\app\app_printer.c(2092): warning:  #550-D: variable "temp_num_1" was set but never used
+..\..\app\app_printer.c(2093): warning:  #550-D: variable "temp_num_2" was set but never used
 linking...
-Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 1 Warning(s).
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-linking...
-Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'STM32100E-EVAL'
-compiling app_printer.c...
-..\..\app\app_printer.c(2085): warning:  #550-D: variable "temp_num_1" was set but never used
-..\..\app\app_printer.c(2086): warning:  #550-D: variable "temp_num_2" was set but never used
-linking...
-Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=11304 RO-data=39852 RW-data=192 ZI-data=15168  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 2 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'STM32100E-EVAL'
-linking...
-Program Size: Code=11360 RO-data=39820 RW-data=196 ZI-data=9812  
-FromELF: creating hex file...
-".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
 linking...
-Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=11372 RO-data=39852 RW-data=192 ZI-data=15168  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
-Load "F:\\STM32 Projects\\stm32f103rbt6-weipass2\\Project\\STM32F10x_StdPeriph_Template\\MDK-ARM\\output\\outptu.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
 Build target 'STM32100E-EVAL'
 compiling app_printer.c...
 linking...
-Program Size: Code=11428 RO-data=39820 RW-data=196 ZI-data=9812  
+Program Size: Code=11412 RO-data=39836 RW-data=192 ZI-data=15168  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+linking...
+Program Size: Code=11460 RO-data=39836 RW-data=192 ZI-data=15168  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+linking...
+Program Size: Code=11496 RO-data=39836 RW-data=192 ZI-data=15168  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+linking...
+Program Size: Code=11472 RO-data=39836 RW-data=192 ZI-data=15168  
+FromELF: creating hex file...
+".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
+Build target 'STM32100E-EVAL'
+compiling app_printer.c...
+linking...
+Program Size: Code=11472 RO-data=39836 RW-data=192 ZI-data=15168  
 FromELF: creating hex file...
 ".\output\outptu.axf" - 0 Error(s), 0 Warning(s).
