@@ -16,7 +16,7 @@
 #define frame_SOF				0x55	//定义帧起始字节
 #define frame_EOF				0xAA	//定义帧结束字节
 #define frame_MARK			0xFF	//定义转义标志
-#define USART1_DATA_MAX_LEN			2000
+#define USART1_DATA_MAX_LEN			(3*1024)
 
 
 typedef enum
@@ -113,7 +113,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			esam8810_CMD_DEAL(databuf+3, length-3);//调用ESAM加密芯片命令执行函数
 			break;
 		case 4:
-			psam_card_CMD_DEAL(databuf+3, length-3);
+			psam_card_CMD_DEAL(databuf+3, length-3);//调用PSAM卡命令执行函数
 			break;
 		case 0xFF:
 			//数据包校验出错（长度）

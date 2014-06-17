@@ -210,15 +210,27 @@ Section Cross References
     app_printer.o(i.TIM2_ISR) refers to app_printer.o(i.printer_start) for printer_start
     app_printer.o(i.TIM2_ISR) refers to app_printer.o(.data) for Printer_State
     app_printer.o(i.TIM2_ISR) refers to app_printer.o(.constdata) for reload_time
+    app_printer.o(i.TIM2_ISR_HIGH) refers to stm32f10x_tim.o(i.TIM_GetITStatus) for TIM_GetITStatus
+    app_printer.o(i.TIM2_ISR_HIGH) refers to stm32f10x_tim.o(i.TIM_ClearITPendingBit) for TIM_ClearITPendingBit
+    app_printer.o(i.TIM2_ISR_HIGH) refers to app_printer.o(i.set_tim_reload_high) for set_tim_reload_high
+    app_printer.o(i.TIM2_ISR_HIGH) refers to app_printer.o(i.printer_moter_step) for printer_moter_step
+    app_printer.o(i.TIM2_ISR_HIGH) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    app_printer.o(i.TIM2_ISR_HIGH) refers to stm32f10x_tim.o(i.TIM_SetAutoreload) for TIM_SetAutoreload
+    app_printer.o(i.TIM2_ISR_HIGH) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
+    app_printer.o(i.TIM2_ISR_HIGH) refers to app_printer.o(i.printer_start_ceshi_high) for printer_start_ceshi_high
+    app_printer.o(i.TIM2_ISR_HIGH) refers to app_printer.o(i.printer_start_high) for printer_start_high
+    app_printer.o(i.TIM2_ISR_HIGH) refers to app_printer.o(.data) for Printer_State
+    app_printer.o(i.TIM2_ISR_HIGH) refers to app_printer.o(.constdata) for reload_time
     app_printer.o(i.check_to_print) refers to memcpya.o(.text) for __aeabi_memcpy
     app_printer.o(i.check_to_print) refers to app_printer.o(i.printer_start) for printer_start
     app_printer.o(i.check_to_print) refers to app_printer.o(.data) for Print_Buf_Mark
     app_printer.o(i.check_to_print) refers to app_printer.o(.bss) for printer_buf_temp
     app_printer.o(i.motor_feed_delay) refers to bsp_timer.o(i.bsp_DelayUS) for bsp_DelayUS
-    app_printer.o(i.printer_CMD_DEAL) refers to app_printer.o(i.printer_start_ceshi) for printer_start_ceshi
     app_printer.o(i.printer_CMD_DEAL) refers to app_printer.o(i.printer_stop_ceshi) for printer_stop_ceshi
+    app_printer.o(i.printer_CMD_DEAL) refers to app_printer.o(i.printer_start_ceshi) for printer_start_ceshi
     app_printer.o(i.printer_CMD_DEAL) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_printer.o(i.printer_CMD_DEAL) refers to app_printer.o(i.printer_moter_cut_feed) for printer_moter_cut_feed
+    app_printer.o(i.printer_CMD_DEAL) refers to memseta.o(.text) for __aeabi_memclr
     app_printer.o(i.printer_CMD_DEAL) refers to memcpya.o(.text) for __aeabi_memcpy
     app_printer.o(i.printer_CMD_DEAL) refers to app_printer.o(.constdata) for ZIMO_000
     app_printer.o(i.printer_CMD_DEAL) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
@@ -282,11 +294,12 @@ Section Cross References
     app_printer.o(i.printer_start_ceshi) refers to app_printer.o(i.printer_heat) for printer_heat
     app_printer.o(i.printer_start_ceshi) refers to app_printer.o(i.printer_moter_step) for printer_moter_step
     app_printer.o(i.printer_start_ceshi) refers to stm32f10x_tim.o(i.TIM_SetAutoreload) for TIM_SetAutoreload
+    app_printer.o(i.printer_start_ceshi) refers to app_printer.o(i.printer_stop_ceshi) for printer_stop_ceshi
     app_printer.o(i.printer_start_ceshi) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_printer.o(i.printer_start_ceshi) refers to app_printer.o(.data) for Printer_State
     app_printer.o(i.printer_start_ceshi) refers to app_printer.o(.constdata) for ZIMO_001
     app_printer.o(i.printer_start_ceshi) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
-    app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(i.get_print_mode) for get_print_mode
+    app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(i.get_print_mode_high) for get_print_mode_high
     app_printer.o(i.printer_start_ceshi_high) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
     app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(i.printer_data_out) for printer_data_out
     app_printer.o(i.printer_start_ceshi_high) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
@@ -295,22 +308,37 @@ Section Cross References
     app_printer.o(i.printer_start_ceshi_high) refers to bsp_timer.o(i.bsp_DelayUS) for bsp_DelayUS
     app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(i.printer_moter_step) for printer_moter_step
     app_printer.o(i.printer_start_ceshi_high) refers to stm32f10x_tim.o(i.TIM_SetAutoreload) for TIM_SetAutoreload
+    app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(i.printer_stop_ceshi) for printer_stop_ceshi
     app_printer.o(i.printer_start_ceshi_high) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(.data) for Printer_State
     app_printer.o(i.printer_start_ceshi_high) refers to app_printer.o(.constdata) for ZIMO_001
     app_printer.o(i.printer_start_ceshi_high) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
+    app_printer.o(i.printer_start_high) refers to app_printer.o(i.get_print_mode_high) for get_print_mode_high
+    app_printer.o(i.printer_start_high) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
+    app_printer.o(i.printer_start_high) refers to app_printer.o(i.printer_data_out) for printer_data_out
+    app_printer.o(i.printer_start_high) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    app_printer.o(i.printer_start_high) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    app_printer.o(i.printer_start_high) refers to app_printer.o(i.printer_heat) for printer_heat
+    app_printer.o(i.printer_start_high) refers to bsp_timer.o(i.bsp_DelayUS) for bsp_DelayUS
+    app_printer.o(i.printer_start_high) refers to app_printer.o(i.printer_moter_step) for printer_moter_step
+    app_printer.o(i.printer_start_high) refers to stm32f10x_tim.o(i.TIM_SetAutoreload) for TIM_SetAutoreload
+    app_printer.o(i.printer_start_high) refers to app_printer.o(.data) for Printer_State
+    app_printer.o(i.printer_start_high) refers to app_printer.o(.bss) for printer_buf
+    app_printer.o(i.printer_start_high) refers to app_printer.o(.constdata) for reload_time
     app_printer.o(i.printer_stop_ceshi) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
     app_printer.o(i.printer_stop_ceshi) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_printer.o(i.printer_stop_ceshi) refers to app_printer.o(.data) for Motor_Feed_Step
     app_printer.o(i.printer_stop_ceshi) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
     app_printer.o(i.set_tim_reload) refers to stm32f10x_tim.o(i.TIM_SetAutoreload) for TIM_SetAutoreload
     app_printer.o(i.set_tim_reload) refers to app_printer.o(.constdata) for reload_time
+    app_printer.o(i.set_tim_reload_high) refers to stm32f10x_tim.o(i.TIM_SetAutoreload) for TIM_SetAutoreload
+    app_printer.o(i.set_tim_reload_high) refers to app_printer.o(.constdata) for reload_time
     app_esam8810.o(i.ceshi) refers to bsp_uart_fifo.o(i.comSendBuf) for comSendBuf
     app_esam8810.o(i.ceshi) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_esam8810.o(i.ceshi) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
-    app_esam8810.o(i.esam8810_CMD_DEAL) refers to app_esam8810.o(i.ceshi) for ceshi
     app_esam8810.o(i.esam8810_CMD_DEAL) refers to app_esam8810.o(i.esam8810_rst) for esam8810_rst
     app_esam8810.o(i.esam8810_CMD_DEAL) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
+    app_esam8810.o(i.esam8810_CMD_DEAL) refers to app_esam8810.o(i.ceshi) for ceshi
     app_esam8810.o(i.esam8810_CMD_DEAL) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
     app_esam8810.o(i.esam8810_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     app_esam8810.o(i.esam8810_Init) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd) for RCC_APB1PeriphClockCmd
@@ -337,9 +365,9 @@ Section Cross References
     app_psam_card.o(i.ceshi) refers to bsp_uart_fifo.o(i.comSendBuf) for comSendBuf
     app_psam_card.o(i.ceshi) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_psam_card.o(i.ceshi) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
-    app_psam_card.o(i.psam_card_CMD_DEAL) refers to app_psam_card.o(i.ceshi) for ceshi
     app_psam_card.o(i.psam_card_CMD_DEAL) refers to app_psam_card.o(i.psam_card_rst) for psam_card_rst
     app_psam_card.o(i.psam_card_CMD_DEAL) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
+    app_psam_card.o(i.psam_card_CMD_DEAL) refers to app_psam_card.o(i.ceshi) for ceshi
     app_psam_card.o(i.psam_card_CMD_DEAL) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
     app_psam_card.o(i.psam_card_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     app_psam_card.o(i.psam_card_Init) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd) for RCC_APB1PeriphClockCmd
@@ -371,9 +399,9 @@ Section Cross References
     app_pa1100.o(i.ceshi) refers to memcpya.o(.text) for __aeabi_memcpy
     app_pa1100.o(i.ceshi) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_pa1100.o(i.ceshi) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
-    app_pa1100.o(i.pa1100_CMD_DEAL) refers to app_pa1100.o(i.ceshi) for ceshi
     app_pa1100.o(i.pa1100_CMD_DEAL) refers to app_pa1100.o(i.pa1100_rst) for pa1100_rst
     app_pa1100.o(i.pa1100_CMD_DEAL) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
+    app_pa1100.o(i.pa1100_CMD_DEAL) refers to app_pa1100.o(i.ceshi) for ceshi
     app_pa1100.o(i.pa1100_CMD_DEAL) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
     app_pa1100.o(i.pa1100_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     app_pa1100.o(i.pa1100_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
@@ -1107,9 +1135,12 @@ Removing Unused input sections from the image.
     Removing bsp_uart_fifo.o(i.comClearRxFifo), (28 bytes).
     Removing bsp_uart_fifo.o(i.comClearTxFifo), (28 bytes).
     Removing bsp_uart_fifo.o(i.fgetc), (32 bytes).
+    Removing app_printer.o(i.TIM2_ISR_HIGH), (380 bytes).
     Removing app_printer.o(i.get_print_mode_high), (230 bytes).
     Removing app_printer.o(i.motor_feed_delay), (98 bytes).
-    Removing app_printer.o(i.printer_start_ceshi_high), (1020 bytes).
+    Removing app_printer.o(i.printer_start_ceshi_high), (1024 bytes).
+    Removing app_printer.o(i.printer_start_high), (1000 bytes).
+    Removing app_printer.o(i.set_tim_reload_high), (48 bytes).
     Removing app_psam_card.o(i.psam_card_rcv), (96 bytes).
     Removing dadd.o(.text), (334 bytes).
     Removing dmul.o(.text), (228 bytes).
@@ -1118,7 +1149,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (40 bytes).
     Removing depilogue.o(.text), (190 bytes).
 
-456 unused section(s) (total 20712 bytes) removed from the image.
+459 unused section(s) (total 22144 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1128,35 +1159,35 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
@@ -1302,7 +1333,7 @@ Image Symbol Table
     i.UartSend                               0x0800113a   Section        0  bsp_uart_fifo.o(i.UartSend)
     UartSend                                 0x0800113b   Thumb Code   114  bsp_uart_fifo.o(i.UartSend)
     i.UartVarInit                            0x080011ac   Section        0  bsp_uart_fifo.o(i.UartVarInit)
-    UartVarInit                              0x080011ad   Thumb Code   130  bsp_uart_fifo.o(i.UartVarInit)
+    UartVarInit                              0x080011ad   Thumb Code   132  bsp_uart_fifo.o(i.UartVarInit)
     i.UsageFault_Handler                     0x08001260   Section        0  stm32f10x_it.o(i.UsageFault_Handler)
     i.WWDG_ClearFlag                         0x08001264   Section        0  stm32f10x_wwdg.o(i.WWDG_ClearFlag)
     i.WWDG_IRQHandler                        0x08001270   Section        0  stm32f10x_it.o(i.WWDG_IRQHandler)
@@ -1340,61 +1371,61 @@ Image Symbol Table
     i.comSendBuf                             0x080018ca   Section        0  bsp_uart_fifo.o(i.comSendBuf)
     i.comSendChar                            0x080018f8   Section        0  bsp_uart_fifo.o(i.comSendChar)
     i.esam8810_CMD_DEAL                      0x08001908   Section        0  app_esam8810.o(i.esam8810_CMD_DEAL)
-    i.esam8810_Init                          0x08001968   Section        0  app_esam8810.o(i.esam8810_Init)
-    i.esam8810_SERVER_TASK                   0x08001a7c   Section        0  app_esam8810.o(i.esam8810_SERVER_TASK)
-    i.esam8810_rcv                           0x08001abc   Section        0  app_esam8810.o(i.esam8810_rcv)
-    esam8810_rcv                             0x08001abd   Thumb Code    88  app_esam8810.o(i.esam8810_rcv)
-    i.esam8810_rst                           0x08001b1c   Section        0  app_esam8810.o(i.esam8810_rst)
-    esam8810_rst                             0x08001b1d   Thumb Code    48  app_esam8810.o(i.esam8810_rst)
-    i.fputc                                  0x08001b50   Section        0  bsp_uart_fifo.o(i.fputc)
-    i.get_print_mode                         0x08001b74   Section        0  app_printer.o(i.get_print_mode)
-    get_print_mode                           0x08001b75   Thumb Code   206  app_printer.o(i.get_print_mode)
-    i.is_detect_down                         0x08001c44   Section        0  app_pa1100.o(i.is_detect_down)
-    is_detect_down                           0x08001c45   Thumb Code    18  app_pa1100.o(i.is_detect_down)
-    i.is_detect_ok                           0x08001c5c   Section        0  app_printer.o(i.is_detect_ok)
-    is_detect_ok                             0x08001c5d   Thumb Code    18  app_printer.o(i.is_detect_ok)
-    i.judge_cmd_correct                      0x08001c74   Section        0  app_uart.o(i.judge_cmd_correct)
-    judge_cmd_correct                        0x08001c75   Thumb Code    62  app_uart.o(i.judge_cmd_correct)
-    i.main                                   0x08001cb2   Section        0  main.o(i.main)
-    i.pa1100_CMD_DEAL                        0x08001cc8   Section        0  app_pa1100.o(i.pa1100_CMD_DEAL)
-    i.pa1100_Init                            0x08001d24   Section        0  app_pa1100.o(i.pa1100_Init)
-    i.pa1100_SERVER_TASK                     0x08001d54   Section        0  app_pa1100.o(i.pa1100_SERVER_TASK)
-    i.pa1100_read_data                       0x08001e44   Section        0  app_pa1100.o(i.pa1100_read_data)
-    pa1100_read_data                         0x08001e45   Thumb Code    30  app_pa1100.o(i.pa1100_read_data)
-    i.pa1100_rst                             0x08001e64   Section        0  app_pa1100.o(i.pa1100_rst)
-    pa1100_rst                               0x08001e65   Thumb Code   210  app_pa1100.o(i.pa1100_rst)
-    i.printer_CMD_DEAL                       0x08001f3c   Section        0  app_printer.o(i.printer_CMD_DEAL)
-    i.printer_Init                           0x080020f0   Section        0  app_printer.o(i.printer_Init)
-    i.printer_SERVER_TASK                    0x08002358   Section        0  app_printer.o(i.printer_SERVER_TASK)
-    i.printer_data_out                       0x0800246c   Section        0  app_printer.o(i.printer_data_out)
-    printer_data_out                         0x0800246d   Thumb Code   102  app_printer.o(i.printer_data_out)
-    i.printer_heat                           0x080024d8   Section        0  app_printer.o(i.printer_heat)
-    printer_heat                             0x080024d9   Thumb Code   114  app_printer.o(i.printer_heat)
-    i.printer_moter_cut_feed                 0x08002550   Section        0  app_printer.o(i.printer_moter_cut_feed)
-    printer_moter_cut_feed                   0x08002551   Thumb Code   142  app_printer.o(i.printer_moter_cut_feed)
-    i.printer_moter_step                     0x080025f0   Section        0  app_printer.o(i.printer_moter_step)
-    printer_moter_step                       0x080025f1   Thumb Code   248  app_printer.o(i.printer_moter_step)
-    i.printer_start                          0x080026f0   Section        0  app_printer.o(i.printer_start)
-    printer_start                            0x080026f1   Thumb Code   970  app_printer.o(i.printer_start)
-    i.printer_start_ceshi                    0x08002ad8   Section        0  app_printer.o(i.printer_start_ceshi)
-    printer_start_ceshi                      0x08002ad9   Thumb Code   978  app_printer.o(i.printer_start_ceshi)
-    i.printer_stop_ceshi                     0x08002ecc   Section        0  app_printer.o(i.printer_stop_ceshi)
-    printer_stop_ceshi                       0x08002ecd   Thumb Code    50  app_printer.o(i.printer_stop_ceshi)
-    i.psam_card_CMD_DEAL                     0x08002f0c   Section        0  app_psam_card.o(i.psam_card_CMD_DEAL)
-    i.psam_card_Init                         0x08002f6c   Section        0  app_psam_card.o(i.psam_card_Init)
-    i.psam_card_SERVER_TASK                  0x08003084   Section        0  app_psam_card.o(i.psam_card_SERVER_TASK)
-    i.psam_card_rst                          0x080030bc   Section        0  app_psam_card.o(i.psam_card_rst)
-    psam_card_rst                            0x080030bd   Thumb Code    54  app_psam_card.o(i.psam_card_rst)
-    i.set_mosi_ipu                           0x080030f8   Section        0  app_pa1100.o(i.set_mosi_ipu)
-    set_mosi_ipu                             0x080030f9   Thumb Code    30  app_pa1100.o(i.set_mosi_ipu)
-    i.set_mosi_out_pp                        0x0800311c   Section        0  app_pa1100.o(i.set_mosi_out_pp)
-    set_mosi_out_pp                          0x0800311d   Thumb Code    30  app_pa1100.o(i.set_mosi_out_pp)
-    i.set_tim_reload                         0x08003140   Section        0  app_printer.o(i.set_tim_reload)
-    set_tim_reload                           0x08003141   Thumb Code    42  app_printer.o(i.set_tim_reload)
-    i.spi_read_byte                          0x08003170   Section        0  app_pa1100.o(i.spi_read_byte)
-    spi_read_byte                            0x08003171   Thumb Code    74  app_pa1100.o(i.spi_read_byte)
-    i.uart_SERVER_TASK                       0x080031c0   Section        0  app_uart.o(i.uart_SERVER_TASK)
-    .constdata                               0x080032f8   Section    42296  app_printer.o(.constdata)
+    i.esam8810_Init                          0x0800196c   Section        0  app_esam8810.o(i.esam8810_Init)
+    i.esam8810_SERVER_TASK                   0x08001a80   Section        0  app_esam8810.o(i.esam8810_SERVER_TASK)
+    i.esam8810_rcv                           0x08001ac0   Section        0  app_esam8810.o(i.esam8810_rcv)
+    esam8810_rcv                             0x08001ac1   Thumb Code    88  app_esam8810.o(i.esam8810_rcv)
+    i.esam8810_rst                           0x08001b20   Section        0  app_esam8810.o(i.esam8810_rst)
+    esam8810_rst                             0x08001b21   Thumb Code    48  app_esam8810.o(i.esam8810_rst)
+    i.fputc                                  0x08001b54   Section        0  bsp_uart_fifo.o(i.fputc)
+    i.get_print_mode                         0x08001b78   Section        0  app_printer.o(i.get_print_mode)
+    get_print_mode                           0x08001b79   Thumb Code   206  app_printer.o(i.get_print_mode)
+    i.is_detect_down                         0x08001c48   Section        0  app_pa1100.o(i.is_detect_down)
+    is_detect_down                           0x08001c49   Thumb Code    18  app_pa1100.o(i.is_detect_down)
+    i.is_detect_ok                           0x08001c60   Section        0  app_printer.o(i.is_detect_ok)
+    is_detect_ok                             0x08001c61   Thumb Code    18  app_printer.o(i.is_detect_ok)
+    i.judge_cmd_correct                      0x08001c78   Section        0  app_uart.o(i.judge_cmd_correct)
+    judge_cmd_correct                        0x08001c79   Thumb Code    62  app_uart.o(i.judge_cmd_correct)
+    i.main                                   0x08001cb6   Section        0  main.o(i.main)
+    i.pa1100_CMD_DEAL                        0x08001ccc   Section        0  app_pa1100.o(i.pa1100_CMD_DEAL)
+    i.pa1100_Init                            0x08001d2c   Section        0  app_pa1100.o(i.pa1100_Init)
+    i.pa1100_SERVER_TASK                     0x08001d5c   Section        0  app_pa1100.o(i.pa1100_SERVER_TASK)
+    i.pa1100_read_data                       0x08001e4c   Section        0  app_pa1100.o(i.pa1100_read_data)
+    pa1100_read_data                         0x08001e4d   Thumb Code    30  app_pa1100.o(i.pa1100_read_data)
+    i.pa1100_rst                             0x08001e6c   Section        0  app_pa1100.o(i.pa1100_rst)
+    pa1100_rst                               0x08001e6d   Thumb Code   210  app_pa1100.o(i.pa1100_rst)
+    i.printer_CMD_DEAL                       0x08001f44   Section        0  app_printer.o(i.printer_CMD_DEAL)
+    i.printer_Init                           0x08002170   Section        0  app_printer.o(i.printer_Init)
+    i.printer_SERVER_TASK                    0x080023d8   Section        0  app_printer.o(i.printer_SERVER_TASK)
+    i.printer_data_out                       0x080024ec   Section        0  app_printer.o(i.printer_data_out)
+    printer_data_out                         0x080024ed   Thumb Code   102  app_printer.o(i.printer_data_out)
+    i.printer_heat                           0x08002558   Section        0  app_printer.o(i.printer_heat)
+    printer_heat                             0x08002559   Thumb Code   114  app_printer.o(i.printer_heat)
+    i.printer_moter_cut_feed                 0x080025d0   Section        0  app_printer.o(i.printer_moter_cut_feed)
+    printer_moter_cut_feed                   0x080025d1   Thumb Code   142  app_printer.o(i.printer_moter_cut_feed)
+    i.printer_moter_step                     0x08002670   Section        0  app_printer.o(i.printer_moter_step)
+    printer_moter_step                       0x08002671   Thumb Code   248  app_printer.o(i.printer_moter_step)
+    i.printer_start                          0x08002770   Section        0  app_printer.o(i.printer_start)
+    printer_start                            0x08002771   Thumb Code   970  app_printer.o(i.printer_start)
+    i.printer_start_ceshi                    0x08002b58   Section        0  app_printer.o(i.printer_start_ceshi)
+    printer_start_ceshi                      0x08002b59   Thumb Code   978  app_printer.o(i.printer_start_ceshi)
+    i.printer_stop_ceshi                     0x08002f4c   Section        0  app_printer.o(i.printer_stop_ceshi)
+    printer_stop_ceshi                       0x08002f4d   Thumb Code    50  app_printer.o(i.printer_stop_ceshi)
+    i.psam_card_CMD_DEAL                     0x08002f8c   Section        0  app_psam_card.o(i.psam_card_CMD_DEAL)
+    i.psam_card_Init                         0x08002ff0   Section        0  app_psam_card.o(i.psam_card_Init)
+    i.psam_card_SERVER_TASK                  0x08003108   Section        0  app_psam_card.o(i.psam_card_SERVER_TASK)
+    i.psam_card_rst                          0x08003140   Section        0  app_psam_card.o(i.psam_card_rst)
+    psam_card_rst                            0x08003141   Thumb Code    54  app_psam_card.o(i.psam_card_rst)
+    i.set_mosi_ipu                           0x0800317c   Section        0  app_pa1100.o(i.set_mosi_ipu)
+    set_mosi_ipu                             0x0800317d   Thumb Code    30  app_pa1100.o(i.set_mosi_ipu)
+    i.set_mosi_out_pp                        0x080031a0   Section        0  app_pa1100.o(i.set_mosi_out_pp)
+    set_mosi_out_pp                          0x080031a1   Thumb Code    30  app_pa1100.o(i.set_mosi_out_pp)
+    i.set_tim_reload                         0x080031c4   Section        0  app_printer.o(i.set_tim_reload)
+    set_tim_reload                           0x080031c5   Thumb Code    42  app_printer.o(i.set_tim_reload)
+    i.spi_read_byte                          0x080031f4   Section        0  app_pa1100.o(i.spi_read_byte)
+    spi_read_byte                            0x080031f5   Thumb Code    74  app_pa1100.o(i.spi_read_byte)
+    i.uart_SERVER_TASK                       0x08003244   Section        0  app_uart.o(i.uart_SERVER_TASK)
+    .constdata                               0x0800337c   Section    41144  app_printer.o(.constdata)
     .data                                    0x20000000   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000000   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x20000010   Data           4  stm32f10x_rcc.o(.data)
@@ -1423,46 +1454,47 @@ Image Symbol Table
     Rxdtime                                  0x20000074   Data           2  app_uart.o(.data)
     USART1_RXD_CON                           0x20000076   Data           2  app_uart.o(.data)
     uart_FRAME_STATE                         0x20000078   Data           1  app_uart.o(.data)
-    .data                                    0x2000007c   Section       31  app_printer.o(.data)
+    .data                                    0x2000007c   Section       35  app_printer.o(.data)
     Motor_Feed_Step                          0x2000007e   Data           2  app_printer.o(.data)
     Motor_State                              0x20000080   Data           1  app_printer.o(.data)
     Motor_Feed_T                             0x20000081   Data           1  app_printer.o(.data)
     j                                        0x20000084   Data           4  app_printer.o(.data)
     j                                        0x20000088   Data           4  app_printer.o(.data)
     j                                        0x2000008c   Data           4  app_printer.o(.data)
-    sys_time                                 0x20000090   Data           4  app_printer.o(.data)
-    time_ms                                  0x20000094   Data           4  app_printer.o(.data)
-    Cycletime                                0x20000098   Data           2  app_printer.o(.data)
-    Printer_State                            0x2000009a   Data           1  app_printer.o(.data)
-    .data                                    0x2000009c   Section       12  app_esam8810.o(.data)
-    rxd_timeout                              0x2000009c   Data           1  app_esam8810.o(.data)
-    rxd_num                                  0x2000009e   Data           2  app_esam8810.o(.data)
-    sys_time                                 0x200000a0   Data           4  app_esam8810.o(.data)
-    time_ms                                  0x200000a4   Data           4  app_esam8810.o(.data)
-    .data                                    0x200000a8   Section       12  app_psam_card.o(.data)
-    rxd_timeout                              0x200000a8   Data           1  app_psam_card.o(.data)
-    rxd_num                                  0x200000aa   Data           2  app_psam_card.o(.data)
-    sys_time                                 0x200000ac   Data           4  app_psam_card.o(.data)
-    time_ms                                  0x200000b0   Data           4  app_psam_card.o(.data)
-    .data                                    0x200000b4   Section       12  app_pa1100.o(.data)
-    sys_time                                 0x200000b4   Data           4  app_pa1100.o(.data)
-    time_ms                                  0x200000b8   Data           4  app_pa1100.o(.data)
-    time_add_up                              0x200000bc   Data           4  app_pa1100.o(.data)
-    .data                                    0x200000c0   Section        4  stdout.o(.data)
-    .bss                                     0x200000c4   Section     9336  bsp_uart_fifo.o(.bss)
-    g_tUart1                                 0x200000c4   Data          40  bsp_uart_fifo.o(.bss)
-    g_TxBuf1                                 0x200000ec   Data        2048  bsp_uart_fifo.o(.bss)
-    g_RxBuf1                                 0x200008ec   Data        2048  bsp_uart_fifo.o(.bss)
-    g_tUart2                                 0x200010ec   Data          40  bsp_uart_fifo.o(.bss)
-    g_TxBuf2                                 0x20001114   Data        1024  bsp_uart_fifo.o(.bss)
-    g_RxBuf2                                 0x20001514   Data        2048  bsp_uart_fifo.o(.bss)
-    g_tUart3                                 0x20001d14   Data          40  bsp_uart_fifo.o(.bss)
-    g_TxBuf3                                 0x20001d3c   Data        1024  bsp_uart_fifo.o(.bss)
-    g_RxBuf3                                 0x2000213c   Data        1024  bsp_uart_fifo.o(.bss)
-    .bss                                     0x2000253c   Section     2500  app_uart.o(.bss)
-    Usart1_Rxd_Tempdata                      0x2000253c   Data        2000  app_uart.o(.bss)
-    .bss                                     0x20002f00   Section     2308  app_printer.o(.bss)
-    STACK                                    0x20003808   Section     1024  startup_stm32f10x_md.o(STACK)
+    j                                        0x20000090   Data           4  app_printer.o(.data)
+    sys_time                                 0x20000094   Data           4  app_printer.o(.data)
+    time_ms                                  0x20000098   Data           4  app_printer.o(.data)
+    Cycletime                                0x2000009c   Data           2  app_printer.o(.data)
+    Printer_State                            0x2000009e   Data           1  app_printer.o(.data)
+    .data                                    0x200000a0   Section       12  app_esam8810.o(.data)
+    rxd_timeout                              0x200000a0   Data           1  app_esam8810.o(.data)
+    rxd_num                                  0x200000a2   Data           2  app_esam8810.o(.data)
+    sys_time                                 0x200000a4   Data           4  app_esam8810.o(.data)
+    time_ms                                  0x200000a8   Data           4  app_esam8810.o(.data)
+    .data                                    0x200000ac   Section       12  app_psam_card.o(.data)
+    rxd_timeout                              0x200000ac   Data           1  app_psam_card.o(.data)
+    rxd_num                                  0x200000ae   Data           2  app_psam_card.o(.data)
+    sys_time                                 0x200000b0   Data           4  app_psam_card.o(.data)
+    time_ms                                  0x200000b4   Data           4  app_psam_card.o(.data)
+    .data                                    0x200000b8   Section       12  app_pa1100.o(.data)
+    sys_time                                 0x200000b8   Data           4  app_pa1100.o(.data)
+    time_ms                                  0x200000bc   Data           4  app_pa1100.o(.data)
+    time_add_up                              0x200000c0   Data           4  app_pa1100.o(.data)
+    .data                                    0x200000c4   Section        4  stdout.o(.data)
+    .bss                                     0x200000c8   Section     8312  bsp_uart_fifo.o(.bss)
+    g_tUart1                                 0x200000c8   Data          40  bsp_uart_fifo.o(.bss)
+    g_TxBuf1                                 0x200000f0   Data        1024  bsp_uart_fifo.o(.bss)
+    g_RxBuf1                                 0x200004f0   Data        3072  bsp_uart_fifo.o(.bss)
+    g_tUart2                                 0x200010f0   Data          40  bsp_uart_fifo.o(.bss)
+    g_TxBuf2                                 0x20001118   Data        1024  bsp_uart_fifo.o(.bss)
+    g_RxBuf2                                 0x20001518   Data        1024  bsp_uart_fifo.o(.bss)
+    g_tUart3                                 0x20001918   Data          40  bsp_uart_fifo.o(.bss)
+    g_TxBuf3                                 0x20001940   Data        1024  bsp_uart_fifo.o(.bss)
+    g_RxBuf3                                 0x20001d40   Data        1024  bsp_uart_fifo.o(.bss)
+    .bss                                     0x20002140   Section     3572  app_uart.o(.bss)
+    Usart1_Rxd_Tempdata                      0x20002140   Data        3072  app_uart.o(.bss)
+    .bss                                     0x20002f34   Section     2308  app_printer.o(.bss)
+    STACK                                    0x20003838   Section     1024  startup_stm32f10x_md.o(STACK)
 
     Global Symbols
 
@@ -1663,37 +1695,37 @@ Image Symbol Table
     comGetChar                               0x080018ad   Thumb Code    30  bsp_uart_fifo.o(i.comGetChar)
     comSendBuf                               0x080018cb   Thumb Code    46  bsp_uart_fifo.o(i.comSendBuf)
     comSendChar                              0x080018f9   Thumb Code    16  bsp_uart_fifo.o(i.comSendChar)
-    esam8810_CMD_DEAL                        0x08001909   Thumb Code    92  app_esam8810.o(i.esam8810_CMD_DEAL)
-    esam8810_Init                            0x08001969   Thumb Code   266  app_esam8810.o(i.esam8810_Init)
-    esam8810_SERVER_TASK                     0x08001a7d   Thumb Code    50  app_esam8810.o(i.esam8810_SERVER_TASK)
-    fputc                                    0x08001b51   Thumb Code    32  bsp_uart_fifo.o(i.fputc)
-    main                                     0x08001cb3   Thumb Code    20  main.o(i.main)
-    pa1100_CMD_DEAL                          0x08001cc9   Thumb Code    88  app_pa1100.o(i.pa1100_CMD_DEAL)
-    pa1100_Init                              0x08001d25   Thumb Code    42  app_pa1100.o(i.pa1100_Init)
-    pa1100_SERVER_TASK                       0x08001d55   Thumb Code   224  app_pa1100.o(i.pa1100_SERVER_TASK)
-    printer_CMD_DEAL                         0x08001f3d   Thumb Code   416  app_printer.o(i.printer_CMD_DEAL)
-    printer_Init                             0x080020f1   Thumb Code   592  app_printer.o(i.printer_Init)
-    printer_SERVER_TASK                      0x08002359   Thumb Code   238  app_printer.o(i.printer_SERVER_TASK)
-    psam_card_CMD_DEAL                       0x08002f0d   Thumb Code    92  app_psam_card.o(i.psam_card_CMD_DEAL)
-    psam_card_Init                           0x08002f6d   Thumb Code   272  app_psam_card.o(i.psam_card_Init)
-    psam_card_SERVER_TASK                    0x08003085   Thumb Code    44  app_psam_card.o(i.psam_card_SERVER_TASK)
-    uart_SERVER_TASK                         0x080031c1   Thumb Code   282  app_uart.o(i.uart_SERVER_TASK)
-    ZIMO_000                                 0x080032f8   Data        1152  app_printer.o(.constdata)
-    ZIMO_001                                 0x08003778   Data       39552  app_printer.o(.constdata)
-    ZIMO_002                                 0x0800d1f8   Data        1536  app_printer.o(.constdata)
-    reload_time                              0x0800d7f8   Data          56  app_printer.o(.constdata)
-    Region$$Table$$Base                      0x0800d830   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800d850   Number         0  anon$$obj.o(Region$$Table)
+    esam8810_CMD_DEAL                        0x08001909   Thumb Code    94  app_esam8810.o(i.esam8810_CMD_DEAL)
+    esam8810_Init                            0x0800196d   Thumb Code   266  app_esam8810.o(i.esam8810_Init)
+    esam8810_SERVER_TASK                     0x08001a81   Thumb Code    50  app_esam8810.o(i.esam8810_SERVER_TASK)
+    fputc                                    0x08001b55   Thumb Code    32  bsp_uart_fifo.o(i.fputc)
+    main                                     0x08001cb7   Thumb Code    20  main.o(i.main)
+    pa1100_CMD_DEAL                          0x08001ccd   Thumb Code    90  app_pa1100.o(i.pa1100_CMD_DEAL)
+    pa1100_Init                              0x08001d2d   Thumb Code    42  app_pa1100.o(i.pa1100_Init)
+    pa1100_SERVER_TASK                       0x08001d5d   Thumb Code   224  app_pa1100.o(i.pa1100_SERVER_TASK)
+    printer_CMD_DEAL                         0x08001f45   Thumb Code   540  app_printer.o(i.printer_CMD_DEAL)
+    printer_Init                             0x08002171   Thumb Code   592  app_printer.o(i.printer_Init)
+    printer_SERVER_TASK                      0x080023d9   Thumb Code   238  app_printer.o(i.printer_SERVER_TASK)
+    psam_card_CMD_DEAL                       0x08002f8d   Thumb Code    94  app_psam_card.o(i.psam_card_CMD_DEAL)
+    psam_card_Init                           0x08002ff1   Thumb Code   272  app_psam_card.o(i.psam_card_Init)
+    psam_card_SERVER_TASK                    0x08003109   Thumb Code    44  app_psam_card.o(i.psam_card_SERVER_TASK)
+    uart_SERVER_TASK                         0x08003245   Thumb Code   282  app_uart.o(i.uart_SERVER_TASK)
+    ZIMO_000                                 0x0800337c   Data        1152  app_printer.o(.constdata)
+    ZIMO_001                                 0x080037fc   Data       38400  app_printer.o(.constdata)
+    ZIMO_002                                 0x0800cdfc   Data        1536  app_printer.o(.constdata)
+    reload_time                              0x0800d3fc   Data          56  app_printer.o(.constdata)
+    Region$$Table$$Base                      0x0800d434   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800d454   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000014   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000018   Data          16  system_stm32f10x.o(.data)
     WWDG_EN_MARK                             0x20000034   Data           1  bsp_wdg.o(.data)
     Sys_Time                                 0x20000038   Data           4  bsp_timer.o(.data)
     Print_Buf_Mark                           0x2000007c   Data           1  app_printer.o(.data)
-    __stdout                                 0x200000c0   Data           4  stdout.o(.data)
-    Usart1_Txd_Tempdata                      0x20002d0c   Data         500  app_uart.o(.bss)
-    printer_buf                              0x20002f00   Data        1154  app_printer.o(.bss)
-    printer_buf_temp                         0x20003382   Data        1154  app_printer.o(.bss)
-    __initial_sp                             0x20003c08   Data           0  startup_stm32f10x_md.o(STACK)
+    __stdout                                 0x200000c4   Data           4  stdout.o(.data)
+    Usart1_Txd_Tempdata                      0x20002d40   Data         500  app_uart.o(.bss)
+    printer_buf                              0x20002f34   Data        1154  app_printer.o(.bss)
+    printer_buf_temp                         0x200033b6   Data        1154  app_printer.o(.bss)
+    __initial_sp                             0x20003c38   Data           0  startup_stm32f10x_md.o(STACK)
 
 
 
@@ -1703,27 +1735,27 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000d914, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000d51c, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000d850, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000d454, Max: 0x00010000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x000000ec   Data   RO         3370    RESET               startup_stm32f10x_md.o
-    0x080000ec   0x00000000   Code   RO         3981  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080000ec   0x00000004   Code   RO         4251    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080000f0   0x00000004   Code   RO         4254    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080000f4   0x00000000   Code   RO         4256    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080000f4   0x00000000   Code   RO         4258    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080000f4   0x00000008   Code   RO         4259    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080000fc   0x00000000   Code   RO         4261    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080000fc   0x00000000   Code   RO         4263    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080000fc   0x00000004   Code   RO         4252    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080000ec   0x00000000   Code   RO         3997  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080000ec   0x00000004   Code   RO         4267    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080000f0   0x00000004   Code   RO         4270    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080000f4   0x00000000   Code   RO         4272    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080000f4   0x00000000   Code   RO         4274    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080000f4   0x00000008   Code   RO         4275    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080000fc   0x00000000   Code   RO         4277    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080000fc   0x00000000   Code   RO         4279    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080000fc   0x00000004   Code   RO         4268    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000100   0x00000024   Code   RO         3371    .text               startup_stm32f10x_md.o
-    0x08000124   0x00000024   Code   RO         3984    .text               mc_w.l(memcpya.o)
-    0x08000148   0x00000024   Code   RO         3986    .text               mc_w.l(memseta.o)
-    0x0800016c   0x0000002c   Code   RO         4266    .text               mc_w.l(uidiv.o)
-    0x08000198   0x00000024   Code   RO         4281    .text               mc_w.l(init.o)
+    0x08000124   0x00000024   Code   RO         4000    .text               mc_w.l(memcpya.o)
+    0x08000148   0x00000024   Code   RO         4002    .text               mc_w.l(memseta.o)
+    0x0800016c   0x0000002c   Code   RO         4282    .text               mc_w.l(uidiv.o)
+    0x08000198   0x00000024   Code   RO         4297    .text               mc_w.l(init.o)
     0x080001bc   0x00000014   Code   RO         3655    i.App_Init          app.o
     0x080001d0   0x0000001c   Code   RO         3656    i.App_Task          app.o
     0x080001ec   0x00000004   Code   RO            1    i.BusFault_Handler  stm32f10x_it.o
@@ -1804,12 +1836,12 @@ Memory Map of the image
     0x08001292   0x00000002   PAD
     0x08001294   0x00000028   Code   RO         3377    i.Wwdg_ISR          bsp_wdg.o
     0x080012bc   0x00000100   Code   RO         3378    i.Wwdg_Reload_Task  bsp_wdg.o
-    0x080013bc   0x00000020   Code   RO         4035    i.__0printf$1       mc_w.l(printf1.o)
-    0x080013dc   0x0000000e   Code   RO         4293    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080013ea   0x00000002   Code   RO         4294    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080013ec   0x0000000e   Code   RO         4295    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080013bc   0x00000020   Code   RO         4051    i.__0printf$1       mc_w.l(printf1.o)
+    0x080013dc   0x0000000e   Code   RO         4309    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080013ea   0x00000002   Code   RO         4310    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080013ec   0x0000000e   Code   RO         4311    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x080013fa   0x00000006   Code   RO         3540    i.__set_PRIMASK     bsp_uart_fifo.o
-    0x08001400   0x00000154   Code   RO         4042    i._printf_core      mc_w.l(printf1.o)
+    0x08001400   0x00000154   Code   RO         4058    i._printf_core      mc_w.l(printf1.o)
     0x08001554   0x00000050   Code   RO         3657    i.app_Hook          app.o
     0x080015a4   0x00000054   Code   RO         3470    i.bsp_DelayUS       bsp_timer.o
     0x080015f8   0x0000000c   Code   RO         3438    i.bsp_Idle          bsp.o
@@ -1818,57 +1850,57 @@ Memory Map of the image
     0x08001698   0x00000010   Code   RO         3541    i.bsp_InitUart      bsp_uart_fifo.o
     0x080016a8   0x00000002   Code   RO         3440    i.bsp_rcc_init      bsp.o
     0x080016aa   0x00000002   PAD
-    0x080016ac   0x0000002c   Code   RO         3840    i.ceshi             app_esam8810.o
-    0x080016d8   0x0000002c   Code   RO         3880    i.ceshi             app_psam_card.o
-    0x08001704   0x000000b4   Code   RO         3921    i.ceshi             app_pa1100.o
-    0x080017b8   0x00000030   Code   RO         3736    i.check_to_print    app_printer.o
+    0x080016ac   0x0000002c   Code   RO         3856    i.ceshi             app_esam8810.o
+    0x080016d8   0x0000002c   Code   RO         3896    i.ceshi             app_psam_card.o
+    0x08001704   0x000000b4   Code   RO         3937    i.ceshi             app_pa1100.o
+    0x080017b8   0x00000030   Code   RO         3737    i.check_to_print    app_printer.o
     0x080017e8   0x000000c4   Code   RO         3701    i.checkout_cmd      app_uart.o
     0x080018ac   0x0000001e   Code   RO         3544    i.comGetChar        bsp_uart_fifo.o
     0x080018ca   0x0000002e   Code   RO         3545    i.comSendBuf        bsp_uart_fifo.o
     0x080018f8   0x00000010   Code   RO         3546    i.comSendChar       bsp_uart_fifo.o
-    0x08001908   0x00000060   Code   RO         3841    i.esam8810_CMD_DEAL  app_esam8810.o
-    0x08001968   0x00000114   Code   RO         3842    i.esam8810_Init     app_esam8810.o
-    0x08001a7c   0x00000040   Code   RO         3843    i.esam8810_SERVER_TASK  app_esam8810.o
-    0x08001abc   0x00000060   Code   RO         3844    i.esam8810_rcv      app_esam8810.o
-    0x08001b1c   0x00000034   Code   RO         3845    i.esam8810_rst      app_esam8810.o
-    0x08001b50   0x00000024   Code   RO         3548    i.fputc             bsp_uart_fifo.o
-    0x08001b74   0x000000ce   Code   RO         3737    i.get_print_mode    app_printer.o
-    0x08001c42   0x00000002   PAD
-    0x08001c44   0x00000018   Code   RO         3922    i.is_detect_down    app_pa1100.o
-    0x08001c5c   0x00000018   Code   RO         3739    i.is_detect_ok      app_printer.o
-    0x08001c74   0x0000003e   Code   RO         3702    i.judge_cmd_correct  app_uart.o
-    0x08001cb2   0x00000014   Code   RO          205    i.main              main.o
-    0x08001cc6   0x00000002   PAD
-    0x08001cc8   0x0000005c   Code   RO         3923    i.pa1100_CMD_DEAL   app_pa1100.o
-    0x08001d24   0x00000030   Code   RO         3924    i.pa1100_Init       app_pa1100.o
-    0x08001d54   0x000000f0   Code   RO         3925    i.pa1100_SERVER_TASK  app_pa1100.o
-    0x08001e44   0x0000001e   Code   RO         3926    i.pa1100_read_data  app_pa1100.o
-    0x08001e62   0x00000002   PAD
-    0x08001e64   0x000000d8   Code   RO         3927    i.pa1100_rst        app_pa1100.o
-    0x08001f3c   0x000001b4   Code   RO         3741    i.printer_CMD_DEAL  app_printer.o
-    0x080020f0   0x00000268   Code   RO         3742    i.printer_Init      app_printer.o
-    0x08002358   0x00000114   Code   RO         3743    i.printer_SERVER_TASK  app_printer.o
-    0x0800246c   0x0000006c   Code   RO         3744    i.printer_data_out  app_printer.o
-    0x080024d8   0x00000078   Code   RO         3745    i.printer_heat      app_printer.o
-    0x08002550   0x000000a0   Code   RO         3746    i.printer_moter_cut_feed  app_printer.o
-    0x080025f0   0x00000100   Code   RO         3747    i.printer_moter_step  app_printer.o
-    0x080026f0   0x000003e8   Code   RO         3748    i.printer_start     app_printer.o
-    0x08002ad8   0x000003f4   Code   RO         3749    i.printer_start_ceshi  app_printer.o
-    0x08002ecc   0x00000040   Code   RO         3751    i.printer_stop_ceshi  app_printer.o
-    0x08002f0c   0x00000060   Code   RO         3881    i.psam_card_CMD_DEAL  app_psam_card.o
-    0x08002f6c   0x00000118   Code   RO         3882    i.psam_card_Init    app_psam_card.o
-    0x08003084   0x00000038   Code   RO         3883    i.psam_card_SERVER_TASK  app_psam_card.o
-    0x080030bc   0x0000003c   Code   RO         3885    i.psam_card_rst     app_psam_card.o
-    0x080030f8   0x00000024   Code   RO         3928    i.set_mosi_ipu      app_pa1100.o
-    0x0800311c   0x00000024   Code   RO         3929    i.set_mosi_out_pp   app_pa1100.o
-    0x08003140   0x00000030   Code   RO         3752    i.set_tim_reload    app_printer.o
-    0x08003170   0x00000050   Code   RO         3930    i.spi_read_byte     app_pa1100.o
-    0x080031c0   0x00000138   Code   RO         3703    i.uart_SERVER_TASK  app_uart.o
-    0x080032f8   0x0000a538   Data   RO         3754    .constdata          app_printer.o
-    0x0800d830   0x00000020   Data   RO         4291    Region$$Table       anon$$obj.o
+    0x08001908   0x00000064   Code   RO         3857    i.esam8810_CMD_DEAL  app_esam8810.o
+    0x0800196c   0x00000114   Code   RO         3858    i.esam8810_Init     app_esam8810.o
+    0x08001a80   0x00000040   Code   RO         3859    i.esam8810_SERVER_TASK  app_esam8810.o
+    0x08001ac0   0x00000060   Code   RO         3860    i.esam8810_rcv      app_esam8810.o
+    0x08001b20   0x00000034   Code   RO         3861    i.esam8810_rst      app_esam8810.o
+    0x08001b54   0x00000024   Code   RO         3548    i.fputc             bsp_uart_fifo.o
+    0x08001b78   0x000000ce   Code   RO         3738    i.get_print_mode    app_printer.o
+    0x08001c46   0x00000002   PAD
+    0x08001c48   0x00000018   Code   RO         3938    i.is_detect_down    app_pa1100.o
+    0x08001c60   0x00000018   Code   RO         3740    i.is_detect_ok      app_printer.o
+    0x08001c78   0x0000003e   Code   RO         3702    i.judge_cmd_correct  app_uart.o
+    0x08001cb6   0x00000014   Code   RO          205    i.main              main.o
+    0x08001cca   0x00000002   PAD
+    0x08001ccc   0x00000060   Code   RO         3939    i.pa1100_CMD_DEAL   app_pa1100.o
+    0x08001d2c   0x00000030   Code   RO         3940    i.pa1100_Init       app_pa1100.o
+    0x08001d5c   0x000000f0   Code   RO         3941    i.pa1100_SERVER_TASK  app_pa1100.o
+    0x08001e4c   0x0000001e   Code   RO         3942    i.pa1100_read_data  app_pa1100.o
+    0x08001e6a   0x00000002   PAD
+    0x08001e6c   0x000000d8   Code   RO         3943    i.pa1100_rst        app_pa1100.o
+    0x08001f44   0x0000022c   Code   RO         3742    i.printer_CMD_DEAL  app_printer.o
+    0x08002170   0x00000268   Code   RO         3743    i.printer_Init      app_printer.o
+    0x080023d8   0x00000114   Code   RO         3744    i.printer_SERVER_TASK  app_printer.o
+    0x080024ec   0x0000006c   Code   RO         3745    i.printer_data_out  app_printer.o
+    0x08002558   0x00000078   Code   RO         3746    i.printer_heat      app_printer.o
+    0x080025d0   0x000000a0   Code   RO         3747    i.printer_moter_cut_feed  app_printer.o
+    0x08002670   0x00000100   Code   RO         3748    i.printer_moter_step  app_printer.o
+    0x08002770   0x000003e8   Code   RO         3749    i.printer_start     app_printer.o
+    0x08002b58   0x000003f4   Code   RO         3750    i.printer_start_ceshi  app_printer.o
+    0x08002f4c   0x00000040   Code   RO         3753    i.printer_stop_ceshi  app_printer.o
+    0x08002f8c   0x00000064   Code   RO         3897    i.psam_card_CMD_DEAL  app_psam_card.o
+    0x08002ff0   0x00000118   Code   RO         3898    i.psam_card_Init    app_psam_card.o
+    0x08003108   0x00000038   Code   RO         3899    i.psam_card_SERVER_TASK  app_psam_card.o
+    0x08003140   0x0000003c   Code   RO         3901    i.psam_card_rst     app_psam_card.o
+    0x0800317c   0x00000024   Code   RO         3944    i.set_mosi_ipu      app_pa1100.o
+    0x080031a0   0x00000024   Code   RO         3945    i.set_mosi_out_pp   app_pa1100.o
+    0x080031c4   0x00000030   Code   RO         3754    i.set_tim_reload    app_printer.o
+    0x080031f4   0x00000050   Code   RO         3946    i.spi_read_byte     app_pa1100.o
+    0x08003244   0x00000138   Code   RO         3703    i.uart_SERVER_TASK  app_uart.o
+    0x0800337c   0x0000a0b8   Data   RO         3757    .constdata          app_printer.o
+    0x0800d434   0x00000020   Data   RO         4307    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00003c08, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00003c38, Max: 0x00005000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1880,17 +1912,16 @@ Memory Map of the image
     0x20000060   0x0000000c   Data   RW         3658    .data               app.o
     0x2000006c   0x0000000d   Data   RW         3705    .data               app_uart.o
     0x20000079   0x00000003   PAD
-    0x2000007c   0x0000001f   Data   RW         3755    .data               app_printer.o
-    0x2000009b   0x00000001   PAD
-    0x2000009c   0x0000000c   Data   RW         3846    .data               app_esam8810.o
-    0x200000a8   0x0000000c   Data   RW         3886    .data               app_psam_card.o
-    0x200000b4   0x0000000c   Data   RW         3931    .data               app_pa1100.o
-    0x200000c0   0x00000004   Data   RW         4265    .data               mc_w.l(stdout.o)
-    0x200000c4   0x00002478   Zero   RW         3549    .bss                bsp_uart_fifo.o
-    0x2000253c   0x000009c4   Zero   RW         3704    .bss                app_uart.o
-    0x20002f00   0x00000904   Zero   RW         3753    .bss                app_printer.o
-    0x20003804   0x00000004   PAD
-    0x20003808   0x00000400   Zero   RW         3368    STACK               startup_stm32f10x_md.o
+    0x2000007c   0x00000023   Data   RW         3758    .data               app_printer.o
+    0x2000009f   0x00000001   PAD
+    0x200000a0   0x0000000c   Data   RW         3862    .data               app_esam8810.o
+    0x200000ac   0x0000000c   Data   RW         3902    .data               app_psam_card.o
+    0x200000b8   0x0000000c   Data   RW         3947    .data               app_pa1100.o
+    0x200000c4   0x00000004   Data   RW         4281    .data               mc_w.l(stdout.o)
+    0x200000c8   0x00002078   Zero   RW         3549    .bss                bsp_uart_fifo.o
+    0x20002140   0x00000df4   Zero   RW         3704    .bss                app_uart.o
+    0x20002f34   0x00000904   Zero   RW         3756    .bss                app_printer.o
+    0x20003838   0x00000400   Zero   RW         3368    STACK               startup_stm32f10x_md.o
 
 
 ==============================================================================
@@ -1901,23 +1932,23 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        128         16          0         12          0       1537   app.o
-       628         44          0         12          0       4683   app_esam8810.o
-       982         64          0         12          0       6465   app_pa1100.o
-      4754        256      42296         31       2308      16532   app_printer.o
-       536         34          0         12          0       4930   app_psam_card.o
-       640         36          0         13       2500       3463   app_uart.o
+       632         46          0         12          0       4683   app_esam8810.o
+       986         66          0         12          0       6465   app_pa1100.o
+      4874        252      41144         35       2308      17672   app_printer.o
+       540         36          0         12          0       4930   app_psam_card.o
+       640         36          0         13       3572       3467   app_uart.o
         66         22          0          0          0       1210   bsp.o
-       228         32          0         40          0      18654   bsp_timer.o
-      1106         94          0          0       9336       9215   bsp_uart_fifo.o
-       314         42          0         13          0      19148   bsp_wdg.o
+       228         32          0         40          0      18646   bsp_timer.o
+      1106         92          0          0       8312       9223   bsp_uart_fifo.o
+       314         42          0         13          0      19140   bsp_wdg.o
          0          0          0          0          0         32   core_cm3.o
         20          0          0          0          0        419   main.o
        136         24          0          0          0       3519   misc.o
         36          8        236          0       1024        896   startup_stm32f10x_md.o
        426          6          0          0          0      21438   stm32f10x_gpio.o
-        48          0          0          0          0      52042   stm32f10x_it.o
+        48          0          0          0          0      51478   stm32f10x_it.o
         16          6          0          0          0        517   stm32f10x_iwdg.o
-       340         44          0         20          0     216640   stm32f10x_rcc.o
+       340         44          0         20          0     216628   stm32f10x_rcc.o
        130          0          0          0          0      11166   stm32f10x_spi.o
        760        106          0          0          0      27430   stm32f10x_tim.o
        574          6          0          0          0      16337   stm32f10x_usart.o
@@ -1925,9 +1956,9 @@ Image component sizes
        324         26          0         20          0       3873   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     12238        876      42564        192      15172     441201   Object Totals
+     12370        876      41412        196      15216     441761   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        18          0          0          7          4          0   (incl. Padding)
+        18          0          0          7          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1969,15 +2000,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     12812        908      42564        196      15172     435101   Grand Totals
-     12812        908      42564        196      15172     435101   ELF Image Totals
-     12812        908      42564        196          0          0   ROM Totals
+     12944        908      41412        200      15216     435661   Grand Totals
+     12944        908      41412        200      15216     435661   ELF Image Totals
+     12944        908      41412        200          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                55376 (  54.08kB)
-    Total RW  Size (RW Data + ZI Data)             15368 (  15.01kB)
-    Total ROM Size (Code + RO Data + RW Data)      55572 (  54.27kB)
+    Total RO  Size (Code + RO Data)                54356 (  53.08kB)
+    Total RW  Size (RW Data + ZI Data)             15416 (  15.05kB)
+    Total ROM Size (Code + RO Data + RW Data)      54556 (  53.28kB)
 
 ==============================================================================
 

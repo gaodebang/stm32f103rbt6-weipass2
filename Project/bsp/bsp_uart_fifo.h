@@ -50,14 +50,14 @@ typedef enum
 /* 定义串口波特率和FIFO缓冲区大小，分为发送缓冲区和接收缓冲区, 支持全双工 */
 #if UART1_FIFO_EN == 1
 	#define UART1_BAUD			115200
-	#define UART1_TX_BUF_SIZE	2*1024
-	#define UART1_RX_BUF_SIZE	2*1024
+	#define UART1_TX_BUF_SIZE	1*1024
+	#define UART1_RX_BUF_SIZE	3*1024
 #endif
 
 #if UART2_FIFO_EN == 1
 	#define UART2_BAUD			9600
 	#define UART2_TX_BUF_SIZE	1*1024
-	#define UART2_RX_BUF_SIZE	2*1024
+	#define UART2_RX_BUF_SIZE	1*1024
 #endif
 
 #if UART3_FIFO_EN == 1

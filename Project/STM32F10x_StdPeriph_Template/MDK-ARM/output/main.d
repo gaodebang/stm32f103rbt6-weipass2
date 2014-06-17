@@ -2,7 +2,7 @@
 .\output\main.o: ..\main.h
 .\output\main.o: ..\..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h
 .\output\main.o: ..\..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
-.\output\main.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdint.h
+.\output\main.o: d:\Program Files\ARM\ADSv1_2\INCLUDE\stdint.h
 .\output\main.o: ..\..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h
 .\output\main.o: ..\stm32f10x_conf.h
 .\output\main.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h
@@ -30,8 +30,8 @@
 .\output\main.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\output\main.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\output\main.o: ..\..\bsp\bsp.h
-.\output\main.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdio.h
-.\output\main.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\string.h
+.\output\main.o: d:\Program Files\ARM\ADSv1_2\INCLUDE\stdio.h
+.\output\main.o: d:\Program Files\ARM\ADSv1_2\INCLUDE\string.h
 .\output\main.o: ..\..\bsp\bsp_timer.h
 .\output\main.o: ..\..\bsp\bsp_wdg.h
 .\output\main.o: ..\..\bsp\bsp_uart_fifo.h

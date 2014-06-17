@@ -2,7 +2,7 @@
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp.h
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
-.\output\bsp_uart_fifo.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdint.h
+.\output\bsp_uart_fifo.o: d:\Program Files\ARM\ADSv1_2\INCLUDE\stdint.h
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h
 .\output\bsp_uart_fifo.o: ..\stm32f10x_conf.h
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h
@@ -29,8 +29,8 @@
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\output\bsp_uart_fifo.o: ..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h
-.\output\bsp_uart_fifo.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdio.h
-.\output\bsp_uart_fifo.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\string.h
+.\output\bsp_uart_fifo.o: d:\Program Files\ARM\ADSv1_2\INCLUDE\stdio.h
+.\output\bsp_uart_fifo.o: d:\Program Files\ARM\ADSv1_2\INCLUDE\string.h
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp_timer.h
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp_wdg.h
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp_uart_fifo.h

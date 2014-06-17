@@ -207,17 +207,17 @@ void esam8810_CMD_DEAL(uint8_t *databuf, uint16_t length)
 	{
 		case CESHI:
 			//≤‚ ‘√¸¡Ó
-			if(*(databuf + 1) == 0x00)
-			{
-				ceshi(databuf + 3, *(databuf + 2));
-			}
-			else if(*(databuf + 1) == 0x01)
+			if(*(databuf + 1) == 0x10)
 			{
 				esam8810_rst();
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x01;
 				Usart1_Txd_Tempdata[2] = ESAM8810;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			}
+			else if(*(databuf + 1) == 0x11)
+			{
+				ceshi(databuf + 3, *(databuf + 2));
 			}
 			break;
 		default :

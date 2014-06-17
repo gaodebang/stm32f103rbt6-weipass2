@@ -14,7 +14,7 @@
 //PA1100磁头驱动芯片的应用命令
 typedef enum
 {
-	CESHI = 0x10
+	CESHI = 0x10,
 }PA1100_CMD_NAME;
 
 /* 磁头驱动芯片引脚 */
@@ -119,7 +119,7 @@ static uint8_t spi_read_byte(void)
 		}
 		else
 		{
-			 temp_data |= (1 << 7 - i);
+			 temp_data |= (1 << (7 - i));
 		}
 		PA1100_SCK_HIGH();
 		PA1100_SCK_LOW();
@@ -257,17 +257,17 @@ void pa1100_CMD_DEAL(uint8_t *databuf, uint16_t length)
 	{
 		case CESHI:
 			//测试命令
-			if(*(databuf + 1) == 0x00)
-			{
-				ceshi();
-			}
-			else if(*(databuf + 1) == 0x01)
+			if(*(databuf + 1) == 0x10)
 			{
 				pa1100_rst();
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x01;
 				Usart1_Txd_Tempdata[2] = PA1100;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			}
+			else if(*(databuf + 1) == 0x11)
+			{
+				ceshi();
 			}
 			break;
 		default :
