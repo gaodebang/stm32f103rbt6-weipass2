@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\outptu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\outptu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Tue Jun 17 16:06:06 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Wed Jun 18 17:53:19 2014
 <BR><P>
 <H3>Maximum Stack Usage =        460 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -885,7 +885,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
 </UL>
 
-<P><STRONG><a name="[8d]"></a>printer_CMD_DEAL</STRONG> (Thumb, 540 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
+<P><STRONG><a name="[8d]"></a>printer_CMD_DEAL</STRONG> (Thumb, 552 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = printer_CMD_DEAL &rArr; printer_start_ceshi &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
@@ -967,7 +967,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
 </UL>
 
-<P><STRONG><a name="[46]"></a>uart_SERVER_TASK</STRONG> (Thumb, 282 bytes, Stack size 8 bytes, app_uart.o(i.uart_SERVER_TASK))
+<P><STRONG><a name="[46]"></a>uart_SERVER_TASK</STRONG> (Thumb, 242 bytes, Stack size 8 bytes, app_uart.o(i.uart_SERVER_TASK))
 <BR><BR>[Stack]<UL><LI>Max Depth = 452<LI>Call Chain = uart_SERVER_TASK &rArr; checkout_cmd &rArr; pa1100_CMD_DEAL &rArr; ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkout_cmd
@@ -1006,7 +1006,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
 </UL>
 
-<P><STRONG><a name="[4e]"></a>InitHardUart</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.InitHardUart))
+<P><STRONG><a name="[4e]"></a>InitHardUart</STRONG> (Thumb, 136 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.InitHardUart))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = InitHardUart &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
@@ -1140,7 +1140,7 @@ Local Symbols
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 </UL>
 
-<P><STRONG><a name="[63]"></a>printer_start</STRONG> (Thumb, 970 bytes, Stack size 16 bytes, app_printer.o(i.printer_start))
+<P><STRONG><a name="[63]"></a>printer_start</STRONG> (Thumb, 1024 bytes, Stack size 16 bytes, app_printer.o(i.printer_start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = printer_start &rArr; printer_heat &rArr; bsp_DelayUS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits

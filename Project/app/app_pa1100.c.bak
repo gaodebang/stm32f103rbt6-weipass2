@@ -11,19 +11,13 @@
 
 #include "app.h"
 
+//PA1100磁头驱动芯片的应用命令
 typedef enum
 {
-	CESHI = 0x10
+	CESHI = 0x10,
 }PA1100_CMD_NAME;
 
-typedef enum
-{
-	LINK_TEST = 0x00,
-	STATUS = 0X01
-}PA1100_CMD_LIST;
-
 /* 磁头驱动芯片引脚 */
-
 //数据通信，SPI_MOSI、SPI_SCK
 #define RCC_PA1100_INTERFACE_GPIO					(RCC_APB2Periph_GPIOA)
 #define GPIO_PA1100_INTERFACE_PORT 				(GPIOA)
@@ -50,6 +44,14 @@ typedef enum
 	bsp_DelayUS(10);\
 }while(0)
 
+/*
+*********************************************************************************************************
+*	函 数 名: is_detect_down
+*	功能说明: 磁头驱动芯片数据引脚检测
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
 static uint8_t is_detect_down(void) 
 {
 	if ((GPIO_PA1100_INTERFACE_PORT->IDR & GPIO_PA1100_INTERFACE_SPI_MOSI) == RESET) 
@@ -62,6 +64,14 @@ static uint8_t is_detect_down(void)
 	}
 }
 
+/*
+*********************************************************************************************************
+*	函 数 名: set_mosi_out_pp
+*	功能说明: 磁头驱动芯片数据引脚设置为推挽输出
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
 static void set_mosi_out_pp(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -71,6 +81,15 @@ static void set_mosi_out_pp(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(GPIO_PA1100_INTERFACE_PORT, &GPIO_InitStructure);
 }
+
+/*
+*********************************************************************************************************
+*	函 数 名: set_mosi_ipu
+*	功能说明: 磁头驱动芯片数据引脚设置为输入上拉
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
 static void set_mosi_ipu(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -81,6 +100,14 @@ static void set_mosi_ipu(void)
 	GPIO_Init(GPIO_PA1100_INTERFACE_PORT, &GPIO_InitStructure);
 }
 
+/*
+*********************************************************************************************************
+*	函 数 名: spi_read_byte
+*	功能说明: 磁头驱动芯片读取一字节数据
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
 static uint8_t spi_read_byte(void)
 {
 	uint8_t i;
@@ -92,7 +119,7 @@ static uint8_t spi_read_byte(void)
 		}
 		else
 		{
-			 temp_data |= (1 << 7 - i);
+			 temp_data |= (1 << (7 - i));
 		}
 		PA1100_SCK_HIGH();
 		PA1100_SCK_LOW();
@@ -100,6 +127,14 @@ static uint8_t spi_read_byte(void)
 	return temp_data;
 }
 
+/*
+*********************************************************************************************************
+*	函 数 名: pa1100_rst
+*	功能说明: 磁头驱动芯片复位操作
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
 static void pa1100_rst(void)
 {
 	//数据上升沿有效 发送 011	
@@ -126,6 +161,14 @@ static void pa1100_rst(void)
 	set_mosi_ipu();
 }
 
+/*
+*********************************************************************************************************
+*	函 数 名: pa1100_read_data
+*	功能说明: 磁头驱动芯片数据读取操作
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
 static void pa1100_read_data(uint8_t *databuf)
 {
 	uint16_t i;
@@ -214,18 +257,17 @@ void pa1100_CMD_DEAL(uint8_t *databuf, uint16_t length)
 	{
 		case CESHI:
 			//测试命令
-			if(*(databuf + 1) == 0x00)
-			{
-				ceshi();
-			}
-			else if(*(databuf + 1) == 0x01)
+			if(*(databuf + 1) == 0x10)
 			{
 				pa1100_rst();
-				//对象不支持该命令
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x01;
 				Usart1_Txd_Tempdata[2] = PA1100;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			}
+			else if(*(databuf + 1) == 0x11)
+			{
+				ceshi();
 			}
 			break;
 		default :

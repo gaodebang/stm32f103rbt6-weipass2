@@ -1817,6 +1817,7 @@ const uint16_t reload_time[]=
 volatile uint8_t Print_Buf_Mark = 0;	//表示当前打印缓冲区中数据是否可用
 uint8_t printer_buf[1154];	//打印缓冲区
 uint8_t printer_buf_temp[1154];	//接收打印数据的缓冲区
+uint8_t last_package_mark;
 
 //打印机的应用命令
 typedef enum
@@ -1854,7 +1855,7 @@ static uint16_t Motor_Feed_Step = 0;	//打印机，步进电机步进数
 static uint8_t Motor_State = 0;	//打印机步进电机状态，步进电机为四线双相，全步驱动为四个节拍
 static uint8_t Motor_Feed_T = 0;	//步进电机节拍时间间隔时间索引
 
-static TPSTATE_T Printer_State;	//打印机状态机
+static volatile TPSTATE_T Printer_State;	//打印机状态机
 
 /* 各个引脚宏定义 */
 //打印机电源
@@ -2987,6 +2988,11 @@ static printer_start(void)
 			j=0;
 			Printer_State = TPSTATE_IDLE;
 			TIM_Cmd(TIM2, DISABLE);
+			if(last_package_mark == 1)
+			{
+				Printer_State = TPSTATE_END;
+				TIM_Cmd(TIM2, ENABLE);
+			}			
 		}
 	}
 }
@@ -3331,7 +3337,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x02;
 					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-					Usart1_Txd_Tempdata[3] = 0x21;
+					Usart1_Txd_Tempdata[3] = 0x23;
 					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 				}
 			}
@@ -3341,7 +3347,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
 				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-				Usart1_Txd_Tempdata[3] = 0x11;
+				Usart1_Txd_Tempdata[3] = 0x22;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			}
 			break;
@@ -3357,7 +3363,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
 				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-				Usart1_Txd_Tempdata[3] = 0x11;
+				Usart1_Txd_Tempdata[3] = 0x22;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			}
 			break;
@@ -3377,11 +3383,11 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				}
 				else
 				{
-					//缓冲区都不空
+					//缓冲区都不空--对象忙碌
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x03;
 					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-					Usart1_Txd_Tempdata[3] = 0x22;
+					Usart1_Txd_Tempdata[3] = 0x20;
 					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 				}
 			}
@@ -3389,6 +3395,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 			{
 				if((Print_Buf_Mark & 0x01) == 0)
 				{
+					last_package_mark = 0;
 					memset(printer_buf_temp, 0, 1154);
 					memcpy(printer_buf_temp, databuf + 2, 1154);
 					Print_Buf_Mark |= 0x01;
@@ -3400,11 +3407,11 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				}
 				else
 				{
-					//缓冲区都不空
+					//缓冲区都不空--对象忙碌
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x03;
 					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-					Usart1_Txd_Tempdata[3] = 0x22;
+					Usart1_Txd_Tempdata[3] = 0x20;
 					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 				}
 			}
@@ -3412,6 +3419,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 			{
 				if((Print_Buf_Mark & 0x01) == 0)
 				{
+					last_package_mark = 1;
 					memset(printer_buf_temp, 0, 1154);
 					memcpy(printer_buf_temp, databuf + 2, 1154);
 					Print_Buf_Mark |= 0x01;
@@ -3423,11 +3431,11 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				}
 				else
 				{
-					//缓冲区都不空
+					//缓冲区都不空--对象忙碌
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x03;
 					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-					Usart1_Txd_Tempdata[3] = 0x22;
+					Usart1_Txd_Tempdata[3] = 0x20;
 					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 				}
 			}
@@ -3446,7 +3454,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
 				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-				Usart1_Txd_Tempdata[3] = 0x10;
+				Usart1_Txd_Tempdata[3] = 0x21;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
 	}

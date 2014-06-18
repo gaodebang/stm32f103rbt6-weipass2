@@ -33,7 +33,6 @@ void app_Hook(void)
 		if(++time_add_up >= 1000)
 		{
 				time_add_up = 0;
-
 		}
 	}
 }

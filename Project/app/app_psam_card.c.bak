@@ -51,12 +51,74 @@ typedef enum
 	GPIO_ResetBits(GPIO_PSAM_CARD_INTERFACE_PORT, GPIO_PSAM_CARD_INTERFACE_USART_CK_PIN); \
 }while(0)
 
-void psam_card_rst(void)
+/*
+*********************************************************************************************************
+*	函 数 名: psam_card_rst
+*	功能说明: PSAM卡复位操作
+*	形    参：无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void psam_card_rst(void)
 {
   PSAM_CARD_RST_ON();
   PSAM_CARD_TX_HIGH();
 	bsp_DelayUS(400);
 	PSAM_CARD_RST_OFF();	
+}
+/*
+*********************************************************************************************************
+*	函 数 名: psam_card_rcv
+*	功能说明: PSAM卡接收数据
+*	形    参: 无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void psam_card_rcv(void)
+{
+	uint8_t temp_data;
+	uint8_t databuf[100];
+
+	static uint8_t rxd_timeout;
+	static uint16_t rxd_num;
+
+	if (comGetChar(COM3, &temp_data) == 0)
+	{
+		if (rxd_timeout)
+		{
+			rxd_timeout--;
+		}
+		else
+		{
+			if(rxd_num)
+			{
+				comSendBuf(COM1, (uint8_t *)databuf, rxd_num);
+				rxd_num = 0;
+			}
+		}
+	}
+	else
+	{
+		rxd_timeout = 50;
+		databuf[rxd_num ++] = temp_data;
+	}
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: ceshi
+*	功能说明:
+*	形    参: 无
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void ceshi(uint8_t * databuf, uint8_t length)
+{
+	comSendBuf(COM3, (uint8_t *)databuf, length);
+	Usart1_Txd_Tempdata[0] = 0x00;
+	Usart1_Txd_Tempdata[1] = 0x01;
+	Usart1_Txd_Tempdata[2] = PSAM_CARD;
+	USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 }
 
 /*
@@ -133,54 +195,6 @@ void psam_card_Init(void)
 	psam_card_rst();
 }
 
-void psam_card_rcv(void)
-{
-	uint8_t temp_data;
-	uint8_t databuf[100];
-		
-	static uint8_t rxd_timeout;
-	static uint16_t rxd_num;
-	
-	if (comGetChar(COM3, &temp_data) == 0)
-	{
-		if (rxd_timeout)
-		{
-			rxd_timeout--;
-		}
-		else
-		{
-			if(rxd_num)
-			{
-				comSendBuf(COM1, (uint8_t *)databuf, rxd_num);
-				rxd_num = 0;
-			}
-		}
-	}
-	else
-	{
-		rxd_timeout = 50;
-		databuf[rxd_num ++] = temp_data;
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: ceshi
-*	功能说明: 
-*	形    参: 无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void ceshi(uint8_t * databuf, uint8_t length)
-{
-	comSendBuf(COM3, (uint8_t *)databuf, length);
-	Usart1_Txd_Tempdata[0] = 0x00;
-	Usart1_Txd_Tempdata[1] = 0x02;
-	Usart1_Txd_Tempdata[2] = PSAM_CARD;
-	Usart1_Txd_Tempdata[3] = 0;
-	USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
-}
-
 /*
 *********************************************************************************************************
 *	函 数 名: psam_card_CMD_DEAL
@@ -196,17 +210,17 @@ void psam_card_CMD_DEAL(uint8_t *databuf, uint16_t length)
 	{
 		case CESHI:
 			//测试命令
-			if(*(databuf + 1) == 0x00)
-			{
-				ceshi(databuf + 3, *(databuf + 2));
-			}
-			else if(*(databuf + 1) == 0x01)
+			if(*(databuf + 1) == 0x10)
 			{
 				psam_card_rst();
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x01;
 				Usart1_Txd_Tempdata[2] = PSAM_CARD;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			}
+			else if(*(databuf + 1) == 0x11)
+			{
+				ceshi(databuf + 3, *(databuf + 2));
 			}
 			break;
 		default :
@@ -239,6 +253,6 @@ void psam_card_SERVER_TASK(void)
 	if (time_ms != sys_time)
 	{
 		time_ms = sys_time;
-		psam_card_rcv();
+		//psam_card_rcv();
 	}
 }

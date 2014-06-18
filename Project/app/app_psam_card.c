@@ -228,7 +228,7 @@ void psam_card_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
 				Usart1_Txd_Tempdata[2] = PSAM_CARD | 0x80;
-				Usart1_Txd_Tempdata[3] = 0x10;
+				Usart1_Txd_Tempdata[3] = 0x21;
 				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
 	}

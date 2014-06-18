@@ -12,7 +12,7 @@
 #include "app.h"
 
 
-#define frame_TIME_OUT 	50		//定义帧字节间隔超时时间
+#define frame_TIME_OUT 	10*100		//定义帧字节间隔超时时间 n 毫秒 *100
 #define frame_SOF				0x55	//定义帧起始字节
 #define frame_EOF				0xAA	//定义帧结束字节
 #define frame_MARK			0xFF	//定义转义标志
@@ -99,7 +99,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x02;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x01;
+			Usart1_Txd_Tempdata[3] = 0x11;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
 		case 1:
@@ -120,7 +120,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x02;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x00;
+			Usart1_Txd_Tempdata[3] = 0x10;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			break;
 		default :
@@ -128,7 +128,7 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x02;
 			Usart1_Txd_Tempdata[2] = *(databuf + 2) | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x01;
+			Usart1_Txd_Tempdata[3] = 0x11;
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);			
 			break;
 	}
@@ -145,76 +145,67 @@ static void checkout_cmd(uint8_t *databuf, uint16_t length)
 void uart_SERVER_TASK(void)
 {
 	uint8_t temp_data;
-	
-	static uint32_t sys_time, time_ms = 0;
+
 	static uint16_t Rxdtime = 0;
 	static uint16_t USART1_RXD_CON = 0;
 	static uint8_t Usart1_Rxd_Tempdata[USART1_DATA_MAX_LEN];
 
 	static FRAME_STATE uart_FRAME_STATE = frame_sof;	
 
-	DISABLE_INT();  	/* 关中断 */
-	sys_time = Sys_Time;	/* 这个变量在Systick中断中被改写，因此需要关中断进行保护 */
-	ENABLE_INT();  		/* 开中断 */
-	
-	if(time_ms != sys_time)
+	if (comGetChar(COM1, &temp_data) == 0)
 	{
-		time_ms = sys_time;
-		if (comGetChar(COM1, &temp_data) == 0)
+		if (Rxdtime > 0)
 		{
-			if (Rxdtime > 0)
-			{
-				Rxdtime--;
-			}
-			else
-			{
-				uart_FRAME_STATE = frame_sof;
-			}
+			Rxdtime--;
 		}
 		else
 		{
-			if ((Rxdtime == 0)&&(uart_FRAME_STATE == frame_sof)&&(temp_data == frame_SOF))
+			uart_FRAME_STATE = frame_sof;
+		}
+	}
+	else
+	{
+		if ((Rxdtime == 0)&&(uart_FRAME_STATE == frame_sof)&&(temp_data == frame_SOF))
+		{
+			USART1_RXD_CON = 0;
+			uart_FRAME_STATE = frame_normal;
+		}
+		else if (uart_FRAME_STATE == frame_normal)
+		{
+			if (temp_data == frame_MARK)
 			{
-				USART1_RXD_CON = 0;
+				uart_FRAME_STATE = frame_mark;
+			}
+			else if (temp_data == frame_SOF)
+			{
+				//错误数据包
+				uart_FRAME_STATE = frame_sof;//初始化状态机
+			}
+			else if (temp_data == frame_EOF)
+			{
+				uart_FRAME_STATE = frame_eof;
+				checkout_cmd(Usart1_Rxd_Tempdata, USART1_RXD_CON);	//收到符合协议的数据包，解析命令
+			}
+			else
+			{
+				Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
+				USART1_RXD_CON++;
+			}
+		}
+		else if (uart_FRAME_STATE == frame_mark)
+		{
+			if ((temp_data == frame_MARK) || (temp_data == frame_SOF) || (temp_data == frame_EOF))
+			{
+				Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
+				USART1_RXD_CON++;
 				uart_FRAME_STATE = frame_normal;
 			}
-			else if (uart_FRAME_STATE == frame_normal)
+			else
 			{
-				if (temp_data == frame_MARK)
-				{
-					uart_FRAME_STATE = frame_mark;
-				}
-				else if (temp_data == frame_SOF)
-				{
-					//错误数据包
-					uart_FRAME_STATE = frame_sof;//初始化状态机
-				}
-				else if (temp_data == frame_EOF)
-				{
-					uart_FRAME_STATE = frame_eof;
-					checkout_cmd(Usart1_Rxd_Tempdata, USART1_RXD_CON);	//收到符合协议的数据包，解析命令
-				}
-				else
-				{
-					Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
-					USART1_RXD_CON++;
-				}
+				//错误的数据包
+				uart_FRAME_STATE = frame_sof;//初始化状态机
 			}
-			else if (uart_FRAME_STATE == frame_mark)
-			{
-				if ((temp_data == frame_MARK) || (temp_data == frame_SOF) || (temp_data == frame_EOF))
-				{
-					Usart1_Rxd_Tempdata[USART1_RXD_CON] = temp_data;
-					USART1_RXD_CON++;
-					uart_FRAME_STATE = frame_normal;
-				}
-				else
-				{
-					//错误的数据包
-					uart_FRAME_STATE = frame_sof;//初始化状态机
-				}
-			}
-			Rxdtime = frame_TIME_OUT;
 		}
+		Rxdtime = frame_TIME_OUT;
 	}
 }
