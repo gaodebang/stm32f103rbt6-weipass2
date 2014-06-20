@@ -2064,19 +2064,22 @@ static void printer_heat(uint8_t mode)
 	if(mode == 1)
 	{
 		STROBE_1_ON();
-		bsp_DelayUS(5000);
+		//bsp_DelayUS(5000);
+		bsp_DelayUS(1000);
 		STROBE_1_OFF();
 	}
 	else if(mode == 2)
 	{
 		STROBE_2_ON();
-		bsp_DelayUS(5000);
+		//bsp_DelayUS(5000);
+		bsp_DelayUS(1000);
 		STROBE_2_OFF();
 	}
 	else if(mode == 3)
 	{
 		STROBE_12_ON();
-		bsp_DelayUS(5000);
+		//bsp_DelayUS(5000);
+		bsp_DelayUS(1000);
 		STROBE_12_OFF();
 	}
 }
@@ -2845,6 +2848,11 @@ static printer_start_high(void)
 			j=0;
 			Printer_State = TPSTATE_IDLE;
 			TIM_Cmd(TIM2, DISABLE);
+			if(last_package_mark == 1)
+			{
+				Printer_State = TPSTATE_END;
+				TIM_Cmd(TIM2, ENABLE);
+			}
 		}
 	}
 }
@@ -3035,8 +3043,8 @@ static void check_to_print(void)
 	{
 		memcpy(printer_buf, printer_buf_temp, 1154);
 		Print_Buf_Mark = 0;
-		//printer_start_high();
-		printer_start();
+		printer_start_high();
+		//printer_start();
 	}
 }
 
@@ -3325,7 +3333,8 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				}
 				else if(*(databuf + 1) == 0x11)
 				{
-					printer_start_ceshi();
+					//printer_start_ceshi();
+					printer_start_ceshi_high();
 				}
 				else if(*(databuf + 1) == 0x12)
 				{

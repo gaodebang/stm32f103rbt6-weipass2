@@ -14,6 +14,7 @@
 
 void printer_Init(void);
 void TIM2_ISR(void);
+void TIM2_ISR_HIGH(void);
 void printer_CMD_DEAL(uint8_t *databuf, uint16_t length);
 void printer_SERVER_TASK(void);
 

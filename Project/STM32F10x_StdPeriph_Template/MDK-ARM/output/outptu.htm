@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\outptu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\outptu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Wed Jun 18 17:53:19 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Fri Jun 20 10:41:50 2014
 <BR><P>
 <H3>Maximum Stack Usage =        460 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -326,14 +326,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5f]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_read_byte
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pa1100_rst
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esam8810_rst
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
@@ -346,8 +346,8 @@ Global Symbols
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esam8810_rst
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
@@ -462,23 +462,23 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(.text)
 </UL>
 <P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f10x_it.o(i.TIM2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = TIM2_IRQHandler &rArr; TIM2_ISR &rArr; printer_start_ceshi &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = TIM2_IRQHandler &rArr; TIM2_ISR_HIGH &rArr; printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[5a]"></a>TIM2_ISR</STRONG> (Thumb, 360 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR))
-<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = TIM2_ISR &rArr; printer_start_ceshi &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<P><STRONG><a name="[5a]"></a>TIM2_ISR_HIGH</STRONG> (Thumb, 360 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR_HIGH))
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = TIM2_ISR_HIGH &rArr; printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetAutoreload
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_tim_reload
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_tim_reload_high
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
@@ -489,14 +489,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5c]"></a>TIM_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ClearITPendingBit))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 </UL>
 
 <P><STRONG><a name="[61]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
 </UL>
@@ -513,7 +513,7 @@ Global Symbols
 <P><STRONG><a name="[5b]"></a>TIM_GetITStatus</STRONG> (Thumb, 34 bytes, Stack size 12 bytes, stm32f10x_tim.o(i.TIM_GetITStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = TIM_GetITStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 </UL>
 
 <P><STRONG><a name="[aa]"></a>TIM_ITConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ITConfig))
@@ -525,10 +525,10 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[60]"></a>TIM_SetAutoreload</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_SetAutoreload))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_tim_reload
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_tim_reload_high
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 </UL>
 
 <P><STRONG><a name="[a8]"></a>TIM_SetCounter</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_SetCounter))
@@ -555,7 +555,7 @@ Global Symbols
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_CMD_DEAL
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
@@ -732,7 +732,8 @@ Global Symbols
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esam8810_rst
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
 </UL>
 
@@ -886,12 +887,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8d]"></a>printer_CMD_DEAL</STRONG> (Thumb, 552 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = printer_CMD_DEAL &rArr; printer_start_ceshi &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = printer_CMD_DEAL &rArr; printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
@@ -922,7 +923,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[47]"></a>printer_SERVER_TASK</STRONG> (Thumb, 238 bytes, Stack size 8 bytes, app_printer.o(i.printer_SERVER_TASK))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = printer_SERVER_TASK &rArr; check_to_print &rArr; printer_start &rArr; printer_heat &rArr; bsp_DelayUS
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = printer_SERVER_TASK &rArr; check_to_print &rArr; printer_start_high &rArr; printer_heat &rArr; bsp_DelayUS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
@@ -1006,7 +1007,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
 </UL>
 
-<P><STRONG><a name="[4e]"></a>InitHardUart</STRONG> (Thumb, 136 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.InitHardUart))
+<P><STRONG><a name="[4e]"></a>InitHardUart</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, bsp_uart_fifo.o(i.InitHardUart))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = InitHardUart &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
@@ -1078,19 +1079,19 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[8a]"></a>check_to_print</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, app_printer.o(i.check_to_print))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = check_to_print &rArr; printer_start &rArr; printer_heat &rArr; bsp_DelayUS
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = check_to_print &rArr; printer_start_high &rArr; printer_heat &rArr; bsp_DelayUS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_SERVER_TASK
 </UL>
 
-<P><STRONG><a name="[b0]"></a>get_print_mode</STRONG> (Thumb, 206 bytes, Stack size 28 bytes, app_printer.o(i.get_print_mode))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = get_print_mode
+<P><STRONG><a name="[b0]"></a>get_print_mode_high</STRONG> (Thumb, 230 bytes, Stack size 28 bytes, app_printer.o(i.get_print_mode_high))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = get_print_mode_high
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 </UL>
 
 <P><STRONG><a name="[ab]"></a>is_detect_ok</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_printer.o(i.is_detect_ok))
@@ -1103,8 +1104,8 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_SendData
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_GetFlagStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 </UL>
 
 <P><STRONG><a name="[af]"></a>printer_heat</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, app_printer.o(i.printer_heat))
@@ -1114,8 +1115,8 @@ Local Symbols
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_DelayUS
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 </UL>
 
 <P><STRONG><a name="[a1]"></a>printer_moter_cut_feed</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, app_printer.o(i.printer_moter_cut_feed))
@@ -1134,31 +1135,14 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 </UL>
 
-<P><STRONG><a name="[63]"></a>printer_start</STRONG> (Thumb, 1024 bytes, Stack size 16 bytes, app_printer.o(i.printer_start))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = printer_start &rArr; printer_heat &rArr; bsp_DelayUS
-</UL>
-<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetAutoreload
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_print_mode
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_DelayUS
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_to_print
-</UL>
-
-<P><STRONG><a name="[62]"></a>printer_start_ceshi</STRONG> (Thumb, 978 bytes, Stack size 16 bytes, app_printer.o(i.printer_start_ceshi))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = printer_start_ceshi &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<P><STRONG><a name="[62]"></a>printer_start_ceshi_high</STRONG> (Thumb, 1024 bytes, Stack size 16 bytes, app_printer.o(i.printer_start_ceshi_high))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
@@ -1168,11 +1152,29 @@ Local Symbols
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_print_mode
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_print_mode_high
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_DelayUS
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+</UL>
+
+<P><STRONG><a name="[63]"></a>printer_start_high</STRONG> (Thumb, 1024 bytes, Stack size 16 bytes, app_printer.o(i.printer_start_high))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = printer_start_high &rArr; printer_heat &rArr; bsp_DelayUS
+</UL>
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetAutoreload
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_print_mode_high
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_DelayUS
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_to_print
 </UL>
 
 <P><STRONG><a name="[a0]"></a>printer_stop_ceshi</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, app_printer.o(i.printer_stop_ceshi))
@@ -1181,16 +1183,16 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
+<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
 </UL>
 
-<P><STRONG><a name="[5d]"></a>set_tim_reload</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, app_printer.o(i.set_tim_reload))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = set_tim_reload
+<P><STRONG><a name="[5d]"></a>set_tim_reload_high</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, app_printer.o(i.set_tim_reload_high))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = set_tim_reload_high
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetAutoreload
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 </UL>
 
 <P><STRONG><a name="[80]"></a>ceshi</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, app_esam8810.o(i.ceshi))
