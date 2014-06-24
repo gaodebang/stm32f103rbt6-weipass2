@@ -166,8 +166,7 @@ void WWDG_IRQHandler(void)
 */
 void TIM2_IRQHandler(void)
 {
-	//TIM2_ISR();
-	TIM2_ISR_HIGH();
+	TIM2_ISR();
 }
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
