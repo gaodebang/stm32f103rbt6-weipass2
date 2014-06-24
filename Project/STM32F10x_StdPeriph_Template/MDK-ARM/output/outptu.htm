@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\outptu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\outptu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Fri Jun 20 10:41:50 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Fri Jun 20 11:00:50 2014
 <BR><P>
 <H3>Maximum Stack Usage =        460 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -82,7 +82,7 @@ Global Symbols
 <P><STRONG><a name="[37]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(.text)
 </UL>
-<P><STRONG><a name="[b2]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[b3]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[39]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -92,15 +92,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[b3]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[b4]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[b4]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[b5]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[b5]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[b6]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[b6]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[b7]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[b7]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[b8]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
@@ -229,18 +229,18 @@ Global Symbols
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
 </UL>
 
-<P><STRONG><a name="[b8]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[b9]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
-<P><STRONG><a name="[b9]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[ba]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
 <P><STRONG><a name="[3c]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
-<P><STRONG><a name="[ba]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[bb]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[bb]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[bc]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[3b]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -252,13 +252,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 </UL>
 
-<P><STRONG><a name="[bc]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[bd]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[3d]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
-<P><STRONG><a name="[bd]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<P><STRONG><a name="[be]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[79]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
@@ -270,7 +270,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[be]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[bf]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[3f]"></a>App_Init</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, app.o(i.App_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = App_Init &rArr; psam_card_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
@@ -330,7 +330,7 @@ Global Symbols
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_read_byte
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pa1100_rst
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esam8810_rst
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
@@ -344,7 +344,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_read_byte
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pa1100_rst
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esam8810_rst
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
@@ -462,14 +462,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(.text)
 </UL>
 <P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f10x_it.o(i.TIM2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = TIM2_IRQHandler &rArr; TIM2_ISR_HIGH &rArr; printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = TIM2_IRQHandler &rArr; TIM2_ISR_HIGH &rArr; printer_start_ceshi_high &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[5a]"></a>TIM2_ISR_HIGH</STRONG> (Thumb, 360 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR_HIGH))
-<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = TIM2_ISR_HIGH &rArr; printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = TIM2_ISR_HIGH &rArr; printer_start_ceshi_high &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetAutoreload
@@ -494,7 +494,8 @@ Global Symbols
 
 <P><STRONG><a name="[61]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
 <BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR_HIGH
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
@@ -554,7 +555,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_CMD_DEAL
@@ -705,7 +706,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[bf]"></a>__1printf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
+<P><STRONG><a name="[c0]"></a>__1printf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
 
 <P><STRONG><a name="[75]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
@@ -714,11 +715,11 @@ Global Symbols
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wwdg_ISR
 </UL>
 
-<P><STRONG><a name="[c0]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[c1]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[c1]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[c2]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[c2]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[c3]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
 <P><STRONG><a name="[45]"></a>app_Hook</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, app.o(i.app_Hook))
 <BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
@@ -730,7 +731,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_read_byte
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pa1100_rst
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esam8810_rst
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_high
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
@@ -887,11 +888,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8d]"></a>printer_CMD_DEAL</STRONG> (Thumb, 552 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = printer_CMD_DEAL &rArr; printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = printer_CMD_DEAL &rArr; printer_start_ceshi_high &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
@@ -937,7 +938,7 @@ Global Symbols
 <P><STRONG><a name="[90]"></a>psam_card_CMD_DEAL</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, app_psam_card.o(i.psam_card_CMD_DEAL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = psam_card_CMD_DEAL &rArr; ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
@@ -959,7 +960,7 @@ Global Symbols
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClockInit
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_rst
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Init
 </UL>
@@ -1142,13 +1143,13 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[62]"></a>printer_start_ceshi_high</STRONG> (Thumb, 1024 bytes, Stack size 16 bytes, app_printer.o(i.printer_start_ceshi_high))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = printer_start_ceshi_high &rArr; printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = printer_start_ceshi_high &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetAutoreload
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop_ceshi
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_step
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
@@ -1177,14 +1178,21 @@ Local Symbols
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_to_print
 </UL>
 
-<P><STRONG><a name="[a0]"></a>printer_stop_ceshi</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, app_printer.o(i.printer_stop_ceshi))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = printer_stop_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
+<P><STRONG><a name="[a0]"></a>printer_stop</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, app_printer.o(i.printer_stop))
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = printer_stop &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 </UL>
+<BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
+</UL>
+
+<P><STRONG><a name="[b1]"></a>printer_stop_ceshi</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, app_printer.o(i.printer_stop_ceshi))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = printer_stop_ceshi
+</UL>
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+</UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi_high
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
 </UL>
 
 <P><STRONG><a name="[5d]"></a>set_tim_reload_high</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, app_printer.o(i.set_tim_reload_high))
@@ -1233,7 +1241,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_CMD_DEAL
 </UL>
 
-<P><STRONG><a name="[b1]"></a>psam_card_rst</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, app_psam_card.o(i.psam_card_rst))
+<P><STRONG><a name="[b2]"></a>psam_card_rst</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, app_psam_card.o(i.psam_card_rst))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = psam_card_rst &rArr; bsp_DelayUS
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits

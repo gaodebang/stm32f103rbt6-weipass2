@@ -2355,6 +2355,26 @@ static void motor_feed_delay(uint8_t print_mode)
 
 /*
 *********************************************************************************************************
+*	函 数 名: printer_stop
+*	功能说明: 停止当前操作，并进纸
+*	形    参：void
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+static void printer_stop(void)
+{
+	Motor_Feed_Step += 200;
+	Printer_State = TPSTATE_CUT_FEED;
+	TIM_Cmd(TIM2, ENABLE);
+	//对象命令执行成功
+	Usart1_Txd_Tempdata[0] = 0x00;
+	Usart1_Txd_Tempdata[1] = 0x01;
+	Usart1_Txd_Tempdata[2] = PRINTER;
+	USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+}
+
+/*
+*********************************************************************************************************
 *	函 数 名: printer_stop_ceshi
 *	功能说明: 停止打印测试纸，并进纸
 *	形    参：void
@@ -2366,11 +2386,6 @@ static void printer_stop_ceshi(void)
 	Motor_Feed_Step += 160;
 	Printer_State = TPSTATE_CUT_FEED;
 	TIM_Cmd(TIM2, ENABLE);
-	//对象命令执行成功
-	Usart1_Txd_Tempdata[0] = 0x00;
-	Usart1_Txd_Tempdata[1] = 0x01;
-	Usart1_Txd_Tempdata[2] = PRINTER;
-	USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
 }
 
 /*
@@ -3329,7 +3344,7 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 			{
 				if(*(databuf + 1) == 0x10)
 				{
-					printer_stop_ceshi();
+					printer_stop();
 				}
 				else if(*(databuf + 1) == 0x11)
 				{
