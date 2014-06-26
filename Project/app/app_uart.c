@@ -150,7 +150,7 @@ void uart_SERVER_TASK(void)
 	static uint16_t USART1_RXD_CON = 0;
 	static uint8_t Usart1_Rxd_Tempdata[USART1_DATA_MAX_LEN];
 
-	static FRAME_STATE uart_FRAME_STATE = frame_sof;	
+	static FRAME_STATE uart_FRAME_STATE = frame_sof;
 
 	if (comGetChar(COM1, &temp_data) == 0)
 	{
@@ -180,11 +180,14 @@ void uart_SERVER_TASK(void)
 			{
 				//错误数据包
 				uart_FRAME_STATE = frame_sof;//初始化状态机
+				Rxdtime = 0;
 			}
 			else if (temp_data == frame_EOF)
 			{
 				uart_FRAME_STATE = frame_eof;
 				checkout_cmd(Usart1_Rxd_Tempdata, USART1_RXD_CON);	//收到符合协议的数据包，解析命令
+				uart_FRAME_STATE = frame_sof;
+				Rxdtime = 0;
 			}
 			else
 			{
@@ -204,6 +207,7 @@ void uart_SERVER_TASK(void)
 			{
 				//错误的数据包
 				uart_FRAME_STATE = frame_sof;//初始化状态机
+				Rxdtime = 0;
 			}
 		}
 		Rxdtime = frame_TIME_OUT;

@@ -92,7 +92,7 @@ static void bsp_InitIwdg(void)
 void bsp_InitWdg(void)
 {
     bsp_InitIwdg();
-    bsp_InitWwdg();
+    //bsp_InitWwdg();
 }
 /*
 *********************************************************************************************************

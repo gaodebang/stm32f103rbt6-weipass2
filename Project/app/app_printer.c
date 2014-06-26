@@ -10,7 +10,6 @@
 */
 #include "app.h"
 
-#define PRINTER_HIGH 1
 
 const uint8_t ZIMO_000[]=//24*48=1152 北京微智全景科技有限公司高得榜(制作)
 {
@@ -2104,7 +2103,6 @@ static void printer_heat(uint8_t mode)
 	/*
 		为保证加热时间的准确性，可以开启定时器功能，开启加热，设定定时器，开启定时器，设置状态机。
 	*/
-#if(PRINTER_HIGH)
 	if(mode == 1)
 	{
 		STROBE_12_ON();
@@ -2123,26 +2121,6 @@ static void printer_heat(uint8_t mode)
 		bsp_DelayUS(1000);
 		STROBE_ALL_OFF();
 	}
-#else
-	if(mode == 1)
-	{
-		STROBE_12_ON();
-		bsp_DelayUS(5000);
-		STROBE_12_OFF();
-	}
-	else if(mode == 2)
-	{
-		STROBE_34_ON();
-		bsp_DelayUS(5000);
-		STROBE_34_OFF();
-	}
-	else if(mode == 3)
-	{
-		STROBE_ALL_ON();
-		bsp_DelayUS(5000);
-		STROBE_ALL_OFF();
-	}
-#endif
 }
 
 /*
@@ -2164,7 +2142,6 @@ static void printer_heat(uint8_t mode)
 							0x21:两个分区中，一分区大于一次最大打印点数，一两次打印完成；二分区小于一次最大打印点数，一次打印完成
 *********************************************************************************************************
 */
-#if(PRINTER_HIGH)
 static uint8_t get_print_mode(uint8_t * datain)
 {
 	uint8_t i;
@@ -2232,75 +2209,6 @@ static uint8_t get_print_mode(uint8_t * datain)
 	}
 	return 0x22;
 }
-#else
-static uint8_t get_print_mode(uint8_t * datain)
-{
-	uint8_t i;
-	uint8_t j;
-	uint8_t k;
-
-	uint16_t temp_num_all;
-	uint16_t temp_num_1;
-	uint16_t temp_num_2;
-
-	uint8_t temp_num_blank[6];
-
-	for(i = 0; i < 4; i ++)
-	{
-		temp_num_blank[i] = 0;
-		for(j = 0; j < 12; j ++)
-		{
-			for(k = 0; k < 8; k ++)
-			{
-				if(*(datain + 8*i + j)&(1<<k))
-				{
-					temp_num_blank[i] ++;
-				}
-			}
-		}
-	}
-	temp_num_all = temp_num_blank[0] + temp_num_blank[1] + temp_num_blank[2] + temp_num_blank[3];
-	temp_num_1 = temp_num_blank[0] + temp_num_blank[2];
-	temp_num_2 = temp_num_blank[1] + temp_num_blank[3];
-	if(temp_num_all == 0)
-	{
-		return 0xFF;
-	}
-	else if(temp_num_all <= 96 )
-	{
-		return 0x00;
-	}
-	else
-	{
-		if(temp_num_1 == 0)
-		{
-			return 0x02;
-		}
-		else if(temp_num_2 == 0)
-		{
-			return 0x20;
-		}
-		else if((temp_num_1 <= 96)&&(temp_num_2 <= 96))
-		{
-			return 0x11;
-		}
-		else if((temp_num_1 > 96)&&(temp_num_2 <= 96))
-		{
-			return 0x21;
-		}
-		else if((temp_num_1 <= 96)&&(temp_num_2 > 96))
-		{
-			return 0x12;
-		}
-		else if((temp_num_1 > 96)&&(temp_num_2 > 96))
-		{
-			return 0x22;
-		}
-		//return 0x11;
-	}
-	return 0x22;
-}
-#endif
 
 /*
 *********************************************************************************************************
@@ -2425,7 +2333,6 @@ static void printer_stop_ceshi(void)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-#if(PRINTER_HIGH)
 static void printer_start_ceshi(void)
 {
 	uint8_t i;
@@ -2436,7 +2343,7 @@ static void printer_start_ceshi(void)
 	static uint32_t j = 0;
 	if(Printer_State == TPSTATE_IDLE)
 	{
-		data_pointer = (uint8_t *)&ZIMO_000[j * ((uint32_t) LINEDOT / 8L)];
+		data_pointer = (uint8_t *)&ZIMO_001[j * ((uint32_t) LINEDOT / 8L)];
 		print_mode = get_print_mode(data_pointer);
 		if(print_mode == 0xFF)
 		{
@@ -2561,10 +2468,10 @@ static void printer_start_ceshi(void)
 			Printer_State = TPSTATE_FEED_CESHI;
 			TIM_Cmd(TIM2, ENABLE);
 		}
-		if(++j >= 24)
+		if(++j >= 800)
 		{
 			j=0;
-			//printer_stop_ceshi();
+			printer_stop_ceshi();
 				//命令执行成功
 			Usart1_Txd_Tempdata[0] = 0x00;
 			Usart1_Txd_Tempdata[1] = 0x01;
@@ -2582,164 +2489,6 @@ static void printer_start_ceshi(void)
 			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 	}
 }
-#else
-static void printer_start_ceshi(void)
-{
-	uint8_t i;
-	uint8_t print_mode;
-	
-	uint8_t * data_pointer;
-	
-	static uint32_t j = 0;
-	if(Printer_State == TPSTATE_IDLE)
-	{
-		data_pointer = (uint8_t *)&ZIMO_001[j * ((uint32_t) LINEDOT / 8L)];
-		print_mode = get_print_mode(data_pointer);
-		if(print_mode == 0xFF)
-		{
-			Motor_Feed_Step += 2;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0)
-		{
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(3);
-			//bsp_DelayUS(1000);//低压打印机加热时间长，不需要delay以保证打印机不失步
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x11)
-		{
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(1);
-			printer_heat(2);
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x02)
-		{	
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(2);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x20)
-		{	
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(1);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x12)
-		{	
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(1);
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(2);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x21)
-		{	
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(2);
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(1);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else
-		{
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(1);
-				printer_heat(2);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED_CESHI;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		if(++j >= 800)
-		{
-			j=0;
-			printer_stop_ceshi();
-				//命令执行成功
-			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x01;
-			Usart1_Txd_Tempdata[2] = PRINTER;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);			
-		}
-	}
-	else
-	{
-			//对象忙碌
-			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x02;
-			Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
-			Usart1_Txd_Tempdata[3] = 0x20;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
-	}
-}
-#endif
 
 /*
 *********************************************************************************************************
@@ -2749,7 +2498,6 @@ static void printer_start_ceshi(void)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-#if(PRINTER_HIGH)
 static void printer_start(void)
 {
 	uint8_t i;
@@ -2898,156 +2646,7 @@ static void printer_start(void)
 		}
 	}
 }
-#else
-static void printer_start(void)
-{
-	uint8_t i;
-	uint8_t print_mode;
-	
-	uint8_t * data_pointer;
-	
-	static uint32_t j = 0;
-	if(Printer_State == TPSTATE_IDLE)
-	{
-		data_pointer = (uint8_t *)&printer_buf[j * ((uint32_t) LINEDOT / 8L) + 2];
-		print_mode = get_print_mode(data_pointer);
-		if(print_mode == 0xFF)
-		{
-			Motor_Feed_Step += 2;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0)
-		{
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(3);
-			bsp_DelayUS(1000);
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x11)
-		{
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(1);
-			printer_heat(2);
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x02)
-		{	
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(2);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x20)
-		{	
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(1);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x12)
-		{	
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(1);
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(2);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else if(print_mode == 0x21)
-		{	
-			printer_data_out(data_pointer, LINEDOT/8, 2);
-			LATCH_LOW();
-			LATCH_HIGH();
-			printer_heat(2);
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(1);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		else
-		{
-			for(i = 0; i < 2; i ++)
-			{
-				printer_data_out(data_pointer, LINEDOT/8, i);
-				LATCH_LOW();
-				LATCH_HIGH();	
-				printer_heat(1);
-				printer_heat(2);
-			}
-			printer_moter_step();
-			Motor_Feed_T = 0;
-			TIM_SetAutoreload(TIM2, reload_time[Motor_Feed_T] - 1);
-			Motor_Feed_Step += 1;
-			Printer_State = TPSTATE_FEED;
-			TIM_Cmd(TIM2, ENABLE);
-		}
-		if(++j >= 24)
-		{
-			j=0;
-			Printer_State = TPSTATE_IDLE;
-			TIM_Cmd(TIM2, DISABLE);
-			if(last_package_mark == 1)
-			{
-				Printer_State = TPSTATE_END;
-				TIM_Cmd(TIM2, ENABLE);
-			}			
-		}
-	}
-}
-#endif
+
 /*
 *********************************************************************************************************
 *	函 数 名: set_tim_reload
@@ -3056,7 +2655,6 @@ static void printer_start(void)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-#if(PRINTER_HIGH)
 static void set_tim_reload(uint8_t * reload_count)
 {
 	TIM_SetAutoreload(TIM2, reload_time[*reload_count] - 1);
@@ -3065,16 +2663,7 @@ static void set_tim_reload(uint8_t * reload_count)
 		*reload_count = 27;
 	}
 }
-#else
-static void set_tim_reload(uint8_t * reload_count)
-{
-	TIM_SetAutoreload(TIM2, reload_time[*reload_count] - 1);
-	if(++(*reload_count) > 3)
-	{
-		*reload_count = 3;
-	}
-}
-#endif
+
 
 /*
 *********************************************************************************************************
@@ -3544,6 +3133,7 @@ void printer_SERVER_TASK(void)
 			{
 				Cycletime = 0;
 				Motor_Feed_Step = 0;
+				Print_Buf_Mark = 0;
 				STROBE_12_OFF();
 				MOTOR_PHASE_DISABLE();
 				TIM_Cmd(TIM2, DISABLE);

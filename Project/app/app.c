@@ -50,7 +50,7 @@ void App_Init(void)
 	printer_Init();//打印机相关初始化
 	pa1100_Init();//磁头服相关初始化
 	esam8810_Init();//ESAM加密芯片相关初始化
-	psam_card_Init();
+	psam_card_Init();//PSAM卡相关初始化
 }
 
 /*
@@ -68,6 +68,6 @@ void App_Task(void)
 	printer_SERVER_TASK();//打印服务函数
 	pa1100_SERVER_TASK();//磁头服务函数
 	esam8810_SERVER_TASK();//ESAM加密芯片服务函数
-	psam_card_SERVER_TASK();
+	psam_card_SERVER_TASK();//PSAM卡服务函数
 }
 

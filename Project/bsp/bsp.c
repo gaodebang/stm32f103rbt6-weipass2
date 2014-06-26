@@ -53,9 +53,8 @@ void bsp_Init(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);//中断优先级分组
 	bsp_rcc_init();
   bsp_InitUart();             /* 初始化串口 */
-	printf("\r\nsystem start !\r\n");
   bsp_InitTimer();            /* 初始化系统滴答定时器 */
-	//bsp_InitWdg();						/* 初始化看门狗 */
+	bsp_InitWdg();						  /* 初始化看门狗 */
 }
 /*
 *********************************************************************************************************
@@ -68,6 +67,6 @@ void bsp_Init(void)
 */
 void bsp_Idle(void)
 {
-  Wwdg_Reload_Task();
+  //Wwdg_Reload_Task();
   Iwdg_Feed();
 }
