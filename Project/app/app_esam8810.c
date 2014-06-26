@@ -189,7 +189,7 @@ void esam8810_Init(void)
 		如下语句解决第1个字节无法正确发送出去的问题 */
 	USART_ClearFlag(USART2, USART_FLAG_TC);     /* 清发送完成标志，Transmission Complete flag */  
 
-	esam8810_rst();
+	//esam8810_rst();
 }
 
 /*

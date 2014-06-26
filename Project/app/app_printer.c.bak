@@ -3182,7 +3182,6 @@ void printer_Init(void)
 	/* 打印机电源控制引脚 */
 	RCC_APB2PeriphClockCmd(RCC_PRINTER_PWR_DC, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_PRINTER_PWR_BAT, ENABLE);
-	
 	PRINTER_PWR_OFF_DC();//关闭打印机总电源
 	PRINTER_PWR_OFF_BAT();
 
@@ -3191,12 +3190,6 @@ void printer_Init(void)
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_PWR_PIN_DC;
 	GPIO_Init(GPIO_PRINTER_PWR_PORT_DC, &GPIO_InitStructure);
-	
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-
-	GPIO_InitStructure.GPIO_Pin = GPIO_PRINTER_PWR_PIN_BAT;
-	GPIO_Init(GPIO_PRINTER_PWR_PORT_BAT, &GPIO_InitStructure);
 
 	/* 步进电机电源控制引脚 */
 	RCC_APB2PeriphClockCmd(RCC_PRINTER_MOTOR_PWR, ENABLE);
@@ -3225,7 +3218,6 @@ void printer_Init(void)
 
 	PRINTER_PWR_ON_DC();
 	PRINTER_PWR_ON_BAT();
-	
 	PRINTER_MOTOR_PWR_ON();
 
 	/* 打印机纸光电检测引脚 */

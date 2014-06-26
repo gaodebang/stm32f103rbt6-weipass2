@@ -192,7 +192,7 @@ void psam_card_Init(void)
 		如下语句解决第1个字节无法正确发送出去的问题 */
 	USART_ClearFlag(USART3, USART_FLAG_TC);     /* 清发送完成标志，Transmission Complete flag */  
 
-	psam_card_rst();
+	//psam_card_rst();
 }
 
 /*
@@ -253,6 +253,6 @@ void psam_card_SERVER_TASK(void)
 	if (time_ms != sys_time)
 	{
 		time_ms = sys_time;
-		//psam_card_rcv();
+		psam_card_rcv();
 	}
 }
