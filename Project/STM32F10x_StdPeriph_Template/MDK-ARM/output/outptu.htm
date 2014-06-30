@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\outptu.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\outptu.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Thu Jun 26 17:20:01 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 69]: Last Updated: Mon Jun 30 16:42:02 2014
 <BR><P>
 <H3>Maximum Stack Usage =        460 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -482,7 +482,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[36]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo36
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
@@ -495,7 +495,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[5a]"></a>TIM2_ISR</STRONG> (Thumb, 360 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR))
+<P><STRONG><a name="[5a]"></a>TIM2_ISR</STRONG> (Thumb, 350 bytes, Stack size 8 bytes, app_printer.o(i.TIM2_ISR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = TIM2_ISR &rArr; printer_start_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
@@ -584,6 +584,7 @@ Global Symbols
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ceshi
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_stop
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start_ceshi
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;psam_card_CMD_DEAL
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_CMD_DEAL
@@ -912,7 +913,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Task
 </UL>
 
-<P><STRONG><a name="[94]"></a>printer_CMD_DEAL</STRONG> (Thumb, 552 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
+<P><STRONG><a name="[94]"></a>printer_CMD_DEAL</STRONG> (Thumb, 492 bytes, Stack size 16 bytes, app_printer.o(i.printer_CMD_DEAL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = printer_CMD_DEAL &rArr; printer_start_ceshi &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
@@ -949,7 +950,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[47]"></a>printer_SERVER_TASK</STRONG> (Thumb, 242 bytes, Stack size 8 bytes, app_printer.o(i.printer_SERVER_TASK))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = printer_SERVER_TASK &rArr; check_to_print &rArr; printer_start &rArr; printer_heat &rArr; bsp_DelayUS
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = printer_SERVER_TASK &rArr; check_to_print &rArr; printer_start &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
@@ -1019,15 +1020,15 @@ Global Symbols
 Local Symbols
 </H3>
 <P><STRONG><a name="[57]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo72
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo36
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
+<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo36
 </UL>
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[58]"></a>SetSysClockTo72</STRONG> (Thumb, 212 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
+<P><STRONG><a name="[58]"></a>SetSysClockTo36</STRONG> (Thumb, 208 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo36))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo36
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
@@ -1102,7 +1103,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;comSendBuf
 </UL>
 
-<P><STRONG><a name="[86]"></a>UartVarInit</STRONG> (Thumb, 132 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.UartVarInit))
+<P><STRONG><a name="[86]"></a>UartVarInit</STRONG> (Thumb, 126 bytes, Stack size 0 bytes, bsp_uart_fifo.o(i.UartVarInit))
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_InitUart
 </UL>
 
@@ -1131,7 +1132,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[91]"></a>check_to_print</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, app_printer.o(i.check_to_print))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = check_to_print &rArr; printer_start &rArr; printer_heat &rArr; bsp_DelayUS
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = check_to_print &rArr; printer_start &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_start
@@ -1193,8 +1194,8 @@ Local Symbols
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_moter_cut_feed
 </UL>
 
-<P><STRONG><a name="[63]"></a>printer_start</STRONG> (Thumb, 1024 bytes, Stack size 16 bytes, app_printer.o(i.printer_start))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = printer_start &rArr; printer_heat &rArr; bsp_DelayUS
+<P><STRONG><a name="[63]"></a>printer_start</STRONG> (Thumb, 1052 bytes, Stack size 16 bytes, app_printer.o(i.printer_start))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = printer_start &rArr; USART1_Tx_Chars &rArr; comSendChar &rArr; comSendBuf &rArr; UartSend &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
@@ -1204,6 +1205,7 @@ Local Symbols
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_heat
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printer_data_out
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_print_mode
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Tx_Chars
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_DelayUS
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_ISR

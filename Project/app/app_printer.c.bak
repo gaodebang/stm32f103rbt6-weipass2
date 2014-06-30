@@ -2969,7 +2969,6 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 			{
 				if((Print_Buf_Mark & 0x01) == 0)
 				{
-					last_package_mark = 1;
 					memset(printer_buf_temp, 0, 1154);
 					memcpy(printer_buf_temp + 2, ZIMO_000, 1152);
 					Print_Buf_Mark |= 0x01;

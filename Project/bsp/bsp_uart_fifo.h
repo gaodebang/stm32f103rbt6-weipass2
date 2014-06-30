@@ -51,19 +51,19 @@ typedef enum
 #if UART1_FIFO_EN == 1
 	#define UART1_BAUD			115200//×î¸ß4500000
 	#define UART1_TX_BUF_SIZE	1*1024
-	#define UART1_RX_BUF_SIZE	3*1024
+	#define UART1_RX_BUF_SIZE	2*1024
 #endif
 
 #if UART2_FIFO_EN == 1
 	#define UART2_BAUD			9600
-	#define UART2_TX_BUF_SIZE	1*1024
-	#define UART2_RX_BUF_SIZE	1*1024
+	#define UART2_TX_BUF_SIZE	1*100
+	#define UART2_RX_BUF_SIZE	1*100
 #endif
 
 #if UART3_FIFO_EN == 1
 	#define UART3_BAUD			9600
-	#define UART3_TX_BUF_SIZE	1*1024
-	#define UART3_RX_BUF_SIZE	1*1024
+	#define UART3_TX_BUF_SIZE	1*100
+	#define UART3_RX_BUF_SIZE	1*100
 #endif
 
 #if UART4_FIFO_EN == 1
