@@ -16,7 +16,7 @@
 #define frame_SOF				0x55	//定义帧起始字节
 #define frame_EOF				0xAA	//定义帧结束字节
 #define frame_MARK			0xFF	//定义转义标志
-#define USART1_DATA_MAX_LEN			(2*1024)
+#define USART1_DATA_MAX_LEN			(5*1024)
 
 
 typedef enum

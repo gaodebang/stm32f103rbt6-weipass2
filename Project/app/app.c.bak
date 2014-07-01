@@ -38,7 +38,7 @@ void app_Hook(void)
 				ADC1_value = ADC_GetConversionValue(ADC1);
 				adc_value[0] = ADC1_value>>8;
 				adc_value[1] = ADC1_value&0xff;
-				USART1_Tx_Chars(adc_value,2);
+				USART1_Tx_Chars((uint8_t *)adc_value,2);
 		}
 	}
 }
@@ -69,7 +69,7 @@ void App_Init(void)
 */
 void App_Task(void)
 {
-	//app_Hook();//调用钩子函数
+	app_Hook();//调用钩子函数
 	uart_SERVER_TASK();//串口检查服务函数
 	printer_SERVER_TASK();//打印服务函数
 	pa1100_SERVER_TASK();//磁头服务函数

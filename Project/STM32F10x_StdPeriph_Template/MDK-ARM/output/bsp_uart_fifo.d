@@ -34,3 +34,4 @@
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp_timer.h
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp_wdg.h
 .\output\bsp_uart_fifo.o: ..\..\bsp\bsp_uart_fifo.h
+.\output\bsp_uart_fifo.o: ..\..\bsp\bsp_adc.h

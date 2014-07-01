@@ -35,6 +35,7 @@
 .\output\main.o: ..\..\bsp\bsp_timer.h
 .\output\main.o: ..\..\bsp\bsp_wdg.h
 .\output\main.o: ..\..\bsp\bsp_uart_fifo.h
+.\output\main.o: ..\..\bsp\bsp_adc.h
 .\output\main.o: ..\..\app\app.h
 .\output\main.o: ..\..\app\app_uart.h
 .\output\main.o: ..\..\app\app_printer.h
