@@ -36,6 +36,7 @@
 .\output\stm32f10x_it.o: ..\..\bsp\bsp_wdg.h
 .\output\stm32f10x_it.o: ..\..\bsp\bsp_uart_fifo.h
 .\output\stm32f10x_it.o: ..\..\bsp\bsp_adc.h
+.\output\stm32f10x_it.o: ..\..\bsp\bsp_key.h
 .\output\stm32f10x_it.o: ..\..\app\app.h
 .\output\stm32f10x_it.o: ..\..\app\app_uart.h
 .\output\stm32f10x_it.o: ..\..\app\app_printer.h

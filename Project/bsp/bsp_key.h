@@ -81,7 +81,6 @@ typedef struct
 
 /* 供外部调用的函数声明 */
 void bsp_InitKey(void);
-void bsp_KeyScan(void);
 void bsp_PutKey(uint8_t _KeyCode);
 void bsp_KeyDealTask(void);
 void bsp_KeyTask(void);

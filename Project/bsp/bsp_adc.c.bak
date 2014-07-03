@@ -12,13 +12,13 @@
 #include "bsp.h"
 /*
 *********************************************************************************************************
-*	函 数 名: bsp_InitADC
+*	函 数 名: bsp_InitAdc
 *	功能说明: 初始化串口硬件，并对全局变量赋初值.
 *	形    参:  无
 *	返 回 值: 无
 *********************************************************************************************************
 */
-void bsp_InitADC(void)
+void bsp_InitAdc(void)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
 	ADC_InitTypeDef  ADC_InitStructure;

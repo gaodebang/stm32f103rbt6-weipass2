@@ -79,29 +79,24 @@
       <Books>
         <Book>
           <Number>0</Number>
-          <Title>Reference Manual</Title>
-          <Path>DATASHTS\ST\STM32F10xxx.PDF</Path>
-        </Book>
-        <Book>
-          <Number>1</Number>
           <Title>Technical Reference Manual</Title>
           <Path>datashts\arm\cortex_m3\r1p1\DDI0337E_CORTEX_M3_R1P1_TRM.PDF</Path>
         </Book>
         <Book>
-          <Number>2</Number>
+          <Number>1</Number>
           <Title>Generic User Guide</Title>
           <Path>datashts\arm\cortex_m3\r2p1\DUI0552A_CORTEX_M3_DGUG.PDF</Path>
         </Book>
       </Books>
       <DllOpt>
         <SimDllName>SARMCM3.DLL</SimDllName>
-        <SimDllArguments>-REMAP</SimDllArguments>
-        <SimDlgDllName>DCM.DLL</SimDlgDllName>
-        <SimDlgDllArguments>-pCM3</SimDlgDllArguments>
+        <SimDllArguments></SimDllArguments>
+        <SimDlgDllName>DARMSTM.DLL</SimDlgDllName>
+        <SimDlgDllArguments>-pSTM32F101R8</SimDlgDllArguments>
         <TargetDllName>SARMCM3.DLL</TargetDllName>
         <TargetDllArguments></TargetDllArguments>
-        <TargetDlgDllName>TCM.DLL</TargetDlgDllName>
-        <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
+        <TargetDlgDllName>TARMSTM.DLL</TargetDlgDllName>
+        <TargetDlgDllArguments>-pSTM32F101R8</TargetDlgDllArguments>
       </DllOpt>
       <DebugOpt>
         <uSim>0</uSim>
@@ -1504,10 +1499,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>41</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>91</TopLine>
-      <CurrentLine>14</CurrentLine>
+      <TopLine>100</TopLine>
+      <CurrentLine>115</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\system_stm32f10x.c</PathWithFileName>
       <FilenameWithoutPath>system_stm32f10x.c</FilenameWithoutPath>
@@ -1682,7 +1677,7 @@
       <Focus>0</Focus>
       <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>37</TopLine>
+      <TopLine>41</TopLine>
       <CurrentLine>60</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\bsp\bsp.c</PathWithFileName>
@@ -1712,10 +1707,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>6</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>26</CurrentLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\bsp\bsp_uart_fifo.c</PathWithFileName>
       <FilenameWithoutPath>bsp_uart_fifo.c</FilenameWithoutPath>
@@ -1768,10 +1763,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>44</ColumnNumber>
+      <ColumnNumber>34</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>18</CurrentLine>
+      <CurrentLine>19</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\app\app_uart.c</PathWithFileName>
       <FilenameWithoutPath>app_uart.c</FilenameWithoutPath>
@@ -1784,10 +1779,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>38</ColumnNumber>
+      <ColumnNumber>10</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1153</TopLine>
-      <CurrentLine>2960</CurrentLine>
+      <TopLine>1005</TopLine>
+      <CurrentLine>3040</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\app\app_printer.c</PathWithFileName>
       <FilenameWithoutPath>app_printer.c</FilenameWithoutPath>

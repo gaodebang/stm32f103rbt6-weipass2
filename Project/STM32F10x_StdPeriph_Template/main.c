@@ -17,6 +17,7 @@ int main(void)
 	{
 		bsp_Idle();
 		App_Task();
+		bsp_KeyTask();
 	}
 }
 

@@ -36,6 +36,7 @@
 .\output\app_printer.o: ..\..\bsp\bsp_wdg.h
 .\output\app_printer.o: ..\..\bsp\bsp_uart_fifo.h
 .\output\app_printer.o: ..\..\bsp\bsp_adc.h
+.\output\app_printer.o: ..\..\bsp\bsp_key.h
 .\output\app_printer.o: ..\..\app\app_uart.h
 .\output\app_printer.o: ..\..\app\app_printer.h
 .\output\app_printer.o: ..\..\app\app_pa1100.h

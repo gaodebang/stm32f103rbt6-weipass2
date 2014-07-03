@@ -317,7 +317,7 @@ static void bsp_DetectKey(uint8_t i)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-void bsp_KeyScan(void)
+static void bsp_KeyScan(void)
 {
 	uint8_t i;
 	for (i = 0; i < KEY_COUNT; i++)
@@ -370,9 +370,6 @@ void bsp_KeyDealTask(void)
 void bsp_KeyTask(void)
 {
   static uint32_t sys_time, time_ms = 0, time_add_up = 0;
-	const uint32_t work_time_max = 10;
-	uint32_t offset_time_ticks = 0;
-	uint8_t timeout_flag = 0;
 	
 	DISABLE_INT();  	/* 关中断 */
 	sys_time = Sys_Time;	/* 这个变量在Systick中断中被改写，因此需要关中断进行保护 */
@@ -380,48 +377,11 @@ void bsp_KeyTask(void)
 	
 	if(time_ms != sys_time)
   {
+		time_ms = sys_time;
 		//bsp_KeyDealTask();
-		if(time_ms < sys_time)
+		if(++time_add_up >= 10)
 		{
-			offset_time_ticks = sys_time - time_ms;
-			time_ms = sys_time;
-			if((offset_time_ticks  + time_add_up) > UINT_LEAST32_MAX)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else if((offset_time_ticks  + time_add_up) > work_time_max)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else
-			{
-				time_add_up += offset_time_ticks;
-			}
-		}
-    else
-		{
-			offset_time_ticks = UINT_LEAST32_MAX + sys_time - time_ms;
-			time_ms = sys_time;
-			if((offset_time_ticks  + time_add_up) > UINT_LEAST32_MAX)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else if((offset_time_ticks  + time_add_up) > work_time_max)
-			{
-				timeout_flag = 1;
-				time_add_up = 0;
-			}
-			else
-			{
-				time_add_up += offset_time_ticks;
-			}
-		}		
-    if(timeout_flag == 1)
-		{
-			timeout_flag = 0;
+			time_add_up = 0;
     	bsp_KeyScan();		/* 按键扫描 */
 		}
   }

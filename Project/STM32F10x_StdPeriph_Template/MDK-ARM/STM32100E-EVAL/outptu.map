@@ -11,6 +11,7 @@ Section Cross References
     main.o(i.main) refers to app.o(i.App_Init) for App_Init
     main.o(i.main) refers to bsp.o(i.bsp_Idle) for bsp_Idle
     main.o(i.main) refers to app.o(i.App_Task) for App_Task
+    main.o(i.main) refers to bsp_key.o(i.bsp_KeyTask) for bsp_KeyTask
     stm32f10x_rcc.o(i.RCC_GetClocksFreq) refers to stm32f10x_rcc.o(.data) for APBAHBPrescTable
     stm32f10x_rcc.o(i.RCC_WaitForHSEStartUp) refers to stm32f10x_rcc.o(i.RCC_GetFlagStatus) for RCC_GetFlagStatus
     stm32f10x_gpio.o(i.GPIO_AFIODeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
@@ -70,7 +71,7 @@ Section Cross References
     stm32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to stm32f10x_tim.o(i.TI1_Config) for TI1_Config
     stm32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to stm32f10x_tim.o(i.TIM_SelectInputTrigger) for TIM_SelectInputTrigger
     stm32f10x_wwdg.o(i.WWDG_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
-    system_stm32f10x.o(i.SetSysClock) refers to system_stm32f10x.o(i.SetSysClockTo72) for SetSysClockTo72
+    system_stm32f10x.o(i.SetSysClock) refers to system_stm32f10x.o(i.SetSysClockTo36) for SetSysClockTo36
     system_stm32f10x.o(i.SystemCoreClockUpdate) refers to system_stm32f10x.o(.data) for SystemCoreClock
     system_stm32f10x.o(i.SystemInit) refers to system_stm32f10x.o(i.SetSysClock) for SetSysClock
     startup_stm32f10x_md.o(RESET) refers to startup_stm32f10x_md.o(STACK) for __initial_sp
@@ -122,6 +123,7 @@ Section Cross References
     bsp.o(i.bsp_Init) refers to bsp_timer.o(i.bsp_InitTimer) for bsp_InitTimer
     bsp.o(i.bsp_Init) refers to bsp_wdg.o(i.bsp_InitWdg) for bsp_InitWdg
     bsp.o(i.bsp_Init) refers to bsp_adc.o(i.bsp_InitAdc) for bsp_InitAdc
+    bsp.o(i.bsp_Init) refers to bsp_key.o(i.bsp_InitKey) for bsp_InitKey
     bsp_timer.o(i.Ceshi_Task0) refers to bsp_timer.o(i.__set_PRIMASK) for __set_PRIMASK
     bsp_timer.o(i.Ceshi_Task0) refers to bsp_timer.o(.data) for Sys_Time
     bsp_timer.o(i.Ceshi_Task1) refers to bsp_timer.o(i.__set_PRIMASK) for __set_PRIMASK
@@ -184,6 +186,24 @@ Section Cross References
     bsp_adc.o(i.bsp_InitAdc) refers to stm32f10x_adc.o(i.ADC_StartCalibration) for ADC_StartCalibration
     bsp_adc.o(i.bsp_InitAdc) refers to stm32f10x_adc.o(i.ADC_GetCalibrationStatus) for ADC_GetCalibrationStatus
     bsp_adc.o(i.bsp_InitAdc) refers to stm32f10x_adc.o(i.ADC_SoftwareStartConvCmd) for ADC_SoftwareStartConvCmd
+    bsp_key.o(i.bsp_DetectKey) refers to bsp_key.o(i.bsp_PutKey) for bsp_PutKey
+    bsp_key.o(i.bsp_DetectKey) refers to bsp_key.o(.bss) for s_tBtn
+    bsp_key.o(i.bsp_GetKey) refers to bsp_key.o(.bss) for s_tKey
+    bsp_key.o(i.bsp_GetKey2) refers to bsp_key.o(.bss) for s_tKey
+    bsp_key.o(i.bsp_GetKeyState) refers to bsp_key.o(.bss) for s_tBtn
+    bsp_key.o(i.bsp_InitKey) refers to bsp_key.o(i.bsp_InitKeyVar) for bsp_InitKeyVar
+    bsp_key.o(i.bsp_InitKey) refers to bsp_key.o(i.bsp_InitKeyHard) for bsp_InitKeyHard
+    bsp_key.o(i.bsp_InitKeyHard) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    bsp_key.o(i.bsp_InitKeyHard) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    bsp_key.o(i.bsp_InitKeyVar) refers to bsp_key.o(.bss) for s_tKey
+    bsp_key.o(i.bsp_InitKeyVar) refers to bsp_key.o(i.IsKeyDown1) for IsKeyDown1
+    bsp_key.o(i.bsp_KeyDealTask) refers to bsp_key.o(i.bsp_GetKey2) for bsp_GetKey2
+    bsp_key.o(i.bsp_KeyDealTask) refers to printf1.o(i.__0printf$1) for __2printf
+    bsp_key.o(i.bsp_KeyScan) refers to bsp_key.o(i.bsp_DetectKey) for bsp_DetectKey
+    bsp_key.o(i.bsp_KeyTask) refers to bsp_key.o(i.bsp_KeyScan) for bsp_KeyScan
+    bsp_key.o(i.bsp_KeyTask) refers to bsp_timer.o(.data) for Sys_Time
+    bsp_key.o(i.bsp_KeyTask) refers to bsp_key.o(.data) for sys_time
+    bsp_key.o(i.bsp_PutKey) refers to bsp_key.o(.bss) for s_tKey
     app.o(i.App_Init) refers to app_printer.o(i.printer_Init) for printer_Init
     app.o(i.App_Init) refers to app_pa1100.o(i.pa1100_Init) for pa1100_Init
     app.o(i.App_Init) refers to app_esam8810.o(i.esam8810_Init) for esam8810_Init
@@ -252,10 +272,14 @@ Section Cross References
     app_printer.o(i.printer_Init) refers to stm32f10x_tim.o(i.TIM_ITConfig) for TIM_ITConfig
     app_printer.o(i.printer_Init) refers to app_printer.o(.data) for Printer_State
     app_printer.o(i.printer_SERVER_TASK) refers to app_printer.o(i.is_detect_ok) for is_detect_ok
+    app_printer.o(i.printer_SERVER_TASK) refers to bsp_key.o(i.bsp_GetKey) for bsp_GetKey
+    app_printer.o(i.printer_SERVER_TASK) refers to app_printer.o(i.printer_moter_step) for printer_moter_step
+    app_printer.o(i.printer_SERVER_TASK) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
+    app_printer.o(i.printer_SERVER_TASK) refers to stm32f10x_adc.o(i.ADC_GetConversionValue) for ADC_GetConversionValue
     app_printer.o(i.printer_SERVER_TASK) refers to app_printer.o(i.check_to_print) for check_to_print
     app_printer.o(i.printer_SERVER_TASK) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
     app_printer.o(i.printer_SERVER_TASK) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
-    app_printer.o(i.printer_SERVER_TASK) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
+    app_printer.o(i.printer_SERVER_TASK) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_printer.o(i.printer_SERVER_TASK) refers to bsp_timer.o(.data) for Sys_Time
     app_printer.o(i.printer_SERVER_TASK) refers to app_printer.o(.data) for sys_time
     app_printer.o(i.printer_SERVER_TASK) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
@@ -298,7 +322,7 @@ Section Cross References
     app_printer.o(i.printer_start_ceshi) refers to app_printer.o(i.printer_stop_ceshi) for printer_stop_ceshi
     app_printer.o(i.printer_start_ceshi) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
     app_printer.o(i.printer_start_ceshi) refers to app_printer.o(.data) for Printer_State
-    app_printer.o(i.printer_start_ceshi) refers to app_printer.o(.constdata) for ZIMO_001
+    app_printer.o(i.printer_start_ceshi) refers to app_printer.o(.constdata) for ZIMO_000
     app_printer.o(i.printer_start_ceshi) refers to app_uart.o(.bss) for Usart1_Txd_Tempdata
     app_printer.o(i.printer_stop) refers to stm32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
     app_printer.o(i.printer_stop) refers to app_uart.o(i.USART1_Tx_Chars) for USART1_Tx_Chars
@@ -851,7 +875,6 @@ Removing Unused input sections from the image.
     Removing stm32f10x_adc.o(i.ADC_ExternalTrigConvCmd), (22 bytes).
     Removing stm32f10x_adc.o(i.ADC_ExternalTrigInjectedConvCmd), (22 bytes).
     Removing stm32f10x_adc.o(i.ADC_ExternalTrigInjectedConvConfig), (16 bytes).
-    Removing stm32f10x_adc.o(i.ADC_GetConversionValue), (8 bytes).
     Removing stm32f10x_adc.o(i.ADC_GetDualModeConversionValue), (12 bytes).
     Removing stm32f10x_adc.o(i.ADC_GetFlagStatus), (18 bytes).
     Removing stm32f10x_adc.o(i.ADC_GetITStatus), (36 bytes).
@@ -1093,6 +1116,9 @@ Removing Unused input sections from the image.
     Removing bsp_uart_fifo.o(i.comClearRxFifo), (28 bytes).
     Removing bsp_uart_fifo.o(i.comClearTxFifo), (28 bytes).
     Removing bsp_uart_fifo.o(i.fgetc), (32 bytes).
+    Removing bsp_key.o(i.bsp_GetKey2), (64 bytes).
+    Removing bsp_key.o(i.bsp_GetKeyState), (16 bytes).
+    Removing bsp_key.o(i.bsp_KeyDealTask), (92 bytes).
     Removing app.o(i.app_Hook), (116 bytes).
     Removing app.o(.data), (12 bytes).
     Removing dadd.o(.text), (334 bytes).
@@ -1102,7 +1128,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (40 bytes).
     Removing depilogue.o(.text), (190 bytes).
 
-438 unused section(s) (total 18993 bytes) removed from the image.
+440 unused section(s) (total 19157 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1114,37 +1140,37 @@ Image Symbol Table
 
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
@@ -1185,6 +1211,7 @@ Image Symbol Table
     ..\..\app\app_uart.c                     0x00000000   Number         0  app_uart.o ABSOLUTE
     ..\..\bsp\bsp.c                          0x00000000   Number         0  bsp.o ABSOLUTE
     ..\..\bsp\bsp_adc.c                      0x00000000   Number         0  bsp_adc.o ABSOLUTE
+    ..\..\bsp\bsp_key.c                      0x00000000   Number         0  bsp_key.o ABSOLUTE
     ..\..\bsp\bsp_timer.c                    0x00000000   Number         0  bsp_timer.o ABSOLUTE
     ..\..\bsp\bsp_uart_fifo.c                0x00000000   Number         0  bsp_uart_fifo.o ABSOLUTE
     ..\..\bsp\bsp_wdg.c                      0x00000000   Number         0  bsp_wdg.o ABSOLUTE
@@ -1215,192 +1242,207 @@ Image Symbol Table
     i.ADC_Cmd                                0x080001bc   Section        0  stm32f10x_adc.o(i.ADC_Cmd)
     i.ADC_DeInit                             0x080001d4   Section        0  stm32f10x_adc.o(i.ADC_DeInit)
     i.ADC_GetCalibrationStatus               0x08000230   Section        0  stm32f10x_adc.o(i.ADC_GetCalibrationStatus)
-    i.ADC_GetResetCalibrationStatus          0x08000244   Section        0  stm32f10x_adc.o(i.ADC_GetResetCalibrationStatus)
-    i.ADC_Init                               0x08000258   Section        0  stm32f10x_adc.o(i.ADC_Init)
-    i.ADC_RegularChannelConfig               0x080002a8   Section        0  stm32f10x_adc.o(i.ADC_RegularChannelConfig)
-    i.ADC_ResetCalibration                   0x08000360   Section        0  stm32f10x_adc.o(i.ADC_ResetCalibration)
-    i.ADC_SoftwareStartConvCmd               0x0800036a   Section        0  stm32f10x_adc.o(i.ADC_SoftwareStartConvCmd)
-    i.ADC_StartCalibration                   0x08000380   Section        0  stm32f10x_adc.o(i.ADC_StartCalibration)
-    i.App_Init                               0x0800038a   Section        0  app.o(i.App_Init)
-    i.App_Task                               0x0800039e   Section        0  app.o(i.App_Task)
-    i.BusFault_Handler                       0x080003b6   Section        0  stm32f10x_it.o(i.BusFault_Handler)
-    i.ComToUart                              0x080003bc   Section        0  bsp_uart_fifo.o(i.ComToUart)
-    i.ConfigUartNVIC                         0x080003fc   Section        0  bsp_uart_fifo.o(i.ConfigUartNVIC)
-    ConfigUartNVIC                           0x080003fd   Thumb Code    90  bsp_uart_fifo.o(i.ConfigUartNVIC)
-    i.DebugMon_Handler                       0x08000456   Section        0  stm32f10x_it.o(i.DebugMon_Handler)
-    i.GPIO_Init                              0x08000458   Section        0  stm32f10x_gpio.o(i.GPIO_Init)
-    i.GPIO_PinRemapConfig                    0x0800056c   Section        0  stm32f10x_gpio.o(i.GPIO_PinRemapConfig)
-    i.GPIO_ResetBits                         0x080005fc   Section        0  stm32f10x_gpio.o(i.GPIO_ResetBits)
-    i.GPIO_SetBits                           0x08000600   Section        0  stm32f10x_gpio.o(i.GPIO_SetBits)
-    i.HardFault_Handler                      0x08000604   Section        0  stm32f10x_it.o(i.HardFault_Handler)
-    i.IWDG_Enable                            0x08000608   Section        0  stm32f10x_iwdg.o(i.IWDG_Enable)
-    i.IWDG_ReloadCounter                     0x08000618   Section        0  stm32f10x_iwdg.o(i.IWDG_ReloadCounter)
-    i.IWDG_SetPrescaler                      0x08000628   Section        0  stm32f10x_iwdg.o(i.IWDG_SetPrescaler)
-    i.IWDG_SetReload                         0x08000634   Section        0  stm32f10x_iwdg.o(i.IWDG_SetReload)
-    i.IWDG_WriteAccessCmd                    0x08000640   Section        0  stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd)
-    i.InitHardUart                           0x0800064c   Section        0  bsp_uart_fifo.o(i.InitHardUart)
-    InitHardUart                             0x0800064d   Thumb Code   138  bsp_uart_fifo.o(i.InitHardUart)
-    i.Iwdg_Feed                              0x080006e0   Section        0  bsp_wdg.o(i.Iwdg_Feed)
-    i.MemManage_Handler                      0x080006e8   Section        0  stm32f10x_it.o(i.MemManage_Handler)
-    i.NMI_Handler                            0x080006ec   Section        0  stm32f10x_it.o(i.NMI_Handler)
-    i.NVIC_Init                              0x080006f0   Section        0  misc.o(i.NVIC_Init)
-    i.NVIC_PriorityGroupConfig               0x08000764   Section        0  misc.o(i.NVIC_PriorityGroupConfig)
-    i.PendSV_Handler                         0x08000778   Section        0  stm32f10x_it.o(i.PendSV_Handler)
-    i.RCC_ADCCLKConfig                       0x0800077c   Section        0  stm32f10x_rcc.o(i.RCC_ADCCLKConfig)
-    i.RCC_APB1PeriphClockCmd                 0x08000794   Section        0  stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd)
-    i.RCC_APB1PeriphResetCmd                 0x080007b4   Section        0  stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd)
-    i.RCC_APB2PeriphClockCmd                 0x080007d4   Section        0  stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd)
-    i.RCC_APB2PeriphResetCmd                 0x080007f4   Section        0  stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd)
-    i.RCC_GetClocksFreq                      0x08000814   Section        0  stm32f10x_rcc.o(i.RCC_GetClocksFreq)
-    i.RCC_GetFlagStatus                      0x080008e8   Section        0  stm32f10x_rcc.o(i.RCC_GetFlagStatus)
-    i.RCC_LSICmd                             0x08000924   Section        0  stm32f10x_rcc.o(i.RCC_LSICmd)
-    i.SPI_Cmd                                0x08000930   Section        0  stm32f10x_spi.o(i.SPI_Cmd)
-    i.SPI_I2S_GetFlagStatus                  0x08000948   Section        0  stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus)
-    i.SPI_I2S_SendData                       0x0800095a   Section        0  stm32f10x_spi.o(i.SPI_I2S_SendData)
-    i.SPI_Init                               0x0800095e   Section        0  stm32f10x_spi.o(i.SPI_Init)
-    i.SPI_SSOutputCmd                        0x0800099a   Section        0  stm32f10x_spi.o(i.SPI_SSOutputCmd)
-    i.SVC_Handler                            0x080009b2   Section        0  stm32f10x_it.o(i.SVC_Handler)
-    i.SetSysClock                            0x080009b4   Section        0  system_stm32f10x.o(i.SetSysClock)
-    SetSysClock                              0x080009b5   Thumb Code     8  system_stm32f10x.o(i.SetSysClock)
-    i.SetSysClockTo72                        0x080009bc   Section        0  system_stm32f10x.o(i.SetSysClockTo72)
-    SetSysClockTo72                          0x080009bd   Thumb Code   212  system_stm32f10x.o(i.SetSysClockTo72)
-    i.SysTick_Handler                        0x08000a98   Section        0  stm32f10x_it.o(i.SysTick_Handler)
-    i.SysTick_ISR                            0x08000aa0   Section        0  bsp_timer.o(i.SysTick_ISR)
-    i.SystemInit                             0x08000ad0   Section        0  system_stm32f10x.o(i.SystemInit)
-    i.TIM2_IRQHandler                        0x08000b30   Section        0  stm32f10x_it.o(i.TIM2_IRQHandler)
-    i.TIM2_ISR                               0x08000b38   Section        0  app_printer.o(i.TIM2_ISR)
-    i.TIM_ClearFlag                          0x08000cac   Section        0  stm32f10x_tim.o(i.TIM_ClearFlag)
-    i.TIM_ClearITPendingBit                  0x08000cb2   Section        0  stm32f10x_tim.o(i.TIM_ClearITPendingBit)
-    i.TIM_Cmd                                0x08000cb8   Section        0  stm32f10x_tim.o(i.TIM_Cmd)
-    i.TIM_DeInit                             0x08000cd0   Section        0  stm32f10x_tim.o(i.TIM_DeInit)
-    i.TIM_GetITStatus                        0x08000eb8   Section        0  stm32f10x_tim.o(i.TIM_GetITStatus)
-    i.TIM_ITConfig                           0x08000eda   Section        0  stm32f10x_tim.o(i.TIM_ITConfig)
-    i.TIM_InternalClockConfig                0x08000eec   Section        0  stm32f10x_tim.o(i.TIM_InternalClockConfig)
-    i.TIM_SetAutoreload                      0x08000ef8   Section        0  stm32f10x_tim.o(i.TIM_SetAutoreload)
-    i.TIM_SetCounter                         0x08000efc   Section        0  stm32f10x_tim.o(i.TIM_SetCounter)
-    i.TIM_TimeBaseInit                       0x08000f00   Section        0  stm32f10x_tim.o(i.TIM_TimeBaseInit)
-    i.USART1_IRQHandler                      0x08000fa4   Section        0  bsp_uart_fifo.o(i.USART1_IRQHandler)
-    i.USART1_Tx_Chars                        0x08000fb4   Section        0  app_uart.o(i.USART1_Tx_Chars)
-    i.USART2_IRQHandler                      0x08000ffc   Section        0  bsp_uart_fifo.o(i.USART2_IRQHandler)
-    i.USART3_IRQHandler                      0x0800100c   Section        0  bsp_uart_fifo.o(i.USART3_IRQHandler)
-    i.USART_ClearFlag                        0x0800101c   Section        0  stm32f10x_usart.o(i.USART_ClearFlag)
-    i.USART_ClockInit                        0x0800102e   Section        0  stm32f10x_usart.o(i.USART_ClockInit)
-    i.USART_Cmd                              0x08001050   Section        0  stm32f10x_usart.o(i.USART_Cmd)
-    i.USART_GetFlagStatus                    0x08001068   Section        0  stm32f10x_usart.o(i.USART_GetFlagStatus)
-    i.USART_GetITStatus                      0x08001082   Section        0  stm32f10x_usart.o(i.USART_GetITStatus)
-    i.USART_ITConfig                         0x080010d6   Section        0  stm32f10x_usart.o(i.USART_ITConfig)
-    i.USART_Init                             0x08001120   Section        0  stm32f10x_usart.o(i.USART_Init)
-    i.USART_ReceiveData                      0x080011f8   Section        0  stm32f10x_usart.o(i.USART_ReceiveData)
-    i.USART_SendData                         0x08001202   Section        0  stm32f10x_usart.o(i.USART_SendData)
-    i.USART_SetGuardTime                     0x0800120a   Section        0  stm32f10x_usart.o(i.USART_SetGuardTime)
-    i.USART_SetPrescaler                     0x0800121a   Section        0  stm32f10x_usart.o(i.USART_SetPrescaler)
-    i.USART_SmartCardCmd                     0x0800122a   Section        0  stm32f10x_usart.o(i.USART_SmartCardCmd)
-    i.USART_SmartCardNACKCmd                 0x08001242   Section        0  stm32f10x_usart.o(i.USART_SmartCardNACKCmd)
-    i.UartGetChar                            0x0800125a   Section        0  bsp_uart_fifo.o(i.UartGetChar)
-    UartGetChar                              0x0800125b   Thumb Code    74  bsp_uart_fifo.o(i.UartGetChar)
-    i.UartIRQ                                0x080012a4   Section        0  bsp_uart_fifo.o(i.UartIRQ)
-    UartIRQ                                  0x080012a5   Thumb Code   230  bsp_uart_fifo.o(i.UartIRQ)
-    i.UartSend                               0x0800138a   Section        0  bsp_uart_fifo.o(i.UartSend)
-    UartSend                                 0x0800138b   Thumb Code   114  bsp_uart_fifo.o(i.UartSend)
-    i.UartVarInit                            0x080013fc   Section        0  bsp_uart_fifo.o(i.UartVarInit)
-    UartVarInit                              0x080013fd   Thumb Code   132  bsp_uart_fifo.o(i.UartVarInit)
-    i.UsageFault_Handler                     0x080014b0   Section        0  stm32f10x_it.o(i.UsageFault_Handler)
-    i.WWDG_ClearFlag                         0x080014b4   Section        0  stm32f10x_wwdg.o(i.WWDG_ClearFlag)
-    i.WWDG_IRQHandler                        0x080014c0   Section        0  stm32f10x_it.o(i.WWDG_IRQHandler)
-    i.WWDG_SetCounter                        0x080014c8   Section        0  stm32f10x_wwdg.o(i.WWDG_SetCounter)
-    i.Wwdg_Feed                              0x080014d8   Section        0  bsp_wdg.o(i.Wwdg_Feed)
-    i.Wwdg_ISR                               0x080014e4   Section        0  bsp_wdg.o(i.Wwdg_ISR)
-    i.__0printf$1                            0x0800150c   Section        0  printf1.o(i.__0printf$1)
-    i.__scatterload_copy                     0x0800152c   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0800153a   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0800153c   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.__set_PRIMASK                          0x0800154a   Section        0  bsp_uart_fifo.o(i.__set_PRIMASK)
-    __set_PRIMASK                            0x0800154b   Thumb Code     6  bsp_uart_fifo.o(i.__set_PRIMASK)
-    i._printf_core                           0x08001550   Section        0  printf1.o(i._printf_core)
-    _printf_core                             0x08001551   Thumb Code   334  printf1.o(i._printf_core)
-    i.bsp_DelayUS                            0x080016a4   Section        0  bsp_timer.o(i.bsp_DelayUS)
-    i.bsp_Idle                               0x080016f8   Section        0  bsp.o(i.bsp_Idle)
-    i.bsp_Init                               0x08001700   Section        0  bsp.o(i.bsp_Init)
-    i.bsp_InitAdc                            0x08001720   Section        0  bsp_adc.o(i.bsp_InitAdc)
-    i.bsp_InitIwdg                           0x080017c8   Section        0  bsp_wdg.o(i.bsp_InitIwdg)
-    bsp_InitIwdg                             0x080017c9   Thumb Code    52  bsp_wdg.o(i.bsp_InitIwdg)
-    i.bsp_InitTimer                          0x080017fc   Section        0  bsp_timer.o(i.bsp_InitTimer)
-    i.bsp_InitUart                           0x0800185c   Section        0  bsp_uart_fifo.o(i.bsp_InitUart)
-    i.bsp_InitWdg                            0x0800186c   Section        0  bsp_wdg.o(i.bsp_InitWdg)
-    i.bsp_rcc_init                           0x08001874   Section        0  bsp.o(i.bsp_rcc_init)
-    bsp_rcc_init                             0x08001875   Thumb Code     2  bsp.o(i.bsp_rcc_init)
-    i.ceshi                                  0x08001878   Section        0  app_esam8810.o(i.ceshi)
-    ceshi                                    0x08001879   Thumb Code    40  app_esam8810.o(i.ceshi)
-    i.ceshi                                  0x080018a4   Section        0  app_psam_card.o(i.ceshi)
-    ceshi                                    0x080018a5   Thumb Code    40  app_psam_card.o(i.ceshi)
-    i.ceshi                                  0x080018d0   Section        0  app_pa1100.o(i.ceshi)
-    ceshi                                    0x080018d1   Thumb Code   172  app_pa1100.o(i.ceshi)
-    i.check_to_print                         0x08001984   Section        0  app_printer.o(i.check_to_print)
-    check_to_print                           0x08001985   Thumb Code    36  app_printer.o(i.check_to_print)
-    i.checkout_cmd                           0x080019b4   Section        0  app_uart.o(i.checkout_cmd)
-    checkout_cmd                             0x080019b5   Thumb Code   190  app_uart.o(i.checkout_cmd)
-    i.comGetChar                             0x08001a78   Section        0  bsp_uart_fifo.o(i.comGetChar)
-    i.comSendBuf                             0x08001a96   Section        0  bsp_uart_fifo.o(i.comSendBuf)
-    i.comSendChar                            0x08001ac4   Section        0  bsp_uart_fifo.o(i.comSendChar)
-    i.esam8810_CMD_DEAL                      0x08001ad4   Section        0  app_esam8810.o(i.esam8810_CMD_DEAL)
-    i.esam8810_Init                          0x08001b38   Section        0  app_esam8810.o(i.esam8810_Init)
-    i.esam8810_SERVER_TASK                   0x08001c48   Section        0  app_esam8810.o(i.esam8810_SERVER_TASK)
-    i.esam8810_rcv                           0x08001c88   Section        0  app_esam8810.o(i.esam8810_rcv)
-    esam8810_rcv                             0x08001c89   Thumb Code    88  app_esam8810.o(i.esam8810_rcv)
-    i.esam8810_rst                           0x08001ce8   Section        0  app_esam8810.o(i.esam8810_rst)
-    esam8810_rst                             0x08001ce9   Thumb Code    48  app_esam8810.o(i.esam8810_rst)
-    i.fputc                                  0x08001d1c   Section        0  bsp_uart_fifo.o(i.fputc)
-    i.get_print_mode                         0x08001d40   Section        0  app_printer.o(i.get_print_mode)
-    get_print_mode                           0x08001d41   Thumb Code   230  app_printer.o(i.get_print_mode)
-    i.is_detect_down                         0x08001e28   Section        0  app_pa1100.o(i.is_detect_down)
-    is_detect_down                           0x08001e29   Thumb Code    18  app_pa1100.o(i.is_detect_down)
-    i.is_detect_ok                           0x08001e40   Section        0  app_printer.o(i.is_detect_ok)
-    is_detect_ok                             0x08001e41   Thumb Code    18  app_printer.o(i.is_detect_ok)
-    i.judge_cmd_correct                      0x08001e58   Section        0  app_uart.o(i.judge_cmd_correct)
-    judge_cmd_correct                        0x08001e59   Thumb Code    62  app_uart.o(i.judge_cmd_correct)
-    i.main                                   0x08001e96   Section        0  main.o(i.main)
-    i.pa1100_CMD_DEAL                        0x08001eac   Section        0  app_pa1100.o(i.pa1100_CMD_DEAL)
-    i.pa1100_Init                            0x08001f0c   Section        0  app_pa1100.o(i.pa1100_Init)
-    i.pa1100_SERVER_TASK                     0x08001f3c   Section        0  app_pa1100.o(i.pa1100_SERVER_TASK)
-    i.pa1100_read_data                       0x0800202c   Section        0  app_pa1100.o(i.pa1100_read_data)
-    pa1100_read_data                         0x0800202d   Thumb Code    30  app_pa1100.o(i.pa1100_read_data)
-    i.pa1100_rst                             0x0800204c   Section        0  app_pa1100.o(i.pa1100_rst)
-    pa1100_rst                               0x0800204d   Thumb Code   210  app_pa1100.o(i.pa1100_rst)
-    i.printer_CMD_DEAL                       0x08002124   Section        0  app_printer.o(i.printer_CMD_DEAL)
-    i.printer_Init                           0x08002324   Section        0  app_printer.o(i.printer_Init)
-    i.printer_SERVER_TASK                    0x080025c8   Section        0  app_printer.o(i.printer_SERVER_TASK)
-    i.printer_data_out                       0x080026e4   Section        0  app_printer.o(i.printer_data_out)
-    printer_data_out                         0x080026e5   Thumb Code   102  app_printer.o(i.printer_data_out)
-    i.printer_heat                           0x08002750   Section        0  app_printer.o(i.printer_heat)
-    printer_heat                             0x08002751   Thumb Code   122  app_printer.o(i.printer_heat)
-    i.printer_moter_cut_feed                 0x080027d0   Section        0  app_printer.o(i.printer_moter_cut_feed)
-    printer_moter_cut_feed                   0x080027d1   Thumb Code   142  app_printer.o(i.printer_moter_cut_feed)
-    i.printer_moter_step                     0x08002870   Section        0  app_printer.o(i.printer_moter_step)
-    printer_moter_step                       0x08002871   Thumb Code   248  app_printer.o(i.printer_moter_step)
-    i.printer_start                          0x08002970   Section        0  app_printer.o(i.printer_start)
-    printer_start                            0x08002971   Thumb Code  1052  app_printer.o(i.printer_start)
-    i.printer_start_ceshi                    0x08002d8c   Section        0  app_printer.o(i.printer_start_ceshi)
-    printer_start_ceshi                      0x08002d8d   Thumb Code  1040  app_printer.o(i.printer_start_ceshi)
-    i.printer_stop                           0x0800319c   Section        0  app_printer.o(i.printer_stop)
-    printer_stop                             0x0800319d   Thumb Code    50  app_printer.o(i.printer_stop)
-    i.printer_stop_ceshi                     0x080031dc   Section        0  app_printer.o(i.printer_stop_ceshi)
-    printer_stop_ceshi                       0x080031dd   Thumb Code    28  app_printer.o(i.printer_stop_ceshi)
-    i.psam_card_CMD_DEAL                     0x08003200   Section        0  app_psam_card.o(i.psam_card_CMD_DEAL)
-    i.psam_card_Init                         0x08003264   Section        0  app_psam_card.o(i.psam_card_Init)
-    i.psam_card_SERVER_TASK                  0x08003378   Section        0  app_psam_card.o(i.psam_card_SERVER_TASK)
-    i.psam_card_rcv                          0x080033b8   Section        0  app_psam_card.o(i.psam_card_rcv)
-    i.psam_card_rst                          0x08003418   Section        0  app_psam_card.o(i.psam_card_rst)
-    psam_card_rst                            0x08003419   Thumb Code    54  app_psam_card.o(i.psam_card_rst)
-    i.set_mosi_ipu                           0x08003454   Section        0  app_pa1100.o(i.set_mosi_ipu)
-    set_mosi_ipu                             0x08003455   Thumb Code    30  app_pa1100.o(i.set_mosi_ipu)
-    i.set_mosi_out_pp                        0x08003478   Section        0  app_pa1100.o(i.set_mosi_out_pp)
-    set_mosi_out_pp                          0x08003479   Thumb Code    30  app_pa1100.o(i.set_mosi_out_pp)
-    i.set_tim_reload                         0x0800349c   Section        0  app_printer.o(i.set_tim_reload)
-    set_tim_reload                           0x0800349d   Thumb Code    42  app_printer.o(i.set_tim_reload)
-    i.spi_read_byte                          0x080034cc   Section        0  app_pa1100.o(i.spi_read_byte)
-    spi_read_byte                            0x080034cd   Thumb Code    74  app_pa1100.o(i.spi_read_byte)
-    i.uart_SERVER_TASK                       0x0800351c   Section        0  app_uart.o(i.uart_SERVER_TASK)
-    .constdata                               0x08003630   Section    41144  app_printer.o(.constdata)
+    i.ADC_GetConversionValue                 0x08000244   Section        0  stm32f10x_adc.o(i.ADC_GetConversionValue)
+    i.ADC_GetResetCalibrationStatus          0x0800024c   Section        0  stm32f10x_adc.o(i.ADC_GetResetCalibrationStatus)
+    i.ADC_Init                               0x08000260   Section        0  stm32f10x_adc.o(i.ADC_Init)
+    i.ADC_RegularChannelConfig               0x080002b0   Section        0  stm32f10x_adc.o(i.ADC_RegularChannelConfig)
+    i.ADC_ResetCalibration                   0x08000368   Section        0  stm32f10x_adc.o(i.ADC_ResetCalibration)
+    i.ADC_SoftwareStartConvCmd               0x08000372   Section        0  stm32f10x_adc.o(i.ADC_SoftwareStartConvCmd)
+    i.ADC_StartCalibration                   0x08000388   Section        0  stm32f10x_adc.o(i.ADC_StartCalibration)
+    i.App_Init                               0x08000392   Section        0  app.o(i.App_Init)
+    i.App_Task                               0x080003a6   Section        0  app.o(i.App_Task)
+    i.BusFault_Handler                       0x080003be   Section        0  stm32f10x_it.o(i.BusFault_Handler)
+    i.ComToUart                              0x080003c4   Section        0  bsp_uart_fifo.o(i.ComToUart)
+    i.ConfigUartNVIC                         0x08000404   Section        0  bsp_uart_fifo.o(i.ConfigUartNVIC)
+    ConfigUartNVIC                           0x08000405   Thumb Code    90  bsp_uart_fifo.o(i.ConfigUartNVIC)
+    i.DebugMon_Handler                       0x0800045e   Section        0  stm32f10x_it.o(i.DebugMon_Handler)
+    i.GPIO_Init                              0x08000460   Section        0  stm32f10x_gpio.o(i.GPIO_Init)
+    i.GPIO_PinRemapConfig                    0x08000574   Section        0  stm32f10x_gpio.o(i.GPIO_PinRemapConfig)
+    i.GPIO_ResetBits                         0x08000604   Section        0  stm32f10x_gpio.o(i.GPIO_ResetBits)
+    i.GPIO_SetBits                           0x08000608   Section        0  stm32f10x_gpio.o(i.GPIO_SetBits)
+    i.HardFault_Handler                      0x0800060c   Section        0  stm32f10x_it.o(i.HardFault_Handler)
+    i.IWDG_Enable                            0x08000610   Section        0  stm32f10x_iwdg.o(i.IWDG_Enable)
+    i.IWDG_ReloadCounter                     0x08000620   Section        0  stm32f10x_iwdg.o(i.IWDG_ReloadCounter)
+    i.IWDG_SetPrescaler                      0x08000630   Section        0  stm32f10x_iwdg.o(i.IWDG_SetPrescaler)
+    i.IWDG_SetReload                         0x0800063c   Section        0  stm32f10x_iwdg.o(i.IWDG_SetReload)
+    i.IWDG_WriteAccessCmd                    0x08000648   Section        0  stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd)
+    i.InitHardUart                           0x08000654   Section        0  bsp_uart_fifo.o(i.InitHardUart)
+    InitHardUart                             0x08000655   Thumb Code   138  bsp_uart_fifo.o(i.InitHardUart)
+    i.IsKeyDown1                             0x080006e8   Section        0  bsp_key.o(i.IsKeyDown1)
+    IsKeyDown1                               0x080006e9   Thumb Code    18  bsp_key.o(i.IsKeyDown1)
+    i.Iwdg_Feed                              0x08000700   Section        0  bsp_wdg.o(i.Iwdg_Feed)
+    i.MemManage_Handler                      0x08000708   Section        0  stm32f10x_it.o(i.MemManage_Handler)
+    i.NMI_Handler                            0x0800070c   Section        0  stm32f10x_it.o(i.NMI_Handler)
+    i.NVIC_Init                              0x08000710   Section        0  misc.o(i.NVIC_Init)
+    i.NVIC_PriorityGroupConfig               0x08000784   Section        0  misc.o(i.NVIC_PriorityGroupConfig)
+    i.PendSV_Handler                         0x08000798   Section        0  stm32f10x_it.o(i.PendSV_Handler)
+    i.RCC_ADCCLKConfig                       0x0800079c   Section        0  stm32f10x_rcc.o(i.RCC_ADCCLKConfig)
+    i.RCC_APB1PeriphClockCmd                 0x080007b4   Section        0  stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd)
+    i.RCC_APB1PeriphResetCmd                 0x080007d4   Section        0  stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd)
+    i.RCC_APB2PeriphClockCmd                 0x080007f4   Section        0  stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd)
+    i.RCC_APB2PeriphResetCmd                 0x08000814   Section        0  stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd)
+    i.RCC_GetClocksFreq                      0x08000834   Section        0  stm32f10x_rcc.o(i.RCC_GetClocksFreq)
+    i.RCC_GetFlagStatus                      0x08000908   Section        0  stm32f10x_rcc.o(i.RCC_GetFlagStatus)
+    i.RCC_LSICmd                             0x08000944   Section        0  stm32f10x_rcc.o(i.RCC_LSICmd)
+    i.SPI_Cmd                                0x08000950   Section        0  stm32f10x_spi.o(i.SPI_Cmd)
+    i.SPI_I2S_GetFlagStatus                  0x08000968   Section        0  stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus)
+    i.SPI_I2S_SendData                       0x0800097a   Section        0  stm32f10x_spi.o(i.SPI_I2S_SendData)
+    i.SPI_Init                               0x0800097e   Section        0  stm32f10x_spi.o(i.SPI_Init)
+    i.SPI_SSOutputCmd                        0x080009ba   Section        0  stm32f10x_spi.o(i.SPI_SSOutputCmd)
+    i.SVC_Handler                            0x080009d2   Section        0  stm32f10x_it.o(i.SVC_Handler)
+    i.SetSysClock                            0x080009d4   Section        0  system_stm32f10x.o(i.SetSysClock)
+    SetSysClock                              0x080009d5   Thumb Code     8  system_stm32f10x.o(i.SetSysClock)
+    i.SetSysClockTo36                        0x080009dc   Section        0  system_stm32f10x.o(i.SetSysClockTo36)
+    SetSysClockTo36                          0x080009dd   Thumb Code   208  system_stm32f10x.o(i.SetSysClockTo36)
+    i.SysTick_Handler                        0x08000ab4   Section        0  stm32f10x_it.o(i.SysTick_Handler)
+    i.SysTick_ISR                            0x08000abc   Section        0  bsp_timer.o(i.SysTick_ISR)
+    i.SystemInit                             0x08000aec   Section        0  system_stm32f10x.o(i.SystemInit)
+    i.TIM2_IRQHandler                        0x08000b4c   Section        0  stm32f10x_it.o(i.TIM2_IRQHandler)
+    i.TIM2_ISR                               0x08000b54   Section        0  app_printer.o(i.TIM2_ISR)
+    i.TIM_ClearFlag                          0x08000cc8   Section        0  stm32f10x_tim.o(i.TIM_ClearFlag)
+    i.TIM_ClearITPendingBit                  0x08000cce   Section        0  stm32f10x_tim.o(i.TIM_ClearITPendingBit)
+    i.TIM_Cmd                                0x08000cd4   Section        0  stm32f10x_tim.o(i.TIM_Cmd)
+    i.TIM_DeInit                             0x08000cec   Section        0  stm32f10x_tim.o(i.TIM_DeInit)
+    i.TIM_GetITStatus                        0x08000ed4   Section        0  stm32f10x_tim.o(i.TIM_GetITStatus)
+    i.TIM_ITConfig                           0x08000ef6   Section        0  stm32f10x_tim.o(i.TIM_ITConfig)
+    i.TIM_InternalClockConfig                0x08000f08   Section        0  stm32f10x_tim.o(i.TIM_InternalClockConfig)
+    i.TIM_SetAutoreload                      0x08000f14   Section        0  stm32f10x_tim.o(i.TIM_SetAutoreload)
+    i.TIM_SetCounter                         0x08000f18   Section        0  stm32f10x_tim.o(i.TIM_SetCounter)
+    i.TIM_TimeBaseInit                       0x08000f1c   Section        0  stm32f10x_tim.o(i.TIM_TimeBaseInit)
+    i.USART1_IRQHandler                      0x08000fc0   Section        0  bsp_uart_fifo.o(i.USART1_IRQHandler)
+    i.USART1_Tx_Chars                        0x08000fd0   Section        0  app_uart.o(i.USART1_Tx_Chars)
+    i.USART2_IRQHandler                      0x08001018   Section        0  bsp_uart_fifo.o(i.USART2_IRQHandler)
+    i.USART3_IRQHandler                      0x08001028   Section        0  bsp_uart_fifo.o(i.USART3_IRQHandler)
+    i.USART_ClearFlag                        0x08001038   Section        0  stm32f10x_usart.o(i.USART_ClearFlag)
+    i.USART_ClockInit                        0x0800104a   Section        0  stm32f10x_usart.o(i.USART_ClockInit)
+    i.USART_Cmd                              0x0800106c   Section        0  stm32f10x_usart.o(i.USART_Cmd)
+    i.USART_GetFlagStatus                    0x08001084   Section        0  stm32f10x_usart.o(i.USART_GetFlagStatus)
+    i.USART_GetITStatus                      0x0800109e   Section        0  stm32f10x_usart.o(i.USART_GetITStatus)
+    i.USART_ITConfig                         0x080010f2   Section        0  stm32f10x_usart.o(i.USART_ITConfig)
+    i.USART_Init                             0x0800113c   Section        0  stm32f10x_usart.o(i.USART_Init)
+    i.USART_ReceiveData                      0x08001214   Section        0  stm32f10x_usart.o(i.USART_ReceiveData)
+    i.USART_SendData                         0x0800121e   Section        0  stm32f10x_usart.o(i.USART_SendData)
+    i.USART_SetGuardTime                     0x08001226   Section        0  stm32f10x_usart.o(i.USART_SetGuardTime)
+    i.USART_SetPrescaler                     0x08001236   Section        0  stm32f10x_usart.o(i.USART_SetPrescaler)
+    i.USART_SmartCardCmd                     0x08001246   Section        0  stm32f10x_usart.o(i.USART_SmartCardCmd)
+    i.USART_SmartCardNACKCmd                 0x0800125e   Section        0  stm32f10x_usart.o(i.USART_SmartCardNACKCmd)
+    i.UartGetChar                            0x08001276   Section        0  bsp_uart_fifo.o(i.UartGetChar)
+    UartGetChar                              0x08001277   Thumb Code    74  bsp_uart_fifo.o(i.UartGetChar)
+    i.UartIRQ                                0x080012c0   Section        0  bsp_uart_fifo.o(i.UartIRQ)
+    UartIRQ                                  0x080012c1   Thumb Code   230  bsp_uart_fifo.o(i.UartIRQ)
+    i.UartSend                               0x080013a6   Section        0  bsp_uart_fifo.o(i.UartSend)
+    UartSend                                 0x080013a7   Thumb Code   114  bsp_uart_fifo.o(i.UartSend)
+    i.UartVarInit                            0x08001418   Section        0  bsp_uart_fifo.o(i.UartVarInit)
+    UartVarInit                              0x08001419   Thumb Code   126  bsp_uart_fifo.o(i.UartVarInit)
+    i.UsageFault_Handler                     0x080014c8   Section        0  stm32f10x_it.o(i.UsageFault_Handler)
+    i.WWDG_ClearFlag                         0x080014cc   Section        0  stm32f10x_wwdg.o(i.WWDG_ClearFlag)
+    i.WWDG_IRQHandler                        0x080014d8   Section        0  stm32f10x_it.o(i.WWDG_IRQHandler)
+    i.WWDG_SetCounter                        0x080014e0   Section        0  stm32f10x_wwdg.o(i.WWDG_SetCounter)
+    i.Wwdg_Feed                              0x080014f0   Section        0  bsp_wdg.o(i.Wwdg_Feed)
+    i.Wwdg_ISR                               0x080014fc   Section        0  bsp_wdg.o(i.Wwdg_ISR)
+    i.__0printf$1                            0x08001524   Section        0  printf1.o(i.__0printf$1)
+    i.__scatterload_copy                     0x08001544   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08001552   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08001554   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.__set_PRIMASK                          0x08001562   Section        0  bsp_uart_fifo.o(i.__set_PRIMASK)
+    __set_PRIMASK                            0x08001563   Thumb Code     6  bsp_uart_fifo.o(i.__set_PRIMASK)
+    i._printf_core                           0x08001568   Section        0  printf1.o(i._printf_core)
+    _printf_core                             0x08001569   Thumb Code   334  printf1.o(i._printf_core)
+    i.bsp_DelayUS                            0x080016bc   Section        0  bsp_timer.o(i.bsp_DelayUS)
+    i.bsp_DetectKey                          0x08001710   Section        0  bsp_key.o(i.bsp_DetectKey)
+    bsp_DetectKey                            0x08001711   Thumb Code   198  bsp_key.o(i.bsp_DetectKey)
+    i.bsp_GetKey                             0x080017dc   Section        0  bsp_key.o(i.bsp_GetKey)
+    i.bsp_Idle                               0x0800181c   Section        0  bsp.o(i.bsp_Idle)
+    i.bsp_Init                               0x08001824   Section        0  bsp.o(i.bsp_Init)
+    i.bsp_InitAdc                            0x08001848   Section        0  bsp_adc.o(i.bsp_InitAdc)
+    i.bsp_InitIwdg                           0x080018f0   Section        0  bsp_wdg.o(i.bsp_InitIwdg)
+    bsp_InitIwdg                             0x080018f1   Thumb Code    52  bsp_wdg.o(i.bsp_InitIwdg)
+    i.bsp_InitKey                            0x08001924   Section        0  bsp_key.o(i.bsp_InitKey)
+    i.bsp_InitKeyHard                        0x08001930   Section        0  bsp_key.o(i.bsp_InitKeyHard)
+    bsp_InitKeyHard                          0x08001931   Thumb Code    40  bsp_key.o(i.bsp_InitKeyHard)
+    i.bsp_InitKeyVar                         0x0800195c   Section        0  bsp_key.o(i.bsp_InitKeyVar)
+    bsp_InitKeyVar                           0x0800195d   Thumb Code    82  bsp_key.o(i.bsp_InitKeyVar)
+    i.bsp_InitTimer                          0x080019bc   Section        0  bsp_timer.o(i.bsp_InitTimer)
+    i.bsp_InitUart                           0x08001a1c   Section        0  bsp_uart_fifo.o(i.bsp_InitUart)
+    i.bsp_InitWdg                            0x08001a2c   Section        0  bsp_wdg.o(i.bsp_InitWdg)
+    i.bsp_KeyScan                            0x08001a34   Section        0  bsp_key.o(i.bsp_KeyScan)
+    bsp_KeyScan                              0x08001a35   Thumb Code    22  bsp_key.o(i.bsp_KeyScan)
+    i.bsp_KeyTask                            0x08001a4c   Section        0  bsp_key.o(i.bsp_KeyTask)
+    i.bsp_PutKey                             0x08001aa0   Section        0  bsp_key.o(i.bsp_PutKey)
+    i.bsp_rcc_init                           0x08001ac8   Section        0  bsp.o(i.bsp_rcc_init)
+    bsp_rcc_init                             0x08001ac9   Thumb Code     2  bsp.o(i.bsp_rcc_init)
+    i.ceshi                                  0x08001acc   Section        0  app_esam8810.o(i.ceshi)
+    ceshi                                    0x08001acd   Thumb Code    40  app_esam8810.o(i.ceshi)
+    i.ceshi                                  0x08001af8   Section        0  app_psam_card.o(i.ceshi)
+    ceshi                                    0x08001af9   Thumb Code    40  app_psam_card.o(i.ceshi)
+    i.ceshi                                  0x08001b24   Section        0  app_pa1100.o(i.ceshi)
+    ceshi                                    0x08001b25   Thumb Code   172  app_pa1100.o(i.ceshi)
+    i.check_to_print                         0x08001bd8   Section        0  app_printer.o(i.check_to_print)
+    check_to_print                           0x08001bd9   Thumb Code    36  app_printer.o(i.check_to_print)
+    i.checkout_cmd                           0x08001c08   Section        0  app_uart.o(i.checkout_cmd)
+    checkout_cmd                             0x08001c09   Thumb Code   190  app_uart.o(i.checkout_cmd)
+    i.comGetChar                             0x08001ccc   Section        0  bsp_uart_fifo.o(i.comGetChar)
+    i.comSendBuf                             0x08001cea   Section        0  bsp_uart_fifo.o(i.comSendBuf)
+    i.comSendChar                            0x08001d18   Section        0  bsp_uart_fifo.o(i.comSendChar)
+    i.esam8810_CMD_DEAL                      0x08001d28   Section        0  app_esam8810.o(i.esam8810_CMD_DEAL)
+    i.esam8810_Init                          0x08001d8c   Section        0  app_esam8810.o(i.esam8810_Init)
+    i.esam8810_SERVER_TASK                   0x08001e9c   Section        0  app_esam8810.o(i.esam8810_SERVER_TASK)
+    i.esam8810_rcv                           0x08001edc   Section        0  app_esam8810.o(i.esam8810_rcv)
+    esam8810_rcv                             0x08001edd   Thumb Code    88  app_esam8810.o(i.esam8810_rcv)
+    i.esam8810_rst                           0x08001f3c   Section        0  app_esam8810.o(i.esam8810_rst)
+    esam8810_rst                             0x08001f3d   Thumb Code    48  app_esam8810.o(i.esam8810_rst)
+    i.fputc                                  0x08001f70   Section        0  bsp_uart_fifo.o(i.fputc)
+    i.get_print_mode                         0x08001f94   Section        0  app_printer.o(i.get_print_mode)
+    get_print_mode                           0x08001f95   Thumb Code   230  app_printer.o(i.get_print_mode)
+    i.is_detect_down                         0x0800207c   Section        0  app_pa1100.o(i.is_detect_down)
+    is_detect_down                           0x0800207d   Thumb Code    18  app_pa1100.o(i.is_detect_down)
+    i.is_detect_ok                           0x08002094   Section        0  app_printer.o(i.is_detect_ok)
+    is_detect_ok                             0x08002095   Thumb Code    18  app_printer.o(i.is_detect_ok)
+    i.judge_cmd_correct                      0x080020ac   Section        0  app_uart.o(i.judge_cmd_correct)
+    judge_cmd_correct                        0x080020ad   Thumb Code    62  app_uart.o(i.judge_cmd_correct)
+    i.main                                   0x080020ea   Section        0  main.o(i.main)
+    i.pa1100_CMD_DEAL                        0x08002104   Section        0  app_pa1100.o(i.pa1100_CMD_DEAL)
+    i.pa1100_Init                            0x08002164   Section        0  app_pa1100.o(i.pa1100_Init)
+    i.pa1100_SERVER_TASK                     0x08002194   Section        0  app_pa1100.o(i.pa1100_SERVER_TASK)
+    i.pa1100_read_data                       0x08002284   Section        0  app_pa1100.o(i.pa1100_read_data)
+    pa1100_read_data                         0x08002285   Thumb Code    30  app_pa1100.o(i.pa1100_read_data)
+    i.pa1100_rst                             0x080022a4   Section        0  app_pa1100.o(i.pa1100_rst)
+    pa1100_rst                               0x080022a5   Thumb Code   210  app_pa1100.o(i.pa1100_rst)
+    i.printer_CMD_DEAL                       0x0800237c   Section        0  app_printer.o(i.printer_CMD_DEAL)
+    i.printer_Init                           0x0800257c   Section        0  app_printer.o(i.printer_Init)
+    i.printer_SERVER_TASK                    0x08002820   Section        0  app_printer.o(i.printer_SERVER_TASK)
+    i.printer_data_out                       0x080029fc   Section        0  app_printer.o(i.printer_data_out)
+    printer_data_out                         0x080029fd   Thumb Code   102  app_printer.o(i.printer_data_out)
+    i.printer_heat                           0x08002a68   Section        0  app_printer.o(i.printer_heat)
+    printer_heat                             0x08002a69   Thumb Code   122  app_printer.o(i.printer_heat)
+    i.printer_moter_cut_feed                 0x08002ae8   Section        0  app_printer.o(i.printer_moter_cut_feed)
+    printer_moter_cut_feed                   0x08002ae9   Thumb Code   142  app_printer.o(i.printer_moter_cut_feed)
+    i.printer_moter_step                     0x08002b88   Section        0  app_printer.o(i.printer_moter_step)
+    printer_moter_step                       0x08002b89   Thumb Code   248  app_printer.o(i.printer_moter_step)
+    i.printer_start                          0x08002c88   Section        0  app_printer.o(i.printer_start)
+    printer_start                            0x08002c89   Thumb Code  1052  app_printer.o(i.printer_start)
+    i.printer_start_ceshi                    0x080030a4   Section        0  app_printer.o(i.printer_start_ceshi)
+    printer_start_ceshi                      0x080030a5   Thumb Code  1060  app_printer.o(i.printer_start_ceshi)
+    i.printer_stop                           0x080034cc   Section        0  app_printer.o(i.printer_stop)
+    printer_stop                             0x080034cd   Thumb Code    50  app_printer.o(i.printer_stop)
+    i.printer_stop_ceshi                     0x0800350c   Section        0  app_printer.o(i.printer_stop_ceshi)
+    printer_stop_ceshi                       0x0800350d   Thumb Code    28  app_printer.o(i.printer_stop_ceshi)
+    i.psam_card_CMD_DEAL                     0x08003530   Section        0  app_psam_card.o(i.psam_card_CMD_DEAL)
+    i.psam_card_Init                         0x08003594   Section        0  app_psam_card.o(i.psam_card_Init)
+    i.psam_card_SERVER_TASK                  0x080036a8   Section        0  app_psam_card.o(i.psam_card_SERVER_TASK)
+    i.psam_card_rcv                          0x080036e8   Section        0  app_psam_card.o(i.psam_card_rcv)
+    i.psam_card_rst                          0x08003748   Section        0  app_psam_card.o(i.psam_card_rst)
+    psam_card_rst                            0x08003749   Thumb Code    54  app_psam_card.o(i.psam_card_rst)
+    i.set_mosi_ipu                           0x08003784   Section        0  app_pa1100.o(i.set_mosi_ipu)
+    set_mosi_ipu                             0x08003785   Thumb Code    30  app_pa1100.o(i.set_mosi_ipu)
+    i.set_mosi_out_pp                        0x080037a8   Section        0  app_pa1100.o(i.set_mosi_out_pp)
+    set_mosi_out_pp                          0x080037a9   Thumb Code    30  app_pa1100.o(i.set_mosi_out_pp)
+    i.set_tim_reload                         0x080037cc   Section        0  app_printer.o(i.set_tim_reload)
+    set_tim_reload                           0x080037cd   Thumb Code    42  app_printer.o(i.set_tim_reload)
+    i.spi_read_byte                          0x080037fc   Section        0  app_pa1100.o(i.spi_read_byte)
+    spi_read_byte                            0x080037fd   Thumb Code    74  app_pa1100.o(i.spi_read_byte)
+    i.uart_SERVER_TASK                       0x0800384c   Section        0  app_uart.o(i.uart_SERVER_TASK)
+    .constdata                               0x08003960   Section    41144  app_printer.o(.constdata)
     .data                                    0x20000000   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000000   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x20000010   Data           4  stm32f10x_rcc.o(.data)
@@ -1415,49 +1457,57 @@ Image Symbol Table
     time_ms                                  0x20000044   Data           4  bsp_timer.o(.data)
     time_add_up                              0x20000048   Data           4  bsp_timer.o(.data)
     work_time_max                            0x2000004c   Data           4  bsp_timer.o(.data)
-    .data                                    0x20000050   Section        5  app_uart.o(.data)
-    Rxdtime                                  0x20000050   Data           2  app_uart.o(.data)
-    USART1_RXD_CON                           0x20000052   Data           2  app_uart.o(.data)
-    uart_FRAME_STATE                         0x20000054   Data           1  app_uart.o(.data)
-    .data                                    0x20000058   Section       28  app_printer.o(.data)
-    Motor_Feed_Step                          0x2000005a   Data           2  app_printer.o(.data)
-    Motor_State                              0x2000005c   Data           1  app_printer.o(.data)
-    Motor_Feed_T                             0x2000005d   Data           1  app_printer.o(.data)
-    j                                        0x20000060   Data           4  app_printer.o(.data)
-    j                                        0x20000064   Data           4  app_printer.o(.data)
-    sys_time                                 0x20000068   Data           4  app_printer.o(.data)
-    time_ms                                  0x2000006c   Data           4  app_printer.o(.data)
-    Cycletime                                0x20000070   Data           2  app_printer.o(.data)
-    Printer_State                            0x20000073   Data           1  app_printer.o(.data)
-    .data                                    0x20000074   Section       12  app_esam8810.o(.data)
-    rxd_timeout                              0x20000074   Data           1  app_esam8810.o(.data)
-    rxd_num                                  0x20000076   Data           2  app_esam8810.o(.data)
-    sys_time                                 0x20000078   Data           4  app_esam8810.o(.data)
-    time_ms                                  0x2000007c   Data           4  app_esam8810.o(.data)
-    .data                                    0x20000080   Section       12  app_psam_card.o(.data)
-    rxd_timeout                              0x20000080   Data           1  app_psam_card.o(.data)
-    rxd_num                                  0x20000082   Data           2  app_psam_card.o(.data)
-    sys_time                                 0x20000084   Data           4  app_psam_card.o(.data)
-    time_ms                                  0x20000088   Data           4  app_psam_card.o(.data)
-    .data                                    0x2000008c   Section       12  app_pa1100.o(.data)
-    sys_time                                 0x2000008c   Data           4  app_pa1100.o(.data)
-    time_ms                                  0x20000090   Data           4  app_pa1100.o(.data)
-    time_add_up                              0x20000094   Data           4  app_pa1100.o(.data)
-    .data                                    0x20000098   Section        4  stdout.o(.data)
-    .bss                                     0x2000009c   Section    10360  bsp_uart_fifo.o(.bss)
-    g_tUart1                                 0x2000009c   Data          40  bsp_uart_fifo.o(.bss)
-    g_TxBuf1                                 0x200000c4   Data        1024  bsp_uart_fifo.o(.bss)
-    g_RxBuf1                                 0x200004c4   Data        5120  bsp_uart_fifo.o(.bss)
-    g_tUart2                                 0x200018c4   Data          40  bsp_uart_fifo.o(.bss)
-    g_TxBuf2                                 0x200018ec   Data        1024  bsp_uart_fifo.o(.bss)
-    g_RxBuf2                                 0x20001cec   Data        1024  bsp_uart_fifo.o(.bss)
-    g_tUart3                                 0x200020ec   Data          40  bsp_uart_fifo.o(.bss)
-    g_TxBuf3                                 0x20002114   Data        1024  bsp_uart_fifo.o(.bss)
-    g_RxBuf3                                 0x20002514   Data        1024  bsp_uart_fifo.o(.bss)
-    .bss                                     0x20002914   Section     5620  app_uart.o(.bss)
-    Usart1_Rxd_Tempdata                      0x20002914   Data        5120  app_uart.o(.bss)
-    .bss                                     0x20003f08   Section     2308  app_printer.o(.bss)
-    STACK                                    0x20004810   Section     1024  startup_stm32f10x_md.o(STACK)
+    .data                                    0x20000050   Section       12  bsp_key.o(.data)
+    sys_time                                 0x20000050   Data           4  bsp_key.o(.data)
+    time_ms                                  0x20000054   Data           4  bsp_key.o(.data)
+    time_add_up                              0x20000058   Data           4  bsp_key.o(.data)
+    .data                                    0x2000005c   Section        5  app_uart.o(.data)
+    Rxdtime                                  0x2000005c   Data           2  app_uart.o(.data)
+    USART1_RXD_CON                           0x2000005e   Data           2  app_uart.o(.data)
+    uart_FRAME_STATE                         0x20000060   Data           1  app_uart.o(.data)
+    .data                                    0x20000064   Section       32  app_printer.o(.data)
+    Motor_Feed_Step                          0x20000066   Data           2  app_printer.o(.data)
+    Motor_State                              0x20000068   Data           1  app_printer.o(.data)
+    Motor_Feed_T                             0x20000069   Data           1  app_printer.o(.data)
+    j0                                       0x2000006c   Data           4  app_printer.o(.data)
+    j1                                       0x20000070   Data           4  app_printer.o(.data)
+    j                                        0x20000074   Data           4  app_printer.o(.data)
+    sys_time                                 0x20000078   Data           4  app_printer.o(.data)
+    time_ms                                  0x2000007c   Data           4  app_printer.o(.data)
+    Cycletime                                0x20000080   Data           2  app_printer.o(.data)
+    Printer_State                            0x20000083   Data           1  app_printer.o(.data)
+    .data                                    0x20000084   Section       12  app_esam8810.o(.data)
+    rxd_timeout                              0x20000084   Data           1  app_esam8810.o(.data)
+    rxd_num                                  0x20000086   Data           2  app_esam8810.o(.data)
+    sys_time                                 0x20000088   Data           4  app_esam8810.o(.data)
+    time_ms                                  0x2000008c   Data           4  app_esam8810.o(.data)
+    .data                                    0x20000090   Section       12  app_psam_card.o(.data)
+    rxd_timeout                              0x20000090   Data           1  app_psam_card.o(.data)
+    rxd_num                                  0x20000092   Data           2  app_psam_card.o(.data)
+    sys_time                                 0x20000094   Data           4  app_psam_card.o(.data)
+    time_ms                                  0x20000098   Data           4  app_psam_card.o(.data)
+    .data                                    0x2000009c   Section       12  app_pa1100.o(.data)
+    sys_time                                 0x2000009c   Data           4  app_pa1100.o(.data)
+    time_ms                                  0x200000a0   Data           4  app_pa1100.o(.data)
+    time_add_up                              0x200000a4   Data           4  app_pa1100.o(.data)
+    .data                                    0x200000a8   Section        4  stdout.o(.data)
+    .bss                                     0x200000ac   Section     3592  bsp_uart_fifo.o(.bss)
+    g_tUart1                                 0x200000ac   Data          40  bsp_uart_fifo.o(.bss)
+    g_TxBuf1                                 0x200000d4   Data        1024  bsp_uart_fifo.o(.bss)
+    g_RxBuf1                                 0x200004d4   Data        2048  bsp_uart_fifo.o(.bss)
+    g_tUart2                                 0x20000cd4   Data          40  bsp_uart_fifo.o(.bss)
+    g_TxBuf2                                 0x20000cfc   Data         100  bsp_uart_fifo.o(.bss)
+    g_RxBuf2                                 0x20000d60   Data         100  bsp_uart_fifo.o(.bss)
+    g_tUart3                                 0x20000dc4   Data          40  bsp_uart_fifo.o(.bss)
+    g_TxBuf3                                 0x20000dec   Data         100  bsp_uart_fifo.o(.bss)
+    g_RxBuf3                                 0x20000e50   Data         100  bsp_uart_fifo.o(.bss)
+    .bss                                     0x20000eb4   Section       69  bsp_key.o(.bss)
+    s_tBtn                                   0x20000eb4   Data          16  bsp_key.o(.bss)
+    s_tKey                                   0x20000ec4   Data          53  bsp_key.o(.bss)
+    .bss                                     0x20000ef9   Section     2548  app_uart.o(.bss)
+    Usart1_Rxd_Tempdata                      0x20000ef9   Data        2048  app_uart.o(.bss)
+    .bss                                     0x200018ed   Section     2308  app_printer.o(.bss)
+    STACK                                    0x200021f8   Section     1024  startup_stm32f10x_md.o(STACK)
 
     Global Symbols
 
@@ -1579,133 +1629,138 @@ Image Symbol Table
     ADC_Cmd                                  0x080001bd   Thumb Code    22  stm32f10x_adc.o(i.ADC_Cmd)
     ADC_DeInit                               0x080001d5   Thumb Code    78  stm32f10x_adc.o(i.ADC_DeInit)
     ADC_GetCalibrationStatus                 0x08000231   Thumb Code    20  stm32f10x_adc.o(i.ADC_GetCalibrationStatus)
-    ADC_GetResetCalibrationStatus            0x08000245   Thumb Code    20  stm32f10x_adc.o(i.ADC_GetResetCalibrationStatus)
-    ADC_Init                                 0x08000259   Thumb Code    70  stm32f10x_adc.o(i.ADC_Init)
-    ADC_RegularChannelConfig                 0x080002a9   Thumb Code   184  stm32f10x_adc.o(i.ADC_RegularChannelConfig)
-    ADC_ResetCalibration                     0x08000361   Thumb Code    10  stm32f10x_adc.o(i.ADC_ResetCalibration)
-    ADC_SoftwareStartConvCmd                 0x0800036b   Thumb Code    22  stm32f10x_adc.o(i.ADC_SoftwareStartConvCmd)
-    ADC_StartCalibration                     0x08000381   Thumb Code    10  stm32f10x_adc.o(i.ADC_StartCalibration)
-    App_Init                                 0x0800038b   Thumb Code    20  app.o(i.App_Init)
-    App_Task                                 0x0800039f   Thumb Code    24  app.o(i.App_Task)
-    BusFault_Handler                         0x080003b7   Thumb Code     4  stm32f10x_it.o(i.BusFault_Handler)
-    ComToUart                                0x080003bd   Thumb Code    52  bsp_uart_fifo.o(i.ComToUart)
-    DebugMon_Handler                         0x08000457   Thumb Code     2  stm32f10x_it.o(i.DebugMon_Handler)
-    GPIO_Init                                0x08000459   Thumb Code   274  stm32f10x_gpio.o(i.GPIO_Init)
-    GPIO_PinRemapConfig                      0x0800056d   Thumb Code   138  stm32f10x_gpio.o(i.GPIO_PinRemapConfig)
-    GPIO_ResetBits                           0x080005fd   Thumb Code     4  stm32f10x_gpio.o(i.GPIO_ResetBits)
-    GPIO_SetBits                             0x08000601   Thumb Code     4  stm32f10x_gpio.o(i.GPIO_SetBits)
-    HardFault_Handler                        0x08000605   Thumb Code     4  stm32f10x_it.o(i.HardFault_Handler)
-    IWDG_Enable                              0x08000609   Thumb Code    10  stm32f10x_iwdg.o(i.IWDG_Enable)
-    IWDG_ReloadCounter                       0x08000619   Thumb Code    10  stm32f10x_iwdg.o(i.IWDG_ReloadCounter)
-    IWDG_SetPrescaler                        0x08000629   Thumb Code     6  stm32f10x_iwdg.o(i.IWDG_SetPrescaler)
-    IWDG_SetReload                           0x08000635   Thumb Code     6  stm32f10x_iwdg.o(i.IWDG_SetReload)
-    IWDG_WriteAccessCmd                      0x08000641   Thumb Code     6  stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd)
-    Iwdg_Feed                                0x080006e1   Thumb Code     8  bsp_wdg.o(i.Iwdg_Feed)
-    MemManage_Handler                        0x080006e9   Thumb Code     4  stm32f10x_it.o(i.MemManage_Handler)
-    NMI_Handler                              0x080006ed   Thumb Code     2  stm32f10x_it.o(i.NMI_Handler)
-    NVIC_Init                                0x080006f1   Thumb Code   102  misc.o(i.NVIC_Init)
-    NVIC_PriorityGroupConfig                 0x08000765   Thumb Code    10  misc.o(i.NVIC_PriorityGroupConfig)
-    PendSV_Handler                           0x08000779   Thumb Code     2  stm32f10x_it.o(i.PendSV_Handler)
-    RCC_ADCCLKConfig                         0x0800077d   Thumb Code    18  stm32f10x_rcc.o(i.RCC_ADCCLKConfig)
-    RCC_APB1PeriphClockCmd                   0x08000795   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd)
-    RCC_APB1PeriphResetCmd                   0x080007b5   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd)
-    RCC_APB2PeriphClockCmd                   0x080007d5   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd)
-    RCC_APB2PeriphResetCmd                   0x080007f5   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd)
-    RCC_GetClocksFreq                        0x08000815   Thumb Code   192  stm32f10x_rcc.o(i.RCC_GetClocksFreq)
-    RCC_GetFlagStatus                        0x080008e9   Thumb Code    56  stm32f10x_rcc.o(i.RCC_GetFlagStatus)
-    RCC_LSICmd                               0x08000925   Thumb Code     6  stm32f10x_rcc.o(i.RCC_LSICmd)
-    SPI_Cmd                                  0x08000931   Thumb Code    24  stm32f10x_spi.o(i.SPI_Cmd)
-    SPI_I2S_GetFlagStatus                    0x08000949   Thumb Code    18  stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus)
-    SPI_I2S_SendData                         0x0800095b   Thumb Code     4  stm32f10x_spi.o(i.SPI_I2S_SendData)
-    SPI_Init                                 0x0800095f   Thumb Code    60  stm32f10x_spi.o(i.SPI_Init)
-    SPI_SSOutputCmd                          0x0800099b   Thumb Code    24  stm32f10x_spi.o(i.SPI_SSOutputCmd)
-    SVC_Handler                              0x080009b3   Thumb Code     2  stm32f10x_it.o(i.SVC_Handler)
-    SysTick_Handler                          0x08000a99   Thumb Code     8  stm32f10x_it.o(i.SysTick_Handler)
-    SysTick_ISR                              0x08000aa1   Thumb Code    36  bsp_timer.o(i.SysTick_ISR)
-    SystemInit                               0x08000ad1   Thumb Code    78  system_stm32f10x.o(i.SystemInit)
-    TIM2_IRQHandler                          0x08000b31   Thumb Code     8  stm32f10x_it.o(i.TIM2_IRQHandler)
-    TIM2_ISR                                 0x08000b39   Thumb Code   350  app_printer.o(i.TIM2_ISR)
-    TIM_ClearFlag                            0x08000cad   Thumb Code     6  stm32f10x_tim.o(i.TIM_ClearFlag)
-    TIM_ClearITPendingBit                    0x08000cb3   Thumb Code     6  stm32f10x_tim.o(i.TIM_ClearITPendingBit)
-    TIM_Cmd                                  0x08000cb9   Thumb Code    24  stm32f10x_tim.o(i.TIM_Cmd)
-    TIM_DeInit                               0x08000cd1   Thumb Code   424  stm32f10x_tim.o(i.TIM_DeInit)
-    TIM_GetITStatus                          0x08000eb9   Thumb Code    34  stm32f10x_tim.o(i.TIM_GetITStatus)
-    TIM_ITConfig                             0x08000edb   Thumb Code    18  stm32f10x_tim.o(i.TIM_ITConfig)
-    TIM_InternalClockConfig                  0x08000eed   Thumb Code    12  stm32f10x_tim.o(i.TIM_InternalClockConfig)
-    TIM_SetAutoreload                        0x08000ef9   Thumb Code     4  stm32f10x_tim.o(i.TIM_SetAutoreload)
-    TIM_SetCounter                           0x08000efd   Thumb Code     4  stm32f10x_tim.o(i.TIM_SetCounter)
-    TIM_TimeBaseInit                         0x08000f01   Thumb Code   122  stm32f10x_tim.o(i.TIM_TimeBaseInit)
-    USART1_IRQHandler                        0x08000fa5   Thumb Code    10  bsp_uart_fifo.o(i.USART1_IRQHandler)
-    USART1_Tx_Chars                          0x08000fb5   Thumb Code    70  app_uart.o(i.USART1_Tx_Chars)
-    USART2_IRQHandler                        0x08000ffd   Thumb Code    10  bsp_uart_fifo.o(i.USART2_IRQHandler)
-    USART3_IRQHandler                        0x0800100d   Thumb Code    10  bsp_uart_fifo.o(i.USART3_IRQHandler)
-    USART_ClearFlag                          0x0800101d   Thumb Code    18  stm32f10x_usart.o(i.USART_ClearFlag)
-    USART_ClockInit                          0x0800102f   Thumb Code    34  stm32f10x_usart.o(i.USART_ClockInit)
-    USART_Cmd                                0x08001051   Thumb Code    24  stm32f10x_usart.o(i.USART_Cmd)
-    USART_GetFlagStatus                      0x08001069   Thumb Code    26  stm32f10x_usart.o(i.USART_GetFlagStatus)
-    USART_GetITStatus                        0x08001083   Thumb Code    84  stm32f10x_usart.o(i.USART_GetITStatus)
-    USART_ITConfig                           0x080010d7   Thumb Code    74  stm32f10x_usart.o(i.USART_ITConfig)
-    USART_Init                               0x08001121   Thumb Code   210  stm32f10x_usart.o(i.USART_Init)
-    USART_ReceiveData                        0x080011f9   Thumb Code    10  stm32f10x_usart.o(i.USART_ReceiveData)
-    USART_SendData                           0x08001203   Thumb Code     8  stm32f10x_usart.o(i.USART_SendData)
-    USART_SetGuardTime                       0x0800120b   Thumb Code    16  stm32f10x_usart.o(i.USART_SetGuardTime)
-    USART_SetPrescaler                       0x0800121b   Thumb Code    16  stm32f10x_usart.o(i.USART_SetPrescaler)
-    USART_SmartCardCmd                       0x0800122b   Thumb Code    24  stm32f10x_usart.o(i.USART_SmartCardCmd)
-    USART_SmartCardNACKCmd                   0x08001243   Thumb Code    24  stm32f10x_usart.o(i.USART_SmartCardNACKCmd)
-    UsageFault_Handler                       0x080014b1   Thumb Code     4  stm32f10x_it.o(i.UsageFault_Handler)
-    WWDG_ClearFlag                           0x080014b5   Thumb Code     8  stm32f10x_wwdg.o(i.WWDG_ClearFlag)
-    WWDG_IRQHandler                          0x080014c1   Thumb Code     8  stm32f10x_it.o(i.WWDG_IRQHandler)
-    WWDG_SetCounter                          0x080014c9   Thumb Code    10  stm32f10x_wwdg.o(i.WWDG_SetCounter)
-    Wwdg_Feed                                0x080014d9   Thumb Code    10  bsp_wdg.o(i.Wwdg_Feed)
-    Wwdg_ISR                                 0x080014e5   Thumb Code    18  bsp_wdg.o(i.Wwdg_ISR)
-    __0printf$1                              0x0800150d   Thumb Code    22  printf1.o(i.__0printf$1)
-    __1printf$1                              0x0800150d   Thumb Code     0  printf1.o(i.__0printf$1)
-    __2printf                                0x0800150d   Thumb Code     0  printf1.o(i.__0printf$1)
-    __scatterload_copy                       0x0800152d   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0800153b   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0800153d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    bsp_DelayUS                              0x080016a5   Thumb Code    76  bsp_timer.o(i.bsp_DelayUS)
-    bsp_Idle                                 0x080016f9   Thumb Code     8  bsp.o(i.bsp_Idle)
-    bsp_Init                                 0x08001701   Thumb Code    32  bsp.o(i.bsp_Init)
-    bsp_InitAdc                              0x08001721   Thumb Code   160  bsp_adc.o(i.bsp_InitAdc)
-    bsp_InitTimer                            0x080017fd   Thumb Code    84  bsp_timer.o(i.bsp_InitTimer)
-    bsp_InitUart                             0x0800185d   Thumb Code    16  bsp_uart_fifo.o(i.bsp_InitUart)
-    bsp_InitWdg                              0x0800186d   Thumb Code     8  bsp_wdg.o(i.bsp_InitWdg)
-    comGetChar                               0x08001a79   Thumb Code    30  bsp_uart_fifo.o(i.comGetChar)
-    comSendBuf                               0x08001a97   Thumb Code    46  bsp_uart_fifo.o(i.comSendBuf)
-    comSendChar                              0x08001ac5   Thumb Code    16  bsp_uart_fifo.o(i.comSendChar)
-    esam8810_CMD_DEAL                        0x08001ad5   Thumb Code    94  app_esam8810.o(i.esam8810_CMD_DEAL)
-    esam8810_Init                            0x08001b39   Thumb Code   262  app_esam8810.o(i.esam8810_Init)
-    esam8810_SERVER_TASK                     0x08001c49   Thumb Code    50  app_esam8810.o(i.esam8810_SERVER_TASK)
-    fputc                                    0x08001d1d   Thumb Code    32  bsp_uart_fifo.o(i.fputc)
-    main                                     0x08001e97   Thumb Code    20  main.o(i.main)
-    pa1100_CMD_DEAL                          0x08001ead   Thumb Code    90  app_pa1100.o(i.pa1100_CMD_DEAL)
-    pa1100_Init                              0x08001f0d   Thumb Code    42  app_pa1100.o(i.pa1100_Init)
-    pa1100_SERVER_TASK                       0x08001f3d   Thumb Code   224  app_pa1100.o(i.pa1100_SERVER_TASK)
-    printer_CMD_DEAL                         0x08002125   Thumb Code   492  app_printer.o(i.printer_CMD_DEAL)
-    printer_Init                             0x08002325   Thumb Code   650  app_printer.o(i.printer_Init)
-    printer_SERVER_TASK                      0x080025c9   Thumb Code   242  app_printer.o(i.printer_SERVER_TASK)
-    psam_card_CMD_DEAL                       0x08003201   Thumb Code    94  app_psam_card.o(i.psam_card_CMD_DEAL)
-    psam_card_Init                           0x08003265   Thumb Code   268  app_psam_card.o(i.psam_card_Init)
-    psam_card_SERVER_TASK                    0x08003379   Thumb Code    50  app_psam_card.o(i.psam_card_SERVER_TASK)
-    psam_card_rcv                            0x080033b9   Thumb Code    88  app_psam_card.o(i.psam_card_rcv)
-    uart_SERVER_TASK                         0x0800351d   Thumb Code   260  app_uart.o(i.uart_SERVER_TASK)
-    ZIMO_000                                 0x08003630   Data        1152  app_printer.o(.constdata)
-    ZIMO_001                                 0x08003ab0   Data       38400  app_printer.o(.constdata)
-    ZIMO_002                                 0x0800d0b0   Data        1536  app_printer.o(.constdata)
-    reload_time                              0x0800d6b0   Data          56  app_printer.o(.constdata)
-    Region$$Table$$Base                      0x0800d6e8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800d708   Number         0  anon$$obj.o(Region$$Table)
+    ADC_GetConversionValue                   0x08000245   Thumb Code     8  stm32f10x_adc.o(i.ADC_GetConversionValue)
+    ADC_GetResetCalibrationStatus            0x0800024d   Thumb Code    20  stm32f10x_adc.o(i.ADC_GetResetCalibrationStatus)
+    ADC_Init                                 0x08000261   Thumb Code    70  stm32f10x_adc.o(i.ADC_Init)
+    ADC_RegularChannelConfig                 0x080002b1   Thumb Code   184  stm32f10x_adc.o(i.ADC_RegularChannelConfig)
+    ADC_ResetCalibration                     0x08000369   Thumb Code    10  stm32f10x_adc.o(i.ADC_ResetCalibration)
+    ADC_SoftwareStartConvCmd                 0x08000373   Thumb Code    22  stm32f10x_adc.o(i.ADC_SoftwareStartConvCmd)
+    ADC_StartCalibration                     0x08000389   Thumb Code    10  stm32f10x_adc.o(i.ADC_StartCalibration)
+    App_Init                                 0x08000393   Thumb Code    20  app.o(i.App_Init)
+    App_Task                                 0x080003a7   Thumb Code    24  app.o(i.App_Task)
+    BusFault_Handler                         0x080003bf   Thumb Code     4  stm32f10x_it.o(i.BusFault_Handler)
+    ComToUart                                0x080003c5   Thumb Code    52  bsp_uart_fifo.o(i.ComToUart)
+    DebugMon_Handler                         0x0800045f   Thumb Code     2  stm32f10x_it.o(i.DebugMon_Handler)
+    GPIO_Init                                0x08000461   Thumb Code   274  stm32f10x_gpio.o(i.GPIO_Init)
+    GPIO_PinRemapConfig                      0x08000575   Thumb Code   138  stm32f10x_gpio.o(i.GPIO_PinRemapConfig)
+    GPIO_ResetBits                           0x08000605   Thumb Code     4  stm32f10x_gpio.o(i.GPIO_ResetBits)
+    GPIO_SetBits                             0x08000609   Thumb Code     4  stm32f10x_gpio.o(i.GPIO_SetBits)
+    HardFault_Handler                        0x0800060d   Thumb Code     4  stm32f10x_it.o(i.HardFault_Handler)
+    IWDG_Enable                              0x08000611   Thumb Code    10  stm32f10x_iwdg.o(i.IWDG_Enable)
+    IWDG_ReloadCounter                       0x08000621   Thumb Code    10  stm32f10x_iwdg.o(i.IWDG_ReloadCounter)
+    IWDG_SetPrescaler                        0x08000631   Thumb Code     6  stm32f10x_iwdg.o(i.IWDG_SetPrescaler)
+    IWDG_SetReload                           0x0800063d   Thumb Code     6  stm32f10x_iwdg.o(i.IWDG_SetReload)
+    IWDG_WriteAccessCmd                      0x08000649   Thumb Code     6  stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd)
+    Iwdg_Feed                                0x08000701   Thumb Code     8  bsp_wdg.o(i.Iwdg_Feed)
+    MemManage_Handler                        0x08000709   Thumb Code     4  stm32f10x_it.o(i.MemManage_Handler)
+    NMI_Handler                              0x0800070d   Thumb Code     2  stm32f10x_it.o(i.NMI_Handler)
+    NVIC_Init                                0x08000711   Thumb Code   102  misc.o(i.NVIC_Init)
+    NVIC_PriorityGroupConfig                 0x08000785   Thumb Code    10  misc.o(i.NVIC_PriorityGroupConfig)
+    PendSV_Handler                           0x08000799   Thumb Code     2  stm32f10x_it.o(i.PendSV_Handler)
+    RCC_ADCCLKConfig                         0x0800079d   Thumb Code    18  stm32f10x_rcc.o(i.RCC_ADCCLKConfig)
+    RCC_APB1PeriphClockCmd                   0x080007b5   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd)
+    RCC_APB1PeriphResetCmd                   0x080007d5   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd)
+    RCC_APB2PeriphClockCmd                   0x080007f5   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd)
+    RCC_APB2PeriphResetCmd                   0x08000815   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd)
+    RCC_GetClocksFreq                        0x08000835   Thumb Code   192  stm32f10x_rcc.o(i.RCC_GetClocksFreq)
+    RCC_GetFlagStatus                        0x08000909   Thumb Code    56  stm32f10x_rcc.o(i.RCC_GetFlagStatus)
+    RCC_LSICmd                               0x08000945   Thumb Code     6  stm32f10x_rcc.o(i.RCC_LSICmd)
+    SPI_Cmd                                  0x08000951   Thumb Code    24  stm32f10x_spi.o(i.SPI_Cmd)
+    SPI_I2S_GetFlagStatus                    0x08000969   Thumb Code    18  stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus)
+    SPI_I2S_SendData                         0x0800097b   Thumb Code     4  stm32f10x_spi.o(i.SPI_I2S_SendData)
+    SPI_Init                                 0x0800097f   Thumb Code    60  stm32f10x_spi.o(i.SPI_Init)
+    SPI_SSOutputCmd                          0x080009bb   Thumb Code    24  stm32f10x_spi.o(i.SPI_SSOutputCmd)
+    SVC_Handler                              0x080009d3   Thumb Code     2  stm32f10x_it.o(i.SVC_Handler)
+    SysTick_Handler                          0x08000ab5   Thumb Code     8  stm32f10x_it.o(i.SysTick_Handler)
+    SysTick_ISR                              0x08000abd   Thumb Code    36  bsp_timer.o(i.SysTick_ISR)
+    SystemInit                               0x08000aed   Thumb Code    78  system_stm32f10x.o(i.SystemInit)
+    TIM2_IRQHandler                          0x08000b4d   Thumb Code     8  stm32f10x_it.o(i.TIM2_IRQHandler)
+    TIM2_ISR                                 0x08000b55   Thumb Code   352  app_printer.o(i.TIM2_ISR)
+    TIM_ClearFlag                            0x08000cc9   Thumb Code     6  stm32f10x_tim.o(i.TIM_ClearFlag)
+    TIM_ClearITPendingBit                    0x08000ccf   Thumb Code     6  stm32f10x_tim.o(i.TIM_ClearITPendingBit)
+    TIM_Cmd                                  0x08000cd5   Thumb Code    24  stm32f10x_tim.o(i.TIM_Cmd)
+    TIM_DeInit                               0x08000ced   Thumb Code   424  stm32f10x_tim.o(i.TIM_DeInit)
+    TIM_GetITStatus                          0x08000ed5   Thumb Code    34  stm32f10x_tim.o(i.TIM_GetITStatus)
+    TIM_ITConfig                             0x08000ef7   Thumb Code    18  stm32f10x_tim.o(i.TIM_ITConfig)
+    TIM_InternalClockConfig                  0x08000f09   Thumb Code    12  stm32f10x_tim.o(i.TIM_InternalClockConfig)
+    TIM_SetAutoreload                        0x08000f15   Thumb Code     4  stm32f10x_tim.o(i.TIM_SetAutoreload)
+    TIM_SetCounter                           0x08000f19   Thumb Code     4  stm32f10x_tim.o(i.TIM_SetCounter)
+    TIM_TimeBaseInit                         0x08000f1d   Thumb Code   122  stm32f10x_tim.o(i.TIM_TimeBaseInit)
+    USART1_IRQHandler                        0x08000fc1   Thumb Code    10  bsp_uart_fifo.o(i.USART1_IRQHandler)
+    USART1_Tx_Chars                          0x08000fd1   Thumb Code    70  app_uart.o(i.USART1_Tx_Chars)
+    USART2_IRQHandler                        0x08001019   Thumb Code    10  bsp_uart_fifo.o(i.USART2_IRQHandler)
+    USART3_IRQHandler                        0x08001029   Thumb Code    10  bsp_uart_fifo.o(i.USART3_IRQHandler)
+    USART_ClearFlag                          0x08001039   Thumb Code    18  stm32f10x_usart.o(i.USART_ClearFlag)
+    USART_ClockInit                          0x0800104b   Thumb Code    34  stm32f10x_usart.o(i.USART_ClockInit)
+    USART_Cmd                                0x0800106d   Thumb Code    24  stm32f10x_usart.o(i.USART_Cmd)
+    USART_GetFlagStatus                      0x08001085   Thumb Code    26  stm32f10x_usart.o(i.USART_GetFlagStatus)
+    USART_GetITStatus                        0x0800109f   Thumb Code    84  stm32f10x_usart.o(i.USART_GetITStatus)
+    USART_ITConfig                           0x080010f3   Thumb Code    74  stm32f10x_usart.o(i.USART_ITConfig)
+    USART_Init                               0x0800113d   Thumb Code   210  stm32f10x_usart.o(i.USART_Init)
+    USART_ReceiveData                        0x08001215   Thumb Code    10  stm32f10x_usart.o(i.USART_ReceiveData)
+    USART_SendData                           0x0800121f   Thumb Code     8  stm32f10x_usart.o(i.USART_SendData)
+    USART_SetGuardTime                       0x08001227   Thumb Code    16  stm32f10x_usart.o(i.USART_SetGuardTime)
+    USART_SetPrescaler                       0x08001237   Thumb Code    16  stm32f10x_usart.o(i.USART_SetPrescaler)
+    USART_SmartCardCmd                       0x08001247   Thumb Code    24  stm32f10x_usart.o(i.USART_SmartCardCmd)
+    USART_SmartCardNACKCmd                   0x0800125f   Thumb Code    24  stm32f10x_usart.o(i.USART_SmartCardNACKCmd)
+    UsageFault_Handler                       0x080014c9   Thumb Code     4  stm32f10x_it.o(i.UsageFault_Handler)
+    WWDG_ClearFlag                           0x080014cd   Thumb Code     8  stm32f10x_wwdg.o(i.WWDG_ClearFlag)
+    WWDG_IRQHandler                          0x080014d9   Thumb Code     8  stm32f10x_it.o(i.WWDG_IRQHandler)
+    WWDG_SetCounter                          0x080014e1   Thumb Code    10  stm32f10x_wwdg.o(i.WWDG_SetCounter)
+    Wwdg_Feed                                0x080014f1   Thumb Code    10  bsp_wdg.o(i.Wwdg_Feed)
+    Wwdg_ISR                                 0x080014fd   Thumb Code    18  bsp_wdg.o(i.Wwdg_ISR)
+    __0printf$1                              0x08001525   Thumb Code    22  printf1.o(i.__0printf$1)
+    __1printf$1                              0x08001525   Thumb Code     0  printf1.o(i.__0printf$1)
+    __2printf                                0x08001525   Thumb Code     0  printf1.o(i.__0printf$1)
+    __scatterload_copy                       0x08001545   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08001553   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08001555   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    bsp_DelayUS                              0x080016bd   Thumb Code    76  bsp_timer.o(i.bsp_DelayUS)
+    bsp_GetKey                               0x080017dd   Thumb Code    58  bsp_key.o(i.bsp_GetKey)
+    bsp_Idle                                 0x0800181d   Thumb Code     8  bsp.o(i.bsp_Idle)
+    bsp_Init                                 0x08001825   Thumb Code    36  bsp.o(i.bsp_Init)
+    bsp_InitAdc                              0x08001849   Thumb Code   160  bsp_adc.o(i.bsp_InitAdc)
+    bsp_InitKey                              0x08001925   Thumb Code    12  bsp_key.o(i.bsp_InitKey)
+    bsp_InitTimer                            0x080019bd   Thumb Code    84  bsp_timer.o(i.bsp_InitTimer)
+    bsp_InitUart                             0x08001a1d   Thumb Code    16  bsp_uart_fifo.o(i.bsp_InitUart)
+    bsp_InitWdg                              0x08001a2d   Thumb Code     8  bsp_wdg.o(i.bsp_InitWdg)
+    bsp_KeyTask                              0x08001a4d   Thumb Code    68  bsp_key.o(i.bsp_KeyTask)
+    bsp_PutKey                               0x08001aa1   Thumb Code    36  bsp_key.o(i.bsp_PutKey)
+    comGetChar                               0x08001ccd   Thumb Code    30  bsp_uart_fifo.o(i.comGetChar)
+    comSendBuf                               0x08001ceb   Thumb Code    46  bsp_uart_fifo.o(i.comSendBuf)
+    comSendChar                              0x08001d19   Thumb Code    16  bsp_uart_fifo.o(i.comSendChar)
+    esam8810_CMD_DEAL                        0x08001d29   Thumb Code    94  app_esam8810.o(i.esam8810_CMD_DEAL)
+    esam8810_Init                            0x08001d8d   Thumb Code   262  app_esam8810.o(i.esam8810_Init)
+    esam8810_SERVER_TASK                     0x08001e9d   Thumb Code    50  app_esam8810.o(i.esam8810_SERVER_TASK)
+    fputc                                    0x08001f71   Thumb Code    32  bsp_uart_fifo.o(i.fputc)
+    main                                     0x080020eb   Thumb Code    24  main.o(i.main)
+    pa1100_CMD_DEAL                          0x08002105   Thumb Code    90  app_pa1100.o(i.pa1100_CMD_DEAL)
+    pa1100_Init                              0x08002165   Thumb Code    42  app_pa1100.o(i.pa1100_Init)
+    pa1100_SERVER_TASK                       0x08002195   Thumb Code   224  app_pa1100.o(i.pa1100_SERVER_TASK)
+    printer_CMD_DEAL                         0x0800237d   Thumb Code   492  app_printer.o(i.printer_CMD_DEAL)
+    printer_Init                             0x0800257d   Thumb Code   650  app_printer.o(i.printer_Init)
+    printer_SERVER_TASK                      0x08002821   Thumb Code   428  app_printer.o(i.printer_SERVER_TASK)
+    psam_card_CMD_DEAL                       0x08003531   Thumb Code    94  app_psam_card.o(i.psam_card_CMD_DEAL)
+    psam_card_Init                           0x08003595   Thumb Code   268  app_psam_card.o(i.psam_card_Init)
+    psam_card_SERVER_TASK                    0x080036a9   Thumb Code    50  app_psam_card.o(i.psam_card_SERVER_TASK)
+    psam_card_rcv                            0x080036e9   Thumb Code    88  app_psam_card.o(i.psam_card_rcv)
+    uart_SERVER_TASK                         0x0800384d   Thumb Code   260  app_uart.o(i.uart_SERVER_TASK)
+    ZIMO_000                                 0x08003960   Data        1152  app_printer.o(.constdata)
+    ZIMO_001                                 0x08003de0   Data       38400  app_printer.o(.constdata)
+    ZIMO_002                                 0x0800d3e0   Data        1536  app_printer.o(.constdata)
+    reload_time                              0x0800d9e0   Data          56  app_printer.o(.constdata)
+    Region$$Table$$Base                      0x0800da18   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800da38   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000014   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000018   Data          16  system_stm32f10x.o(.data)
     Sys_Time                                 0x20000028   Data           4  bsp_timer.o(.data)
-    Print_Buf_Mark                           0x20000058   Data           1  app_printer.o(.data)
-    last_package_mark                        0x20000072   Data           1  app_printer.o(.data)
-    __stdout                                 0x20000098   Data           4  stdout.o(.data)
-    Usart1_Txd_Tempdata                      0x20003d14   Data         500  app_uart.o(.bss)
-    printer_buf                              0x20003f08   Data        1154  app_printer.o(.bss)
-    printer_buf_temp                         0x2000438a   Data        1154  app_printer.o(.bss)
-    __initial_sp                             0x20004c10   Data           0  startup_stm32f10x_md.o(STACK)
+    Print_Buf_Mark                           0x20000064   Data           1  app_printer.o(.data)
+    last_package_mark                        0x20000082   Data           1  app_printer.o(.data)
+    __stdout                                 0x200000a8   Data           4  stdout.o(.data)
+    Usart1_Txd_Tempdata                      0x200016f9   Data         500  app_uart.o(.bss)
+    printer_buf                              0x200018ed   Data        1154  app_printer.o(.bss)
+    printer_buf_temp                         0x20001d6f   Data        1154  app_printer.o(.bss)
+    __initial_sp                             0x200025f8   Data           0  startup_stm32f10x_md.o(STACK)
 
 
 
@@ -1715,211 +1770,224 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000d7a4, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000dae4, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000d708, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000da38, Max: 0x00010000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x000000ec   Data   RO         3373    RESET               startup_stm32f10x_md.o
-    0x080000ec   0x00000000   Code   RO         3989  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080000ec   0x00000004   Code   RO         4259    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080000f0   0x00000004   Code   RO         4262    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080000f4   0x00000000   Code   RO         4264    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080000f4   0x00000000   Code   RO         4266    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080000f4   0x00000008   Code   RO         4267    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080000fc   0x00000000   Code   RO         4269    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080000fc   0x00000000   Code   RO         4271    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080000fc   0x00000004   Code   RO         4260    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x08000100   0x00000024   Code   RO         3374    .text               startup_stm32f10x_md.o
-    0x08000124   0x00000024   Code   RO         3992    .text               mc_w.l(memcpya.o)
-    0x08000148   0x00000024   Code   RO         3994    .text               mc_w.l(memseta.o)
-    0x0800016c   0x0000002c   Code   RO         4274    .text               mc_w.l(uidiv.o)
-    0x08000198   0x00000024   Code   RO         4289    .text               mc_w.l(init.o)
-    0x080001bc   0x00000016   Code   RO         1645    i.ADC_Cmd           stm32f10x_adc.o
+    0x08000000   0x000000ec   Data   RO         3376    RESET               startup_stm32f10x_md.o
+    0x080000ec   0x00000000   Code   RO         4071  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080000ec   0x00000004   Code   RO         4341    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080000f0   0x00000004   Code   RO         4344    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080000f4   0x00000000   Code   RO         4346    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080000f4   0x00000000   Code   RO         4348    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080000f4   0x00000008   Code   RO         4349    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080000fc   0x00000000   Code   RO         4351    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080000fc   0x00000000   Code   RO         4353    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080000fc   0x00000004   Code   RO         4342    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000100   0x00000024   Code   RO         3377    .text               startup_stm32f10x_md.o
+    0x08000124   0x00000024   Code   RO         4074    .text               mc_w.l(memcpya.o)
+    0x08000148   0x00000024   Code   RO         4076    .text               mc_w.l(memseta.o)
+    0x0800016c   0x0000002c   Code   RO         4356    .text               mc_w.l(uidiv.o)
+    0x08000198   0x00000024   Code   RO         4371    .text               mc_w.l(init.o)
+    0x080001bc   0x00000016   Code   RO         1648    i.ADC_Cmd           stm32f10x_adc.o
     0x080001d2   0x00000002   PAD
-    0x080001d4   0x0000005c   Code   RO         1647    i.ADC_DeInit        stm32f10x_adc.o
-    0x08000230   0x00000014   Code   RO         1653    i.ADC_GetCalibrationStatus  stm32f10x_adc.o
-    0x08000244   0x00000014   Code   RO         1659    i.ADC_GetResetCalibrationStatus  stm32f10x_adc.o
-    0x08000258   0x00000050   Code   RO         1663    i.ADC_Init          stm32f10x_adc.o
-    0x080002a8   0x000000b8   Code   RO         1667    i.ADC_RegularChannelConfig  stm32f10x_adc.o
-    0x08000360   0x0000000a   Code   RO         1668    i.ADC_ResetCalibration  stm32f10x_adc.o
-    0x0800036a   0x00000016   Code   RO         1670    i.ADC_SoftwareStartConvCmd  stm32f10x_adc.o
-    0x08000380   0x0000000a   Code   RO         1672    i.ADC_StartCalibration  stm32f10x_adc.o
-    0x0800038a   0x00000014   Code   RO         3673    i.App_Init          app.o
-    0x0800039e   0x00000018   Code   RO         3674    i.App_Task          app.o
-    0x080003b6   0x00000004   Code   RO            1    i.BusFault_Handler  stm32f10x_it.o
-    0x080003ba   0x00000002   PAD
-    0x080003bc   0x00000040   Code   RO         3534    i.ComToUart         bsp_uart_fifo.o
-    0x080003fc   0x0000005a   Code   RO         3535    i.ConfigUartNVIC    bsp_uart_fifo.o
-    0x08000456   0x00000002   Code   RO            2    i.DebugMon_Handler  stm32f10x_it.o
-    0x08000458   0x00000112   Code   RO          505    i.GPIO_Init         stm32f10x_gpio.o
-    0x0800056a   0x00000002   PAD
-    0x0800056c   0x00000090   Code   RO          507    i.GPIO_PinRemapConfig  stm32f10x_gpio.o
-    0x080005fc   0x00000004   Code   RO          512    i.GPIO_ResetBits    stm32f10x_gpio.o
-    0x08000600   0x00000004   Code   RO          513    i.GPIO_SetBits      stm32f10x_gpio.o
-    0x08000604   0x00000004   Code   RO            3    i.HardFault_Handler  stm32f10x_it.o
-    0x08000608   0x00000010   Code   RO         2517    i.IWDG_Enable       stm32f10x_iwdg.o
-    0x08000618   0x00000010   Code   RO         2519    i.IWDG_ReloadCounter  stm32f10x_iwdg.o
-    0x08000628   0x0000000c   Code   RO         2520    i.IWDG_SetPrescaler  stm32f10x_iwdg.o
-    0x08000634   0x0000000c   Code   RO         2521    i.IWDG_SetReload    stm32f10x_iwdg.o
-    0x08000640   0x0000000c   Code   RO         2522    i.IWDG_WriteAccessCmd  stm32f10x_iwdg.o
-    0x0800064c   0x00000094   Code   RO         3536    i.InitHardUart      bsp_uart_fifo.o
-    0x080006e0   0x00000008   Code   RO         3378    i.Iwdg_Feed         bsp_wdg.o
-    0x080006e8   0x00000004   Code   RO            4    i.MemManage_Handler  stm32f10x_it.o
-    0x080006ec   0x00000002   Code   RO            5    i.NMI_Handler       stm32f10x_it.o
-    0x080006ee   0x00000002   PAD
-    0x080006f0   0x00000074   Code   RO          619    i.NVIC_Init         misc.o
-    0x08000764   0x00000014   Code   RO          620    i.NVIC_PriorityGroupConfig  misc.o
-    0x08000778   0x00000002   Code   RO            6    i.PendSV_Handler    stm32f10x_it.o
-    0x0800077a   0x00000002   PAD
-    0x0800077c   0x00000018   Code   RO          223    i.RCC_ADCCLKConfig  stm32f10x_rcc.o
-    0x08000794   0x00000020   Code   RO          225    i.RCC_APB1PeriphClockCmd  stm32f10x_rcc.o
-    0x080007b4   0x00000020   Code   RO          226    i.RCC_APB1PeriphResetCmd  stm32f10x_rcc.o
-    0x080007d4   0x00000020   Code   RO          227    i.RCC_APB2PeriphClockCmd  stm32f10x_rcc.o
-    0x080007f4   0x00000020   Code   RO          228    i.RCC_APB2PeriphResetCmd  stm32f10x_rcc.o
-    0x08000814   0x000000d4   Code   RO          235    i.RCC_GetClocksFreq  stm32f10x_rcc.o
-    0x080008e8   0x0000003c   Code   RO          236    i.RCC_GetFlagStatus  stm32f10x_rcc.o
-    0x08000924   0x0000000c   Code   RO          244    i.RCC_LSICmd        stm32f10x_rcc.o
-    0x08000930   0x00000018   Code   RO          720    i.SPI_Cmd           stm32f10x_spi.o
-    0x08000948   0x00000012   Code   RO          728    i.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
-    0x0800095a   0x00000004   Code   RO          732    i.SPI_I2S_SendData  stm32f10x_spi.o
-    0x0800095e   0x0000003c   Code   RO          733    i.SPI_Init          stm32f10x_spi.o
-    0x0800099a   0x00000018   Code   RO          735    i.SPI_SSOutputCmd   stm32f10x_spi.o
-    0x080009b2   0x00000002   Code   RO            7    i.SVC_Handler       stm32f10x_it.o
-    0x080009b4   0x00000008   Code   RO         3325    i.SetSysClock       system_stm32f10x.o
-    0x080009bc   0x000000dc   Code   RO         3326    i.SetSysClockTo72   system_stm32f10x.o
-    0x08000a98   0x00000008   Code   RO            8    i.SysTick_Handler   stm32f10x_it.o
-    0x08000aa0   0x00000030   Code   RO         3473    i.SysTick_ISR       bsp_timer.o
-    0x08000ad0   0x00000060   Code   RO         3328    i.SystemInit        system_stm32f10x.o
-    0x08000b30   0x00000008   Code   RO            9    i.TIM2_IRQHandler   stm32f10x_it.o
-    0x08000b38   0x00000174   Code   RO         3753    i.TIM2_ISR          app_printer.o
-    0x08000cac   0x00000006   Code   RO         2719    i.TIM_ClearFlag     stm32f10x_tim.o
-    0x08000cb2   0x00000006   Code   RO         2720    i.TIM_ClearITPendingBit  stm32f10x_tim.o
-    0x08000cb8   0x00000018   Code   RO         2725    i.TIM_Cmd           stm32f10x_tim.o
-    0x08000cd0   0x000001e8   Code   RO         2730    i.TIM_DeInit        stm32f10x_tim.o
-    0x08000eb8   0x00000022   Code   RO         2746    i.TIM_GetITStatus   stm32f10x_tim.o
-    0x08000eda   0x00000012   Code   RO         2750    i.TIM_ITConfig      stm32f10x_tim.o
-    0x08000eec   0x0000000c   Code   RO         2752    i.TIM_InternalClockConfig  stm32f10x_tim.o
-    0x08000ef8   0x00000004   Code   RO         2784    i.TIM_SetAutoreload  stm32f10x_tim.o
-    0x08000efc   0x00000004   Code   RO         2790    i.TIM_SetCounter    stm32f10x_tim.o
-    0x08000f00   0x000000a4   Code   RO         2796    i.TIM_TimeBaseInit  stm32f10x_tim.o
-    0x08000fa4   0x00000010   Code   RO         3537    i.USART1_IRQHandler  bsp_uart_fifo.o
-    0x08000fb4   0x00000046   Code   RO         3718    i.USART1_Tx_Chars   app_uart.o
-    0x08000ffa   0x00000002   PAD
-    0x08000ffc   0x00000010   Code   RO         3538    i.USART2_IRQHandler  bsp_uart_fifo.o
-    0x0800100c   0x00000010   Code   RO         3539    i.USART3_IRQHandler  bsp_uart_fifo.o
-    0x0800101c   0x00000012   Code   RO          985    i.USART_ClearFlag   stm32f10x_usart.o
-    0x0800102e   0x00000022   Code   RO          987    i.USART_ClockInit   stm32f10x_usart.o
-    0x08001050   0x00000018   Code   RO          989    i.USART_Cmd         stm32f10x_usart.o
-    0x08001068   0x0000001a   Code   RO          992    i.USART_GetFlagStatus  stm32f10x_usart.o
-    0x08001082   0x00000054   Code   RO          993    i.USART_GetITStatus  stm32f10x_usart.o
-    0x080010d6   0x0000004a   Code   RO          995    i.USART_ITConfig    stm32f10x_usart.o
-    0x08001120   0x000000d8   Code   RO          996    i.USART_Init        stm32f10x_usart.o
-    0x080011f8   0x0000000a   Code   RO         1003    i.USART_ReceiveData  stm32f10x_usart.o
-    0x08001202   0x00000008   Code   RO         1006    i.USART_SendData    stm32f10x_usart.o
-    0x0800120a   0x00000010   Code   RO         1008    i.USART_SetGuardTime  stm32f10x_usart.o
-    0x0800121a   0x00000010   Code   RO         1009    i.USART_SetPrescaler  stm32f10x_usart.o
-    0x0800122a   0x00000018   Code   RO         1010    i.USART_SmartCardCmd  stm32f10x_usart.o
-    0x08001242   0x00000018   Code   RO         1011    i.USART_SmartCardNACKCmd  stm32f10x_usart.o
-    0x0800125a   0x0000004a   Code   RO         3542    i.UartGetChar       bsp_uart_fifo.o
-    0x080012a4   0x000000e6   Code   RO         3543    i.UartIRQ           bsp_uart_fifo.o
-    0x0800138a   0x00000072   Code   RO         3544    i.UartSend          bsp_uart_fifo.o
-    0x080013fc   0x000000b4   Code   RO         3545    i.UartVarInit       bsp_uart_fifo.o
-    0x080014b0   0x00000004   Code   RO           10    i.UsageFault_Handler  stm32f10x_it.o
-    0x080014b4   0x0000000c   Code   RO         3260    i.WWDG_ClearFlag    stm32f10x_wwdg.o
-    0x080014c0   0x00000008   Code   RO           11    i.WWDG_IRQHandler   stm32f10x_it.o
-    0x080014c8   0x00000010   Code   RO         3265    i.WWDG_SetCounter   stm32f10x_wwdg.o
-    0x080014d8   0x0000000a   Code   RO         3379    i.Wwdg_Feed         bsp_wdg.o
-    0x080014e2   0x00000002   PAD
-    0x080014e4   0x00000028   Code   RO         3380    i.Wwdg_ISR          bsp_wdg.o
-    0x0800150c   0x00000020   Code   RO         4043    i.__0printf$1       mc_w.l(printf1.o)
-    0x0800152c   0x0000000e   Code   RO         4301    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800153a   0x00000002   Code   RO         4302    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800153c   0x0000000e   Code   RO         4303    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0800154a   0x00000006   Code   RO         3546    i.__set_PRIMASK     bsp_uart_fifo.o
-    0x08001550   0x00000154   Code   RO         4050    i._printf_core      mc_w.l(printf1.o)
-    0x080016a4   0x00000054   Code   RO         3476    i.bsp_DelayUS       bsp_timer.o
-    0x080016f8   0x00000008   Code   RO         3444    i.bsp_Idle          bsp.o
-    0x08001700   0x00000020   Code   RO         3445    i.bsp_Init          bsp.o
-    0x08001720   0x000000a8   Code   RO         3661    i.bsp_InitAdc       bsp_adc.o
-    0x080017c8   0x00000034   Code   RO         3382    i.bsp_InitIwdg      bsp_wdg.o
-    0x080017fc   0x00000060   Code   RO         3478    i.bsp_InitTimer     bsp_timer.o
-    0x0800185c   0x00000010   Code   RO         3547    i.bsp_InitUart      bsp_uart_fifo.o
-    0x0800186c   0x00000008   Code   RO         3383    i.bsp_InitWdg       bsp_wdg.o
-    0x08001874   0x00000002   Code   RO         3446    i.bsp_rcc_init      bsp.o
-    0x08001876   0x00000002   PAD
-    0x08001878   0x0000002c   Code   RO         3848    i.ceshi             app_esam8810.o
-    0x080018a4   0x0000002c   Code   RO         3888    i.ceshi             app_psam_card.o
-    0x080018d0   0x000000b4   Code   RO         3929    i.ceshi             app_pa1100.o
-    0x08001984   0x00000030   Code   RO         3754    i.check_to_print    app_printer.o
-    0x080019b4   0x000000c4   Code   RO         3719    i.checkout_cmd      app_uart.o
-    0x08001a78   0x0000001e   Code   RO         3550    i.comGetChar        bsp_uart_fifo.o
-    0x08001a96   0x0000002e   Code   RO         3551    i.comSendBuf        bsp_uart_fifo.o
-    0x08001ac4   0x00000010   Code   RO         3552    i.comSendChar       bsp_uart_fifo.o
-    0x08001ad4   0x00000064   Code   RO         3849    i.esam8810_CMD_DEAL  app_esam8810.o
-    0x08001b38   0x00000110   Code   RO         3850    i.esam8810_Init     app_esam8810.o
-    0x08001c48   0x00000040   Code   RO         3851    i.esam8810_SERVER_TASK  app_esam8810.o
-    0x08001c88   0x00000060   Code   RO         3852    i.esam8810_rcv      app_esam8810.o
-    0x08001ce8   0x00000034   Code   RO         3853    i.esam8810_rst      app_esam8810.o
-    0x08001d1c   0x00000024   Code   RO         3554    i.fputc             bsp_uart_fifo.o
-    0x08001d40   0x000000e6   Code   RO         3755    i.get_print_mode    app_printer.o
-    0x08001e26   0x00000002   PAD
-    0x08001e28   0x00000018   Code   RO         3930    i.is_detect_down    app_pa1100.o
-    0x08001e40   0x00000018   Code   RO         3756    i.is_detect_ok      app_printer.o
-    0x08001e58   0x0000003e   Code   RO         3720    i.judge_cmd_correct  app_uart.o
-    0x08001e96   0x00000014   Code   RO          208    i.main              main.o
-    0x08001eaa   0x00000002   PAD
-    0x08001eac   0x00000060   Code   RO         3931    i.pa1100_CMD_DEAL   app_pa1100.o
-    0x08001f0c   0x00000030   Code   RO         3932    i.pa1100_Init       app_pa1100.o
-    0x08001f3c   0x000000f0   Code   RO         3933    i.pa1100_SERVER_TASK  app_pa1100.o
-    0x0800202c   0x0000001e   Code   RO         3934    i.pa1100_read_data  app_pa1100.o
-    0x0800204a   0x00000002   PAD
-    0x0800204c   0x000000d8   Code   RO         3935    i.pa1100_rst        app_pa1100.o
-    0x08002124   0x00000200   Code   RO         3757    i.printer_CMD_DEAL  app_printer.o
-    0x08002324   0x000002a4   Code   RO         3758    i.printer_Init      app_printer.o
-    0x080025c8   0x0000011c   Code   RO         3759    i.printer_SERVER_TASK  app_printer.o
-    0x080026e4   0x0000006c   Code   RO         3760    i.printer_data_out  app_printer.o
-    0x08002750   0x00000080   Code   RO         3761    i.printer_heat      app_printer.o
-    0x080027d0   0x000000a0   Code   RO         3762    i.printer_moter_cut_feed  app_printer.o
-    0x08002870   0x00000100   Code   RO         3763    i.printer_moter_step  app_printer.o
-    0x08002970   0x0000041c   Code   RO         3764    i.printer_start     app_printer.o
-    0x08002d8c   0x00000410   Code   RO         3765    i.printer_start_ceshi  app_printer.o
-    0x0800319c   0x00000040   Code   RO         3766    i.printer_stop      app_printer.o
-    0x080031dc   0x00000024   Code   RO         3767    i.printer_stop_ceshi  app_printer.o
-    0x08003200   0x00000064   Code   RO         3889    i.psam_card_CMD_DEAL  app_psam_card.o
-    0x08003264   0x00000114   Code   RO         3890    i.psam_card_Init    app_psam_card.o
-    0x08003378   0x00000040   Code   RO         3891    i.psam_card_SERVER_TASK  app_psam_card.o
-    0x080033b8   0x00000060   Code   RO         3892    i.psam_card_rcv     app_psam_card.o
-    0x08003418   0x0000003c   Code   RO         3893    i.psam_card_rst     app_psam_card.o
-    0x08003454   0x00000024   Code   RO         3936    i.set_mosi_ipu      app_pa1100.o
-    0x08003478   0x00000024   Code   RO         3937    i.set_mosi_out_pp   app_pa1100.o
-    0x0800349c   0x00000030   Code   RO         3768    i.set_tim_reload    app_printer.o
-    0x080034cc   0x00000050   Code   RO         3938    i.spi_read_byte     app_pa1100.o
-    0x0800351c   0x00000114   Code   RO         3721    i.uart_SERVER_TASK  app_uart.o
-    0x08003630   0x0000a0b8   Data   RO         3770    .constdata          app_printer.o
-    0x0800d6e8   0x00000020   Data   RO         4299    Region$$Table       anon$$obj.o
+    0x080001d4   0x0000005c   Code   RO         1650    i.ADC_DeInit        stm32f10x_adc.o
+    0x08000230   0x00000014   Code   RO         1656    i.ADC_GetCalibrationStatus  stm32f10x_adc.o
+    0x08000244   0x00000008   Code   RO         1657    i.ADC_GetConversionValue  stm32f10x_adc.o
+    0x0800024c   0x00000014   Code   RO         1662    i.ADC_GetResetCalibrationStatus  stm32f10x_adc.o
+    0x08000260   0x00000050   Code   RO         1666    i.ADC_Init          stm32f10x_adc.o
+    0x080002b0   0x000000b8   Code   RO         1670    i.ADC_RegularChannelConfig  stm32f10x_adc.o
+    0x08000368   0x0000000a   Code   RO         1671    i.ADC_ResetCalibration  stm32f10x_adc.o
+    0x08000372   0x00000016   Code   RO         1673    i.ADC_SoftwareStartConvCmd  stm32f10x_adc.o
+    0x08000388   0x0000000a   Code   RO         1675    i.ADC_StartCalibration  stm32f10x_adc.o
+    0x08000392   0x00000014   Code   RO         3755    i.App_Init          app.o
+    0x080003a6   0x00000018   Code   RO         3756    i.App_Task          app.o
+    0x080003be   0x00000004   Code   RO            1    i.BusFault_Handler  stm32f10x_it.o
+    0x080003c2   0x00000002   PAD
+    0x080003c4   0x00000040   Code   RO         3540    i.ComToUart         bsp_uart_fifo.o
+    0x08000404   0x0000005a   Code   RO         3541    i.ConfigUartNVIC    bsp_uart_fifo.o
+    0x0800045e   0x00000002   Code   RO            2    i.DebugMon_Handler  stm32f10x_it.o
+    0x08000460   0x00000112   Code   RO          508    i.GPIO_Init         stm32f10x_gpio.o
+    0x08000572   0x00000002   PAD
+    0x08000574   0x00000090   Code   RO          510    i.GPIO_PinRemapConfig  stm32f10x_gpio.o
+    0x08000604   0x00000004   Code   RO          515    i.GPIO_ResetBits    stm32f10x_gpio.o
+    0x08000608   0x00000004   Code   RO          516    i.GPIO_SetBits      stm32f10x_gpio.o
+    0x0800060c   0x00000004   Code   RO            3    i.HardFault_Handler  stm32f10x_it.o
+    0x08000610   0x00000010   Code   RO         2520    i.IWDG_Enable       stm32f10x_iwdg.o
+    0x08000620   0x00000010   Code   RO         2522    i.IWDG_ReloadCounter  stm32f10x_iwdg.o
+    0x08000630   0x0000000c   Code   RO         2523    i.IWDG_SetPrescaler  stm32f10x_iwdg.o
+    0x0800063c   0x0000000c   Code   RO         2524    i.IWDG_SetReload    stm32f10x_iwdg.o
+    0x08000648   0x0000000c   Code   RO         2525    i.IWDG_WriteAccessCmd  stm32f10x_iwdg.o
+    0x08000654   0x00000094   Code   RO         3542    i.InitHardUart      bsp_uart_fifo.o
+    0x080006e8   0x00000018   Code   RO         3679    i.IsKeyDown1        bsp_key.o
+    0x08000700   0x00000008   Code   RO         3381    i.Iwdg_Feed         bsp_wdg.o
+    0x08000708   0x00000004   Code   RO            4    i.MemManage_Handler  stm32f10x_it.o
+    0x0800070c   0x00000002   Code   RO            5    i.NMI_Handler       stm32f10x_it.o
+    0x0800070e   0x00000002   PAD
+    0x08000710   0x00000074   Code   RO          622    i.NVIC_Init         misc.o
+    0x08000784   0x00000014   Code   RO          623    i.NVIC_PriorityGroupConfig  misc.o
+    0x08000798   0x00000002   Code   RO            6    i.PendSV_Handler    stm32f10x_it.o
+    0x0800079a   0x00000002   PAD
+    0x0800079c   0x00000018   Code   RO          226    i.RCC_ADCCLKConfig  stm32f10x_rcc.o
+    0x080007b4   0x00000020   Code   RO          228    i.RCC_APB1PeriphClockCmd  stm32f10x_rcc.o
+    0x080007d4   0x00000020   Code   RO          229    i.RCC_APB1PeriphResetCmd  stm32f10x_rcc.o
+    0x080007f4   0x00000020   Code   RO          230    i.RCC_APB2PeriphClockCmd  stm32f10x_rcc.o
+    0x08000814   0x00000020   Code   RO          231    i.RCC_APB2PeriphResetCmd  stm32f10x_rcc.o
+    0x08000834   0x000000d4   Code   RO          238    i.RCC_GetClocksFreq  stm32f10x_rcc.o
+    0x08000908   0x0000003c   Code   RO          239    i.RCC_GetFlagStatus  stm32f10x_rcc.o
+    0x08000944   0x0000000c   Code   RO          247    i.RCC_LSICmd        stm32f10x_rcc.o
+    0x08000950   0x00000018   Code   RO          723    i.SPI_Cmd           stm32f10x_spi.o
+    0x08000968   0x00000012   Code   RO          731    i.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
+    0x0800097a   0x00000004   Code   RO          735    i.SPI_I2S_SendData  stm32f10x_spi.o
+    0x0800097e   0x0000003c   Code   RO          736    i.SPI_Init          stm32f10x_spi.o
+    0x080009ba   0x00000018   Code   RO          738    i.SPI_SSOutputCmd   stm32f10x_spi.o
+    0x080009d2   0x00000002   Code   RO            7    i.SVC_Handler       stm32f10x_it.o
+    0x080009d4   0x00000008   Code   RO         3328    i.SetSysClock       system_stm32f10x.o
+    0x080009dc   0x000000d8   Code   RO         3329    i.SetSysClockTo36   system_stm32f10x.o
+    0x08000ab4   0x00000008   Code   RO            8    i.SysTick_Handler   stm32f10x_it.o
+    0x08000abc   0x00000030   Code   RO         3479    i.SysTick_ISR       bsp_timer.o
+    0x08000aec   0x00000060   Code   RO         3331    i.SystemInit        system_stm32f10x.o
+    0x08000b4c   0x00000008   Code   RO            9    i.TIM2_IRQHandler   stm32f10x_it.o
+    0x08000b54   0x00000174   Code   RO         3835    i.TIM2_ISR          app_printer.o
+    0x08000cc8   0x00000006   Code   RO         2722    i.TIM_ClearFlag     stm32f10x_tim.o
+    0x08000cce   0x00000006   Code   RO         2723    i.TIM_ClearITPendingBit  stm32f10x_tim.o
+    0x08000cd4   0x00000018   Code   RO         2728    i.TIM_Cmd           stm32f10x_tim.o
+    0x08000cec   0x000001e8   Code   RO         2733    i.TIM_DeInit        stm32f10x_tim.o
+    0x08000ed4   0x00000022   Code   RO         2749    i.TIM_GetITStatus   stm32f10x_tim.o
+    0x08000ef6   0x00000012   Code   RO         2753    i.TIM_ITConfig      stm32f10x_tim.o
+    0x08000f08   0x0000000c   Code   RO         2755    i.TIM_InternalClockConfig  stm32f10x_tim.o
+    0x08000f14   0x00000004   Code   RO         2787    i.TIM_SetAutoreload  stm32f10x_tim.o
+    0x08000f18   0x00000004   Code   RO         2793    i.TIM_SetCounter    stm32f10x_tim.o
+    0x08000f1c   0x000000a4   Code   RO         2799    i.TIM_TimeBaseInit  stm32f10x_tim.o
+    0x08000fc0   0x00000010   Code   RO         3543    i.USART1_IRQHandler  bsp_uart_fifo.o
+    0x08000fd0   0x00000046   Code   RO         3800    i.USART1_Tx_Chars   app_uart.o
+    0x08001016   0x00000002   PAD
+    0x08001018   0x00000010   Code   RO         3544    i.USART2_IRQHandler  bsp_uart_fifo.o
+    0x08001028   0x00000010   Code   RO         3545    i.USART3_IRQHandler  bsp_uart_fifo.o
+    0x08001038   0x00000012   Code   RO          988    i.USART_ClearFlag   stm32f10x_usart.o
+    0x0800104a   0x00000022   Code   RO          990    i.USART_ClockInit   stm32f10x_usart.o
+    0x0800106c   0x00000018   Code   RO          992    i.USART_Cmd         stm32f10x_usart.o
+    0x08001084   0x0000001a   Code   RO          995    i.USART_GetFlagStatus  stm32f10x_usart.o
+    0x0800109e   0x00000054   Code   RO          996    i.USART_GetITStatus  stm32f10x_usart.o
+    0x080010f2   0x0000004a   Code   RO          998    i.USART_ITConfig    stm32f10x_usart.o
+    0x0800113c   0x000000d8   Code   RO          999    i.USART_Init        stm32f10x_usart.o
+    0x08001214   0x0000000a   Code   RO         1006    i.USART_ReceiveData  stm32f10x_usart.o
+    0x0800121e   0x00000008   Code   RO         1009    i.USART_SendData    stm32f10x_usart.o
+    0x08001226   0x00000010   Code   RO         1011    i.USART_SetGuardTime  stm32f10x_usart.o
+    0x08001236   0x00000010   Code   RO         1012    i.USART_SetPrescaler  stm32f10x_usart.o
+    0x08001246   0x00000018   Code   RO         1013    i.USART_SmartCardCmd  stm32f10x_usart.o
+    0x0800125e   0x00000018   Code   RO         1014    i.USART_SmartCardNACKCmd  stm32f10x_usart.o
+    0x08001276   0x0000004a   Code   RO         3548    i.UartGetChar       bsp_uart_fifo.o
+    0x080012c0   0x000000e6   Code   RO         3549    i.UartIRQ           bsp_uart_fifo.o
+    0x080013a6   0x00000072   Code   RO         3550    i.UartSend          bsp_uart_fifo.o
+    0x08001418   0x000000b0   Code   RO         3551    i.UartVarInit       bsp_uart_fifo.o
+    0x080014c8   0x00000004   Code   RO           10    i.UsageFault_Handler  stm32f10x_it.o
+    0x080014cc   0x0000000c   Code   RO         3263    i.WWDG_ClearFlag    stm32f10x_wwdg.o
+    0x080014d8   0x00000008   Code   RO           11    i.WWDG_IRQHandler   stm32f10x_it.o
+    0x080014e0   0x00000010   Code   RO         3268    i.WWDG_SetCounter   stm32f10x_wwdg.o
+    0x080014f0   0x0000000a   Code   RO         3382    i.Wwdg_Feed         bsp_wdg.o
+    0x080014fa   0x00000002   PAD
+    0x080014fc   0x00000028   Code   RO         3383    i.Wwdg_ISR          bsp_wdg.o
+    0x08001524   0x00000020   Code   RO         4125    i.__0printf$1       mc_w.l(printf1.o)
+    0x08001544   0x0000000e   Code   RO         4383    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08001552   0x00000002   Code   RO         4384    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08001554   0x0000000e   Code   RO         4385    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08001562   0x00000006   Code   RO         3552    i.__set_PRIMASK     bsp_uart_fifo.o
+    0x08001568   0x00000154   Code   RO         4132    i._printf_core      mc_w.l(printf1.o)
+    0x080016bc   0x00000054   Code   RO         3482    i.bsp_DelayUS       bsp_timer.o
+    0x08001710   0x000000cc   Code   RO         3680    i.bsp_DetectKey     bsp_key.o
+    0x080017dc   0x00000040   Code   RO         3681    i.bsp_GetKey        bsp_key.o
+    0x0800181c   0x00000008   Code   RO         3450    i.bsp_Idle          bsp.o
+    0x08001824   0x00000024   Code   RO         3451    i.bsp_Init          bsp.o
+    0x08001848   0x000000a8   Code   RO         3667    i.bsp_InitAdc       bsp_adc.o
+    0x080018f0   0x00000034   Code   RO         3385    i.bsp_InitIwdg      bsp_wdg.o
+    0x08001924   0x0000000c   Code   RO         3684    i.bsp_InitKey       bsp_key.o
+    0x08001930   0x0000002c   Code   RO         3685    i.bsp_InitKeyHard   bsp_key.o
+    0x0800195c   0x00000060   Code   RO         3686    i.bsp_InitKeyVar    bsp_key.o
+    0x080019bc   0x00000060   Code   RO         3484    i.bsp_InitTimer     bsp_timer.o
+    0x08001a1c   0x00000010   Code   RO         3553    i.bsp_InitUart      bsp_uart_fifo.o
+    0x08001a2c   0x00000008   Code   RO         3386    i.bsp_InitWdg       bsp_wdg.o
+    0x08001a34   0x00000016   Code   RO         3688    i.bsp_KeyScan       bsp_key.o
+    0x08001a4a   0x00000002   PAD
+    0x08001a4c   0x00000054   Code   RO         3689    i.bsp_KeyTask       bsp_key.o
+    0x08001aa0   0x00000028   Code   RO         3690    i.bsp_PutKey        bsp_key.o
+    0x08001ac8   0x00000002   Code   RO         3452    i.bsp_rcc_init      bsp.o
+    0x08001aca   0x00000002   PAD
+    0x08001acc   0x0000002c   Code   RO         3930    i.ceshi             app_esam8810.o
+    0x08001af8   0x0000002c   Code   RO         3970    i.ceshi             app_psam_card.o
+    0x08001b24   0x000000b4   Code   RO         4011    i.ceshi             app_pa1100.o
+    0x08001bd8   0x00000030   Code   RO         3836    i.check_to_print    app_printer.o
+    0x08001c08   0x000000c4   Code   RO         3801    i.checkout_cmd      app_uart.o
+    0x08001ccc   0x0000001e   Code   RO         3556    i.comGetChar        bsp_uart_fifo.o
+    0x08001cea   0x0000002e   Code   RO         3557    i.comSendBuf        bsp_uart_fifo.o
+    0x08001d18   0x00000010   Code   RO         3558    i.comSendChar       bsp_uart_fifo.o
+    0x08001d28   0x00000064   Code   RO         3931    i.esam8810_CMD_DEAL  app_esam8810.o
+    0x08001d8c   0x00000110   Code   RO         3932    i.esam8810_Init     app_esam8810.o
+    0x08001e9c   0x00000040   Code   RO         3933    i.esam8810_SERVER_TASK  app_esam8810.o
+    0x08001edc   0x00000060   Code   RO         3934    i.esam8810_rcv      app_esam8810.o
+    0x08001f3c   0x00000034   Code   RO         3935    i.esam8810_rst      app_esam8810.o
+    0x08001f70   0x00000024   Code   RO         3560    i.fputc             bsp_uart_fifo.o
+    0x08001f94   0x000000e6   Code   RO         3837    i.get_print_mode    app_printer.o
+    0x0800207a   0x00000002   PAD
+    0x0800207c   0x00000018   Code   RO         4012    i.is_detect_down    app_pa1100.o
+    0x08002094   0x00000018   Code   RO         3838    i.is_detect_ok      app_printer.o
+    0x080020ac   0x0000003e   Code   RO         3802    i.judge_cmd_correct  app_uart.o
+    0x080020ea   0x00000018   Code   RO          211    i.main              main.o
+    0x08002102   0x00000002   PAD
+    0x08002104   0x00000060   Code   RO         4013    i.pa1100_CMD_DEAL   app_pa1100.o
+    0x08002164   0x00000030   Code   RO         4014    i.pa1100_Init       app_pa1100.o
+    0x08002194   0x000000f0   Code   RO         4015    i.pa1100_SERVER_TASK  app_pa1100.o
+    0x08002284   0x0000001e   Code   RO         4016    i.pa1100_read_data  app_pa1100.o
+    0x080022a2   0x00000002   PAD
+    0x080022a4   0x000000d8   Code   RO         4017    i.pa1100_rst        app_pa1100.o
+    0x0800237c   0x00000200   Code   RO         3839    i.printer_CMD_DEAL  app_printer.o
+    0x0800257c   0x000002a4   Code   RO         3840    i.printer_Init      app_printer.o
+    0x08002820   0x000001dc   Code   RO         3841    i.printer_SERVER_TASK  app_printer.o
+    0x080029fc   0x0000006c   Code   RO         3842    i.printer_data_out  app_printer.o
+    0x08002a68   0x00000080   Code   RO         3843    i.printer_heat      app_printer.o
+    0x08002ae8   0x000000a0   Code   RO         3844    i.printer_moter_cut_feed  app_printer.o
+    0x08002b88   0x00000100   Code   RO         3845    i.printer_moter_step  app_printer.o
+    0x08002c88   0x0000041c   Code   RO         3846    i.printer_start     app_printer.o
+    0x080030a4   0x00000428   Code   RO         3847    i.printer_start_ceshi  app_printer.o
+    0x080034cc   0x00000040   Code   RO         3848    i.printer_stop      app_printer.o
+    0x0800350c   0x00000024   Code   RO         3849    i.printer_stop_ceshi  app_printer.o
+    0x08003530   0x00000064   Code   RO         3971    i.psam_card_CMD_DEAL  app_psam_card.o
+    0x08003594   0x00000114   Code   RO         3972    i.psam_card_Init    app_psam_card.o
+    0x080036a8   0x00000040   Code   RO         3973    i.psam_card_SERVER_TASK  app_psam_card.o
+    0x080036e8   0x00000060   Code   RO         3974    i.psam_card_rcv     app_psam_card.o
+    0x08003748   0x0000003c   Code   RO         3975    i.psam_card_rst     app_psam_card.o
+    0x08003784   0x00000024   Code   RO         4018    i.set_mosi_ipu      app_pa1100.o
+    0x080037a8   0x00000024   Code   RO         4019    i.set_mosi_out_pp   app_pa1100.o
+    0x080037cc   0x00000030   Code   RO         3850    i.set_tim_reload    app_printer.o
+    0x080037fc   0x00000050   Code   RO         4020    i.spi_read_byte     app_pa1100.o
+    0x0800384c   0x00000114   Code   RO         3803    i.uart_SERVER_TASK  app_uart.o
+    0x08003960   0x0000a0b8   Data   RO         3852    .constdata          app_printer.o
+    0x0800da18   0x00000020   Data   RO         4381    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00004c10, Max: 0x0000c000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000025f8, Max: 0x00002800, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000014   Data   RW          255    .data               stm32f10x_rcc.o
-    0x20000014   0x00000014   Data   RW         3329    .data               system_stm32f10x.o
-    0x20000028   0x00000028   Data   RW         3479    .data               bsp_timer.o
-    0x20000050   0x00000005   Data   RW         3723    .data               app_uart.o
-    0x20000055   0x00000003   PAD
-    0x20000058   0x0000001c   Data   RW         3771    .data               app_printer.o
-    0x20000074   0x0000000c   Data   RW         3854    .data               app_esam8810.o
-    0x20000080   0x0000000c   Data   RW         3894    .data               app_psam_card.o
-    0x2000008c   0x0000000c   Data   RW         3939    .data               app_pa1100.o
-    0x20000098   0x00000004   Data   RW         4273    .data               mc_w.l(stdout.o)
-    0x2000009c   0x00002878   Zero   RW         3555    .bss                bsp_uart_fifo.o
-    0x20002914   0x000015f4   Zero   RW         3722    .bss                app_uart.o
-    0x20003f08   0x00000904   Zero   RW         3769    .bss                app_printer.o
-    0x2000480c   0x00000004   PAD
-    0x20004810   0x00000400   Zero   RW         3371    STACK               startup_stm32f10x_md.o
+    0x20000000   0x00000014   Data   RW          258    .data               stm32f10x_rcc.o
+    0x20000014   0x00000014   Data   RW         3332    .data               system_stm32f10x.o
+    0x20000028   0x00000028   Data   RW         3485    .data               bsp_timer.o
+    0x20000050   0x0000000c   Data   RW         3692    .data               bsp_key.o
+    0x2000005c   0x00000005   Data   RW         3805    .data               app_uart.o
+    0x20000061   0x00000003   PAD
+    0x20000064   0x00000020   Data   RW         3853    .data               app_printer.o
+    0x20000084   0x0000000c   Data   RW         3936    .data               app_esam8810.o
+    0x20000090   0x0000000c   Data   RW         3976    .data               app_psam_card.o
+    0x2000009c   0x0000000c   Data   RW         4021    .data               app_pa1100.o
+    0x200000a8   0x00000004   Data   RW         4355    .data               mc_w.l(stdout.o)
+    0x200000ac   0x00000e08   Zero   RW         3561    .bss                bsp_uart_fifo.o
+    0x20000eb4   0x00000045   Zero   RW         3691    .bss                bsp_key.o
+    0x20000ef9   0x000009f4   Zero   RW         3804    .bss                app_uart.o
+    0x200018ed   0x00000904   Zero   RW         3851    .bss                app_printer.o
+    0x200021f1   0x00000007   PAD
+    0x200021f8   0x00000400   Zero   RW         3374    STACK               startup_stm32f10x_md.o
 
 
 ==============================================================================
@@ -1932,19 +2000,20 @@ Image component sizes
         44          0          0          0          0        854   app.o
        628         46          0         12          0       4679   app_esam8810.o
        986         66          0         12          0       6465   app_pa1100.o
-      5038        278      41144         28       2308      17710   app_printer.o
+      5254        290      41144         32       2308      17834   app_printer.o
        640         46          0         12          0       5034   app_psam_card.o
-       604         22          0          5       5620       3227   app_uart.o
-        42          0          0          0          0       1210   bsp.o
+       604         22          0          5       2548       3227   app_uart.o
+        46          0          0          0          0       1214   bsp.o
        168          8          0          0          0        610   bsp_adc.o
+       590         56          0         12         69       5014   bsp_key.o
        228         32          0         40          0      18646   bsp_timer.o
-      1098         92          0          0      10360       9219   bsp_uart_fifo.o
-       118         22          0          0          0      18480   bsp_wdg.o
+      1094         94          0          0       3592       9215   bsp_uart_fifo.o
+       118         22          0          0          0      19292   bsp_wdg.o
          0          0          0          0          0         32   core_cm3.o
-        20          0          0          0          0        419   main.o
+        24          0          0          0          0        423   main.o
        136         24          0          0          0       3519   misc.o
         36          8        236          0       1024        896   startup_stm32f10x_md.o
-       460         24          0          0          0      16997   stm32f10x_adc.o
+       468         24          0          0          0      17578   stm32f10x_adc.o
        426          6          0          0          0      21438   stm32f10x_gpio.o
         48          0          0          0          0      51478   stm32f10x_it.o
         68         30          0          0          0       2682   stm32f10x_iwdg.o
@@ -1953,12 +2022,12 @@ Image component sizes
        760        106          0          0          0      27430   stm32f10x_tim.o
        574          6          0          0          0      16337   stm32f10x_usart.o
         28         10          0          0          0       1055   stm32f10x_wwdg.o
-       324         26          0         20          0      13009   system_stm32f10x.o
+       320         26          0         20          0      13009   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     13062        912      41412        152      19316     471028   Object Totals
+     13878        982      41412        168       9548     477563   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        22          0          0          3          4          0   (incl. Padding)
+        24          0          0          3          7          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2000,15 +2069,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     13636        944      41412        156      19316     463940   Grand Totals
-     13636        944      41412        156      19316     463940   ELF Image Totals
-     13636        944      41412        156          0          0   ROM Totals
+     14452       1014      41412        172       9548     469955   Grand Totals
+     14452       1014      41412        172       9548     469955   ELF Image Totals
+     14452       1014      41412        172          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                55048 (  53.76kB)
-    Total RW  Size (RW Data + ZI Data)             19472 (  19.02kB)
-    Total ROM Size (Code + RO Data + RW Data)      55204 (  53.91kB)
+    Total RO  Size (Code + RO Data)                55864 (  54.55kB)
+    Total RW  Size (RW Data + ZI Data)              9720 (   9.49kB)
+    Total ROM Size (Code + RO Data + RW Data)      56036 (  54.72kB)
 
 ==============================================================================
 

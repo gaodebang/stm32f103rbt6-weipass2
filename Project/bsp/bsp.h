@@ -35,6 +35,7 @@
 #include "bsp_wdg.h"
 #include "bsp_uart_fifo.h"
 #include "bsp_adc.h"
+#include "bsp_key.h"
 
 /* 提供给其他C文件调用的函数 */
 void bsp_Init(void);

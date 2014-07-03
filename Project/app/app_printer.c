@@ -2169,8 +2169,11 @@ static uint8_t get_print_mode(uint8_t * datain)
 		}
 	}
 	temp_num_all = temp_num_blank[0] + temp_num_blank[1] + temp_num_blank[2] + temp_num_blank[3] + temp_num_blank[4] + temp_num_blank[5];
-	temp_num_1 = temp_num_blank[0] + temp_num_blank[1] + temp_num_blank[3] + temp_num_blank[4];
-	temp_num_2 = temp_num_blank[2] + temp_num_blank[5];
+	/*
+	0、1由STROBE_1控制，2由STROBE_2控制，3、4由STROBE_3控制，5由STROBE_4控制
+	*/
+	temp_num_1 = temp_num_blank[0] + temp_num_blank[1] + temp_num_blank[2];
+	temp_num_2 = temp_num_blank[3] + temp_num_blank[4] + temp_num_blank[5];
 	if(temp_num_all == 0)
 	{
 		return 0xFF;
@@ -2205,7 +2208,6 @@ static uint8_t get_print_mode(uint8_t * datain)
 		{
 			return 0x22;
 		}
-		//return 0x11;
 	}
 	return 0x22;
 }
@@ -2340,10 +2342,11 @@ static void printer_start_ceshi(void)
 
 	uint8_t * data_pointer;
 
-	static uint32_t j = 0;
+	static uint32_t j0 = 0;
+	static uint32_t j1 = 0;
 	if(Printer_State == TPSTATE_IDLE)
 	{
-		data_pointer = (uint8_t *)&ZIMO_001[j * ((uint32_t) LINEDOT / 8L)];
+		data_pointer = (uint8_t *)&ZIMO_000[j0 * ((uint32_t) LINEDOT / 8L)];
 		print_mode = get_print_mode(data_pointer);
 		if(print_mode == 0xFF)
 		{
@@ -2468,15 +2471,19 @@ static void printer_start_ceshi(void)
 			Printer_State = TPSTATE_FEED_CESHI;
 			TIM_Cmd(TIM2, ENABLE);
 		}
-		if(++j >= 800)
+		if(++j0 >= 24)
 		{
-			j=0;
-			printer_stop_ceshi();
-				//命令执行成功
-			Usart1_Txd_Tempdata[0] = 0x00;
-			Usart1_Txd_Tempdata[1] = 0x01;
-			Usart1_Txd_Tempdata[2] = PRINTER;
-			USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			j0=0;
+			if(++j1 >= 33)
+			{
+				j1 = 0;
+				printer_stop_ceshi();
+					//命令执行成功
+				Usart1_Txd_Tempdata[0] = 0x00;
+				Usart1_Txd_Tempdata[1] = 0x01;
+				Usart1_Txd_Tempdata[2] = PRINTER;
+				USART1_Tx_Chars(Usart1_Txd_Tempdata, 3);
+			}
 		}
 	}
 	else
@@ -2723,7 +2730,7 @@ void TIM2_ISR(void)
 			if(Motor_Feed_Step)
 			{
 				Motor_Feed_Step--;
-				//set_tim_reload(&Motor_Feed_T);
+				set_tim_reload(&Motor_Feed_T);
 				printer_moter_step();
 				if(Motor_Feed_Step == 0)
 				{
@@ -3080,7 +3087,16 @@ void printer_SERVER_TASK(void)
 		time_ms = sys_time;
 		if (is_detect_ok()) 
 		{
-			if (1)//此处检测温度是否超过正常值
+			if(bsp_GetKey() == KEY_DOWN_K1)
+			{
+				Motor_Feed_Step += 320;
+				Printer_State = TPSTATE_CUT_FEED;
+				printer_moter_step();
+				Motor_Feed_Step--;
+				Motor_Feed_T = 0;
+				TIM_Cmd(TIM2, ENABLE);
+			}
+			if (ADC_GetConversionValue(ADC1) > 575)//此处检测温度是否超过正常值
 			{
 				switch (Printer_State)
 				{
@@ -3142,6 +3158,7 @@ void printer_SERVER_TASK(void)
 				Print_Buf_Mark = 0;
 				STROBE_12_OFF();
 				MOTOR_PHASE_DISABLE();
+				bsp_GetKey();
 				TIM_Cmd(TIM2, DISABLE);
 				Printer_State = TPSTATE_IDLE;
 				//打印纸位置检测错误

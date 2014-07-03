@@ -59,9 +59,9 @@ void bsp_InitAdc(void)
 /*
 //ADC1_value = ADC_GetConversionValue(ADC1); 
 
-热敏电阻 75 摄氏度 最小值为1.4K
+热敏电阻 75 摄氏度 最大值为4.9K
 
-则 adc值 为 1.4/（1.4+30）*4095
+则 adc值 为 4.9	（4.9+30）*4095
 
-// 183=
+// 575
 */
