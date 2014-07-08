@@ -857,6 +857,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\bsp\bsp_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\bsp\bsp_key.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1746,6 +1751,11 @@
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\bsp\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\bsp\bsp_key.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2637,6 +2647,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\bsp\bsp_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\bsp\bsp_key.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3526,6 +3541,11 @@
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\bsp\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\bsp\bsp_key.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4417,6 +4437,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\bsp\bsp_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\bsp\bsp_key.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5306,6 +5331,11 @@
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\bsp\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\bsp\bsp_key.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1846,7 +1846,7 @@ typedef enum
 	TPSTATE_START,
 	TPSTATE_FEED,
 	
-	TPSTATE_END,
+	TPSTATE_END
 }TPSTATE_T;
 
 #define LINEDOT		(384)	// 两寸机芯为384点 
@@ -2302,8 +2302,7 @@ static void printer_moter_cut_feed(uint16_t step_num)
 */
 static void printer_stop(void)
 {
-	Motor_Feed_Step += 200;
-	Printer_State = TPSTATE_CUT_FEED;
+	Printer_State = TPSTATE_END;
 	TIM_Cmd(TIM2, ENABLE);
 	//对象命令执行成功
 	Usart1_Txd_Tempdata[0] = 0x00;
@@ -2322,7 +2321,7 @@ static void printer_stop(void)
 */
 static void printer_stop_ceshi(void)
 {
-	Motor_Feed_Step += 160;
+	Motor_Feed_Step += 320;
 	Printer_State = TPSTATE_CUT_FEED;
 	TIM_Cmd(TIM2, ENABLE);
 }
@@ -2917,6 +2916,7 @@ void printer_Init(void)
 */
 void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 {
+	uint16_t tem;
 	switch (*databuf)
 	{
 		case CESHI:
@@ -2933,7 +2933,44 @@ void printer_CMD_DEAL(uint8_t *databuf, uint16_t length)
 				}
 				else if(*(databuf + 1) == 0x12)
 				{
-					USART1_Tx_Chars((uint8_t *)ZIMO_000, sizeof(ZIMO_000));
+					if(ADC_GetConversionValue(ADC1) <= 575)
+					{
+						//命令执行成功
+						Usart1_Txd_Tempdata[0] = 0x00;
+						Usart1_Txd_Tempdata[1] = 0x02;
+						Usart1_Txd_Tempdata[2] = PRINTER;
+						Usart1_Txd_Tempdata[3] = 0x02;
+						USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+					}
+					else if(is_detect_ok() == 0)
+					{
+						//命令执行成功
+						Usart1_Txd_Tempdata[0] = 0x00;
+						Usart1_Txd_Tempdata[1] = 0x02;
+						Usart1_Txd_Tempdata[2] = PRINTER;
+						Usart1_Txd_Tempdata[3] = 0x01;
+						USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+					}
+					else
+					{
+						//命令执行成功
+						Usart1_Txd_Tempdata[0] = 0x00;
+						Usart1_Txd_Tempdata[1] = 0x02;
+						Usart1_Txd_Tempdata[2] = PRINTER;
+						Usart1_Txd_Tempdata[3] = 0x00;
+						USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
+					}
+				}
+				else if(*(databuf + 1) == 0x13)
+				{
+					//命令执行成功
+					Usart1_Txd_Tempdata[0] = 0x00;
+					Usart1_Txd_Tempdata[1] = 0x03;
+					Usart1_Txd_Tempdata[2] = PRINTER;
+					tem = ADC_GetConversionValue(ADC1);
+					Usart1_Txd_Tempdata[3] = tem>>8;
+					Usart1_Txd_Tempdata[4] = tem;
+					USART1_Tx_Chars(Usart1_Txd_Tempdata, 5);
 				}
 				else
 				{
@@ -3130,22 +3167,25 @@ void printer_SERVER_TASK(void)
 					default:
 						break;
 				}
-				Cycletime = 10000;
+				Cycletime = 5000;
 			}
 			else
 			{
-				if(++ Cycletime >= 10000)
+				if(++ Cycletime >= 5000)
 				{
 					Cycletime = 0;
 					Motor_Feed_Step = 0;
 					STROBE_12_OFF();
 					MOTOR_PHASE_DISABLE();
+					bsp_GetKey();
+					TIM_Cmd(TIM2, DISABLE);
+					Printer_State = TPSTATE_IDLE;
 					//打印机温度过高
 					Usart1_Txd_Tempdata[0] = 0x00;
 					Usart1_Txd_Tempdata[1] = 0x02;
 					Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 					Usart1_Txd_Tempdata[3] = 0x32;
-					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
+					USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 				}					
 			}
 		}
@@ -3161,12 +3201,12 @@ void printer_SERVER_TASK(void)
 				bsp_GetKey();
 				TIM_Cmd(TIM2, DISABLE);
 				Printer_State = TPSTATE_IDLE;
-				//打印纸位置检测错误
+				//打印纸位置检测错误-无打印纸
 				Usart1_Txd_Tempdata[0] = 0x00;
 				Usart1_Txd_Tempdata[1] = 0x02;
 				Usart1_Txd_Tempdata[2] = PRINTER | 0x80;
 				Usart1_Txd_Tempdata[3] = 0x31;
-				//USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);				
+				USART1_Tx_Chars(Usart1_Txd_Tempdata, 4);
 			}
 		}
 	}
